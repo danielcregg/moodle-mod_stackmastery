@@ -34,6 +34,9 @@ use mod_stackmastery\local\grades;
  * @covers \mod_stackmastery\local\report\report_data
  */
 final class report_data_test extends \advanced_testcase {
+    /** @var int Monotonic source of placeholder inprogressuniq values for terminal seeds. */
+    private static int $uniqseq = 0;
+
     /** @var \stdClass The course. */
     private $course;
 
@@ -101,9 +104,16 @@ final class report_data_test extends \advanced_testcase {
             'timefinish'        => 2000,
             'timemodified'      => 2000,
         ], $overrides);
+        // The C3 unique index (stackmasteryid, userid, inprogressuniq): only the single OPEN
+        // attempt of a user may sit at 0, so a terminal row must never even INSERT at 0 (the
+        // same user may already hold an open attempt). Insert terminal rows under a placeholder
+        // that cannot collide, then settle them at their own id, as production does at close.
+        $terminal = $record->state !== 'inprogress';
+        if ($terminal && (int) $record->inprogressuniq === 0) {
+            $record->inprogressuniq = 1000000000 + (++self::$uniqseq);
+        }
         $record->id = $DB->insert_record('stackmastery_attempts', $record);
-        if ($record->state !== 'inprogress' && (int) $record->inprogressuniq === 0) {
-            // Closed attempts carry inprogressuniq = id (the one-open-attempt unique index).
+        if ($terminal) {
             $record->inprogressuniq = (int) $record->id;
             $DB->set_field('stackmastery_attempts', 'inprogressuniq', $record->id, ['id' => $record->id]);
         }

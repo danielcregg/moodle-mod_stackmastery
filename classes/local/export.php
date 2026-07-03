@@ -70,8 +70,33 @@ final class export {
      * @return \stdClass|null The stackmastery_exportruns record, or null when no file was made.
      */
     public static function run(?\progress_trace $trace = null): ?\stdClass {
-        global $DB;
         $trace = $trace ?? new \null_progress_trace();
+
+        // One export run at a time: overlapping runs would both select the same unstamped
+        // attempts and emit duplicate episodes under different seqkeys, which the adapter can
+        // never dedupe (the salts are discarded). Skipping is safe - the next run picks the
+        // rows up.
+        $factory = \core\lock\lock_config::get_lock_factory('mod_stackmastery');
+        $lock = $factory->get_lock('experienceexport', 2);
+        if (!$lock) {
+            $trace->output('mod_stackmastery export: another run holds the lock, skipping.');
+            return null;
+        }
+        try {
+            return self::run_locked($trace);
+        } finally {
+            $lock->release();
+        }
+    }
+
+    /**
+     * The export body, called with the run lock held.
+     *
+     * @param \progress_trace $trace Progress reporting.
+     * @return \stdClass|null The exportruns record, or null when there was nothing to export.
+     */
+    protected static function run_locked(\progress_trace $trace): ?\stdClass {
+        global $DB;
         $now = time();
         $dir = self::export_dir();
         $filename = 'stackmastery_experience_' . date('Ymd_His', $now) . '_' . bin2hex(random_bytes(4)) . '.jsonl';

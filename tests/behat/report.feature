@@ -53,10 +53,12 @@ Feature: Teachers monitor mastery attempts in the report
   Scenario: A walked attempt shows in the funnel and the table, and can be deleted
     Given I am on the "Mastery check" "stackmastery activity" page logged in as "student1"
     And I press "Start attempt"
-    And I set the field "Answer" to "frog"
-    And I press "Check"
-    And I set the field "Answer" to "frog"
-    And I press "Check"
+    # Scoped to the open-question form: the review panel repeats the "Answer" label and its
+    # read-only input sits outside the form, so an unscoped set would never reach the POST.
+    And I set the field "Answer" in the "#stackmastery-attemptform" "css_element" to "frog"
+    And I click on "Check" "button" in the "#stackmastery-attemptform" "css_element"
+    And I set the field "Answer" in the "#stackmastery-attemptform" "css_element" to "frog"
+    And I click on "Check" "button" in the "#stackmastery-attemptform" "css_element"
     And I log out
     When I am on the "Mastery check" "stackmastery activity" page logged in as "teacher1"
     And I navigate to "Report" in current page administration

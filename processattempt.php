@@ -58,6 +58,25 @@ try {
     redirect($viewurl, $e->getMessage(), null, \core\output\notification::NOTIFY_ERROR);
 }
 
+// Availability is enforced on every mutating POST, not just on page GETs: a stale tab or a
+// forged POST must not start an attempt before timeopen or keep grading after timeclose.
+$now = time();
+if (!empty($instance->timeopen) && $now < (int) $instance->timeopen) {
+    redirect($viewurl);
+}
+if (!empty($instance->timeclose) && $now > (int) $instance->timeclose) {
+    $open = $manager->get_open_attempt((int) $USER->id);
+    if ($open !== null) {
+        $manager->finish_attempt($open, attempt_manager::REASON_TIMECLOSE);
+    }
+    redirect(
+        $viewurl,
+        get_string('activityclosedgraded', 'mod_stackmastery'),
+        null,
+        \core\output\notification::NOTIFY_INFO
+    );
+}
+
 if ($action === 'start') {
     // Idempotent: an existing open attempt is simply resumed (two-tab double start is safe).
     try {

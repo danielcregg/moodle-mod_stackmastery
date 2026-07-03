@@ -289,7 +289,7 @@ final class policy_store {
                 if ($old->source !== 'promoted' || !is_file(self::active_path())) {
                     throw new \moodle_exception('norollback', 'mod_stackmastery');
                 }
-                self::archive_active();
+                self::archive_active(true);
                 self::record_swap(null);
                 $newactive = self::get_active();
                 self::record_swap($newactive->policyid);
@@ -429,9 +429,15 @@ final class policy_store {
     /**
      * Archive the current active.json (if any) into previous/, named by its policy id and time.
      *
+     * By default the active file is COPIED, not moved: a crash between archiving and writing
+     * the replacement must leave the served policy untouched (write_active() then atomically
+     * renames over it). The move variant exists for rollback-to-shipped, where removing
+     * active.json IS the swap and the atomic rename is exactly what makes it crash-safe.
+     *
+     * @param bool $remove True to move (remove active.json), false (default) to copy.
      * @return void
      */
-    private static function archive_active(): void {
+    private static function archive_active(bool $remove = false): void {
         $activepath = self::active_path();
         if (!is_file($activepath)) {
             return;
@@ -453,7 +459,8 @@ final class policy_store {
             $n++;
             $dest = $base . '-' . $n . '.json';
         }
-        if (!rename($activepath, $dest)) {
+        $moved = $remove ? rename($activepath, $dest) : copy($activepath, $dest);
+        if (!$moved) {
             throw new \moodle_exception('policyswapfailed', 'mod_stackmastery');
         }
     }

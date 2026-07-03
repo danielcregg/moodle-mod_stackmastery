@@ -66,13 +66,15 @@ Feature: A student works through an adaptive mastery attempt
     # Resume never draws: a reload re-renders the same open question.
     When I reload the page
     Then I should see "Question 1 of up to 5"
-    When I set the field "Answer" to "frog"
-    And I press "Check"
+    # Field and button are scoped to the open-question form: on review pages the read-only
+    # review panel above it repeats the same "Answer" label (its input ignores keystrokes).
+    When I set the field "Answer" in the "#stackmastery-attemptform" "css_element" to "frog"
+    And I click on "Check" "button" in the "#stackmastery-attemptform" "css_element"
     Then I should see "Correct."
     And I should see "Your mastery in Differentiation moved from 20%"
     And I should see "Question 2 of up to 5"
-    When I set the field "Answer" to "frog"
-    And I press "Check"
+    When I set the field "Answer" in the "#stackmastery-attemptform" "css_element" to "frog"
+    And I click on "Check" "button" in the "#stackmastery-attemptform" "css_element"
     Then I should see "You reached the target mastery in every skill."
     And I should see "Complete"
     And I should see "Your grade: 100"
