@@ -516,6 +516,38 @@ class attempt_manager {
     }
 
     /**
+     * How many graded tries the question attempt has accumulated, across the adaptive family.
+     *
+     * adaptivenopenalty (core, the shortanswer test seam) stamps the behaviour var _try on each
+     * graded submission; qbehaviour_adaptivemultipart (what qtype_stack actually substitutes for
+     * any adaptive request) never sets _try and instead stamps per-part vars (_tries_<prt>,
+     * _rawfraction_<prt>). Counting steps that carry any of those is behaviour-agnostic, so a
+     * graded try is recognised for BOTH - polling _try alone classified every graded STACK press
+     * as a validation, wedging the loop on real STACK questions (found by the live VM E2E; CI is
+     * shortanswer-based by design).
+     *
+     * @param \question_attempt $qa The question attempt.
+     * @return int Number of steps that carry graded-try evidence.
+     */
+    protected static function graded_try_count(\question_attempt $qa): int {
+        $count = 0;
+        foreach ($qa->get_step_iterator() as $step) {
+            $behaviourvars = $step->get_behaviour_data();
+            if (isset($behaviourvars['_try'])) {
+                $count++;
+                continue;
+            }
+            foreach ($behaviourvars as $name => $unused) {
+                if (strpos($name, '_tries_') === 0 || strpos($name, '_rawfraction') === 0) {
+                    $count++;
+                    break;
+                }
+            }
+        }
+        return $count;
+    }
+
+    /**
      * The money sequence for an open slot: filter, process, classify, then T1 and T2.
      *
      * @param \stdClass $attempt The fresh attempt row (lock held, refreshed in place).
@@ -546,7 +578,7 @@ class attempt_manager {
             return $this->classify_foreign_post($attempt, $postdata);
         }
 
-        $trybefore = (int) $qa->get_last_behaviour_var('_try', 0);
+        $trybefore = self::graded_try_count($qa);
         try {
             $quba->process_all_actions($timenow, $filtered);
         } catch (\question_out_of_sequence_exception $e) {
@@ -559,7 +591,7 @@ class attempt_manager {
                 $slot . ': ' . $e->getMessage(), DEBUG_DEVELOPER);
             return submit_outcome::failure(submit_outcome::ERROR, 'errgrading');
         }
-        $tryafter = (int) $qa->get_last_behaviour_var('_try', 0);
+        $tryafter = self::graded_try_count($qa);
 
         if ($tryafter === $trybefore) {
             // A validation press or invalid input: persist the QE step so the validation echo
