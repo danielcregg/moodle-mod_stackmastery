@@ -4,6 +4,24 @@ All notable changes to **mod_stackmastery** are documented in this file. The for
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.2.0-beta] - 2026-07-03
+
+### Added
+- **One-click pool builder** on the activity page (teachers with manageinstance): "Build my pool"
+  enumerates every (skill, difficulty) cell below a chosen per-cell target (1 to 20, default 3)
+  and queues one STACK Question Forge generation job per thin cell through the forge's new public
+  `queue_generation` API, mastery-tagged so the oracle-validated questions drop straight into the
+  pool. Shown only when local_stackforge (with the API) is installed.
+- **Shipped starter pack**: "Load sample pool" imports the module's bundled sample bank (14
+  oracle-validated forge-exported STACK questions covering all 8 skills, `questionbank/`) into the
+  instance's pool category and tags each question by skill and difficulty derived from its file
+  name (single-file types are tagged for all three difficulties). Idempotent: questions whose name
+  already exists in the category are skipped.
+- **Optional nightly refill** (`pool_refill_task`, daily): when the new `poolrefill` admin setting
+  is enabled (off by default) and the forge API exists, thin cells of every instance are topped up
+  to the `poolrefilltarget` setting (clamped 1 to 20, default 3), capped at 30 queued jobs per run
+  and attributed to the primary administrator.
+
 ## [0.1.1-beta] - 2026-07-03
 
 - Attempt page layout (user feedback from the first live session): the mastery bars are now

@@ -36,6 +36,10 @@
     * gradeline - string, optional
     * canviewreports / reporturl - bool / string
     * haspoolwarnings / poolwarnings - bool / array of { message }
+    * canmanagepool - bool, shows the pool tools card (manageinstance holders)
+    * buildpoolurl - string, buildpool.php URL for the two pool tool POSTs
+    * showbuildpool - bool, the generate form renders only when the forge job API is installed
+    * buildpooltargetdefault - int, default per-cell target for the generate form
 
     Example context (json):
     {
@@ -63,7 +67,11 @@
         "canviewreports": false,
         "reporturl": "https://example.com/mod/stackmastery/report.php?id=12",
         "haspoolwarnings": false,
-        "poolwarnings": []
+        "poolwarnings": [],
+        "canmanagepool": false,
+        "buildpoolurl": "https://example.com/mod/stackmastery/buildpool.php",
+        "showbuildpool": false,
+        "buildpooltargetdefault": 3
     }
 }}
 <div class="stackmastery-view" data-region="stackmastery-view" data-state="{{state}}">
@@ -118,6 +126,36 @@
             </div>
         </div>
     </div>
+
+    {{#canmanagepool}}
+        <div class="stackmastery-pooltools card mb-3">
+            <div class="card-body">
+                <h3 class="h5">{{#str}} pooltools, mod_stackmastery {{/str}}</h3>
+                <p class="text-muted mb-2">{{#str}} starterpackintro, mod_stackmastery {{/str}}</p>
+                <form method="post" action="{{buildpoolurl}}" class="stackmastery-starterform mb-3">
+                    <input type="hidden" name="id" value="{{cmid}}">
+                    <input type="hidden" name="action" value="starter">
+                    <input type="hidden" name="sesskey" value="{{sesskey}}">
+                    <button type="submit" class="btn btn-secondary">{{#str}} starterpack, mod_stackmastery {{/str}}</button>
+                </form>
+                {{#showbuildpool}}
+                    <p class="text-muted mb-2">{{#str}} buildpoolintro, mod_stackmastery {{/str}}</p>
+                    <form method="post" action="{{buildpoolurl}}" class="stackmastery-buildpoolform form-inline">
+                        <input type="hidden" name="id" value="{{cmid}}">
+                        <input type="hidden" name="action" value="generate">
+                        <input type="hidden" name="sesskey" value="{{sesskey}}">
+                        <label for="stackmastery-buildpool-target-{{cmid}}" class="mr-2 me-2">
+                            {{#str}} buildpooltarget, mod_stackmastery {{/str}}
+                        </label>
+                        <input type="number" name="target" id="stackmastery-buildpool-target-{{cmid}}"
+                            value="{{buildpooltargetdefault}}" min="1" max="20"
+                            class="form-control mr-2 me-2 stackmastery-buildpool-target">
+                        <button type="submit" class="btn btn-secondary">{{#str}} buildpool, mod_stackmastery {{/str}}</button>
+                    </form>
+                {{/showbuildpool}}
+            </div>
+        </div>
+    {{/canmanagepool}}
 
     {{#hasprogress}}
         {{#progress}}

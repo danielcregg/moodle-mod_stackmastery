@@ -64,6 +64,20 @@ final class skills {
     ];
 
     /**
+     * Map a canonical skill code back to its stack-question-forge template type.
+     *
+     * The exact inverse of FORGE_TYPE_MAP, which is 1:1 by construction (used by the pool
+     * builder and the nightly refill task to queue forge jobs for a skill).
+     *
+     * @param string $code A canonical skill code.
+     * @return string|null The forge template type, or null for an unknown code.
+     */
+    public static function forge_type(string $code): ?string {
+        $type = array_search($code, self::FORGE_TYPE_MAP, true);
+        return $type === false ? null : $type;
+    }
+
+    /**
      * The full question tag name for a skill code.
      *
      * @param string $code A canonical skill code.

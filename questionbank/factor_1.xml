@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name><text>Factorise (sample)</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Factorise \( {@expr@} \).</p>
+<p>[[input:ans1]] [[validation:ans1]]</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[Look for two numbers that multiply to \( {@a*b@} \) (the constant term) and add to \( {@a+b@} \) (the middle coefficient): here they are \( {@a@} \) and \( {@b@} \). Each becomes a bracket, so \( {@expr@} = {@ta1@} \).]]></text></generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion><text/></stackversion>
+    <questionvariables><text><![CDATA[a : rand(4) + 1;
+b : rand(4) + 1;
+expr : expand((x + a)*(x + b));
+ta1 : factor(expr);]]></text></questionvariables>
+    <specificfeedback format="html"><text><![CDATA[[[feedback:prt1]]]]></text></specificfeedback>
+    <questionnote format="html"><text><![CDATA[expr={@expr@}, factored={@ta1@}]]></text></questionnote>
+    <questiondescription format="html"><text/></questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>dot</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <deployedseed>3</deployedseed>
+    <deployedseed>17</deployedseed>
+    <deployedseed>42</deployedseed>
+    <deployedseed>101</deployedseed>
+    <deployedseed>503</deployedseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta1</tans>
+      <boxsize>16</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables><text/></feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>FacForm</answertest>
+        <sans>ans1</sans>
+        <tans>ta1</tans>
+        <testoptions>x</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html"><text><![CDATA[Correct.]]></text></truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty>0.1000000</falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html"><text><![CDATA[Not fully factorised (or not equivalent to the original).]]></text></falsefeedback>
+      </node>
+    </prt>
+    <qtest>
+      <testcase>1</testcase>
+      <description/>
+      <testinput>
+        <name>ans1</name>
+        <value>ta1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description/>
+      <testinput>
+        <name>ans1</name>
+        <value>ta1 + 1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-1-F</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

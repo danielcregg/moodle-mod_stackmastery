@@ -15,7 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Scheduled task definitions for mod_stackmastery (master plan C11: exactly two tasks).
+ * Scheduled task definitions for mod_stackmastery (master plan C11's two tasks, plus the
+ * post-release nightly pool refill added in 0.2.0).
  *
  * @package    mod_stackmastery
  * @copyright  2026 Daniel Cregg
@@ -25,6 +26,17 @@
 defined('MOODLE_INTERNAL') || die();
 
 $tasks = [
+    [
+        // Daily: queue forge generation jobs for thin pool cells. Inert unless the poolrefill
+        // admin setting is on; a no-op when local_stackforge is not installed.
+        'classname' => 'mod_stackmastery\task\pool_refill_task',
+        'blocking' => 0,
+        'minute' => 'R',
+        'hour' => '2',
+        'day' => '*',
+        'month' => '*',
+        'dayofweek' => '*',
+    ],
     [
         // Daily: abandon-finalise stale attempts (no-op until the attempt manager lands, C29),
         // apply step/export-file retention, sweep orphans and stale pending artifacts.

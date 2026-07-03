@@ -371,4 +371,32 @@ final class pool_test extends \advanced_testcase {
             'attemptid' => $attemptid, 'skill' => 'integrate', 'difficulty' => 'medium',
         ]));
     }
+
+    /**
+     * cell_gaps is pure gap math on a counts map: only cells below the target appear, each with
+     * exactly the missing count (the shared thin-cell definition of the pool builder and the
+     * nightly refill task).
+     *
+     * @return void
+     */
+    public function test_cell_gaps(): void {
+        $counts = [
+            'differentiate' => ['easy' => 0, 'medium' => 2, 'hard' => 3],
+            'integrate'     => ['easy' => 3, 'medium' => 4, 'hard' => 1],
+        ];
+
+        $this->assertSame([
+            'differentiate' => ['easy' => 3, 'medium' => 1],
+            'integrate'     => ['hard' => 2],
+        ], pool::cell_gaps($counts, 3));
+
+        // A target of 1 flags only empty cells.
+        $this->assertSame([
+            'differentiate' => ['easy' => 1],
+        ], pool::cell_gaps($counts, 1));
+
+        // A fully stocked map yields no gaps at all.
+        $this->assertSame([], pool::cell_gaps($counts, 0));
+        $this->assertSame([], pool::cell_gaps([], 3));
+    }
 }

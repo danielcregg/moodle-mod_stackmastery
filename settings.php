@@ -54,6 +54,24 @@ if ($ADMIN->fulltree) {
         DAYSECS
     ));
 
+    // Inert default (repo convention): no generation jobs are queued until an admin opts in.
+    $settings->add(new admin_setting_configcheckbox(
+        'mod_stackmastery/poolrefill',
+        get_string('poolrefill', 'mod_stackmastery'),
+        get_string('poolrefill_desc', 'mod_stackmastery'),
+        0
+    ));
+
+    // Per-cell target for the nightly refill. The task clamps the value to 1..20 at read.
+    $settings->add(new admin_setting_configtext(
+        'mod_stackmastery/poolrefilltarget',
+        get_string('poolrefilltarget', 'mod_stackmastery'),
+        get_string('poolrefilltarget_desc', 'mod_stackmastery'),
+        '3',
+        PARAM_INT,
+        4
+    ));
+
     $settings->add(new admin_setting_heading(
         'mod_stackmastery/experienceheading',
         get_string('experienceheading', 'mod_stackmastery'),

@@ -107,6 +107,29 @@ final class pool {
     }
 
     /**
+     * Cells below a per-cell target, with how many questions each is missing.
+     *
+     * Pure math on a cell_counts() map, so the pool builder page and the nightly refill task
+     * share one definition of a thin cell.
+     *
+     * @param array<string, array<string, int>> $counts Map skillcode => difficulty => count.
+     * @param int $target Wanted questions per cell.
+     * @return array<string, array<string, int>> Map skillcode => difficulty => missing count,
+     *         containing only cells below the target.
+     */
+    public static function cell_gaps(array $counts, int $target): array {
+        $gaps = [];
+        foreach ($counts as $skill => $row) {
+            foreach ($row as $difficulty => $count) {
+                if ((int) $count < $target) {
+                    $gaps[$skill][$difficulty] = $target - (int) $count;
+                }
+            }
+        }
+        return $gaps;
+    }
+
+    /**
      * Pure pool validation used by mod_form and the view.php teacher banner.
      *
      * @param int $categoryid Question category id.

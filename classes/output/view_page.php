@@ -70,6 +70,7 @@ class view_page implements renderable, templatable {
         $context = \context_module::instance($this->cm->id);
         $canattempt = has_capability('mod/stackmastery:attempt', $context);
         $canviewreports = has_capability('mod/stackmastery:viewreports', $context);
+        $canmanagepool = has_capability('mod/stackmastery:manageinstance', $context);
         $attempts = attempt_store::get_attempts($this->instance->id, (int) $USER->id);
         $open = attempt_store::get_open_attempt($this->instance->id, (int) $USER->id);
         $state = view_helper::get_view_state($this->instance, $attempts, $open, time(), $canattempt);
@@ -101,6 +102,14 @@ class view_page implements renderable, templatable {
             ))->out(false),
             'poolwarnings'   => [],
             'haspoolwarnings' => false,
+            'canmanagepool'  => $canmanagepool,
+            'buildpoolurl'   => (new moodle_url('/mod/stackmastery/buildpool.php'))->out(false),
+            // The one-click generation form needs the forge's public job API; the sample-pool
+            // import ships with this module and is always offered to pool managers.
+            'showbuildpool'  => $canmanagepool
+                && class_exists('\\local_stackforge\\generator')
+                && method_exists('\\local_stackforge\\generator', 'queue_generation'),
+            'buildpooltargetdefault' => 3,
         ];
 
         $this->export_state($data, $state);
