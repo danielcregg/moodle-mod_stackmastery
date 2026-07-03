@@ -112,10 +112,10 @@ final class pool {
      * Pure math on a cell_counts() map, so the pool builder page and the nightly refill task
      * share one definition of a thin cell.
      *
-     * @param array<string, array<string, int>> $counts Map skillcode => difficulty => count.
+     * @param array $counts Map of skill code to difficulty code to question count.
      * @param int $target Wanted questions per cell.
-     * @return array<string, array<string, int>> Map skillcode => difficulty => missing count,
-     *         containing only cells below the target.
+     * @return array Map of skill code to difficulty code to missing count, containing only
+     *         cells below the target.
      */
     public static function cell_gaps(array $counts, int $target): array {
         $gaps = [];
