@@ -11,7 +11,7 @@
         <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="skills" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="" SEQUENCE="false" COMMENT="CSV of selected canonical skill codes in canonical policy order. Empty is normalised to all 8 by lib.php."/>
+        <FIELD NAME="skills" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="CSV of selected canonical skill codes in canonical policy order. Empty/null is normalised to all 8 by lib.php. Nullable because XMLDB forbids CHAR NOT NULL with an empty default (fires an install-time debugging message that fails moodle-plugin-ci)."/>
         <FIELD NAME="targetmastery" TYPE="number" LENGTH="10" NOTNULL="true" DEFAULT="0.95" SEQUENCE="false" DECIMALS="5" COMMENT="Scalar target mastery from the form (termination only; the policy encoding stays pinned)."/>
         <FIELD NAME="targetvector" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="JSON object with all 8 skill codes mapped to the per-skill target, expanded from targetmastery at save time."/>
         <FIELD NAME="poolcategoryid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Question bank category the pool is drawn from (no subcategories in v1)."/>
