@@ -125,11 +125,15 @@ final class backup_restore_test extends \advanced_testcase {
         $plainfields = [
             'skills', 'targetvector', 'budget', 'maxattempts', 'grademode', 'showprogress',
             'timeopen', 'timeclose', 'completionreachedtarget', 'intro', 'introformat',
-            'timecreated', 'timemodified',
+            'timecreated',
         ];
         foreach ($plainfields as $field) {
             $this->assertEquals($original->{$field}, $copy->{$field}, "instance field {$field} survives duplication");
         }
+        // Restore preserves timemodified byte-for-byte, but duplicate_module() then
+        // renames the copy via set_coursemodule_name(), which legitimately re-stamps
+        // the instance timemodified - so it is only monotonic, not identical.
+        $this->assertGreaterThanOrEqual((int) $original->timemodified, (int) $copy->timemodified);
         $this->assertEquals((float) $original->targetmastery, (float) $copy->targetmastery);
         $this->assertEquals(0.07, (float) $copy->epsilon, 'the copy keeps the creation-time epsilon snapshot');
 
@@ -156,10 +160,15 @@ final class backup_restore_test extends \advanced_testcase {
      * - an open-slot in-progress attempt (student3) whose pendingjson references
      *   the outside question (restored as SLOTLESS: currentslot 0, pendingjson null).
      *
+     * The "outside" question lives in ANOTHER course's question bank: the backup
+     * includes the whole context bank of every question used by a backed-up usage
+     * (backup_question_dbops::calculate_question_categories), so only a question
+     * in a context no usage touches is genuinely absent from the backup.
+     *
      * @return void
      */
     public function test_userinfo_backup_restore_round_trip(): void {
-        global $DB;
+        global $CFG, $DB;
 
         $this->setAdminUser();
         $site = $this->build_site();
@@ -253,6 +262,32 @@ final class backup_restore_test extends \advanced_testcase {
         // Round trip into a fresh course.
         $newcourse = $this->getDataGenerator()->create_course();
         $backupid = $this->backup_activity_with_users($site->cm->id);
+
+        // Mid-flight probes, so a userinfo/inclusion regression fails HERE with a
+        // clear message instead of as a downstream mapping mystery: the backup
+        // must carry the attempts and the pool category.
+        $backuppath = $CFG->backuptempdir . '/' . $backupid;
+        $activityxmlfile = $backuppath . '/activities/stackmastery_' . $site->cm->id . '/stackmastery.xml';
+        $this->assertFileExists($activityxmlfile);
+        $this->assertStringContainsString(
+            '<attempt id="',
+            file_get_contents($activityxmlfile),
+            'the backup carries the attempt user data'
+        );
+        $questionsxmlfile = $backuppath . '/questions.xml';
+        $this->assertFileExists($questionsxmlfile);
+        $questionsxml = file_get_contents($questionsxmlfile);
+        $this->assertStringContainsString(
+            '<question_category id="' . $site->pool->category->id . '"',
+            $questionsxml,
+            'the pool category travelled with the backup'
+        );
+        $this->assertStringNotContainsString(
+            '<question_category id="' . $site->outsidecategoryid . '"',
+            $questionsxml,
+            'the other-course category stayed outside the backup'
+        );
+
         $this->restore_into($backupid, $newcourse->id);
 
         $newinstance = $DB->get_record('stackmastery', ['course' => $newcourse->id], '*', MUST_EXIST);
@@ -430,12 +465,16 @@ final class backup_restore_test extends \advanced_testcase {
         ]);
         $cm = get_fast_modinfo($course)->get_cm($instance->cmid);
 
-        // A question in a second course-context category: no question usage ever
-        // references it, so it is not annotated and never enters the backup.
+        // A question in ANOTHER course's question bank. It must live in a context
+        // that no backed-up usage touches: the backup includes the whole context
+        // bank of every annotated (usage) question, so a sibling category in THIS
+        // course's context would still be included. A separate course's context is
+        // genuinely outside the backup, which is what makes its ids unmappable.
+        $othercourse = $generator->create_course();
         /** @var \core_question_generator $questiongenerator */
         $questiongenerator = $generator->get_plugin_generator('core_question');
         $outsidecategory = $questiongenerator->create_question_category([
-            'contextid' => \context_course::instance($course->id)->id,
+            'contextid' => \context_course::instance($othercourse->id)->id,
             'name'      => 'Outside the backup',
         ]);
         $outsidequestion = $questiongenerator->create_question(
@@ -453,16 +492,17 @@ final class backup_restore_test extends \advanced_testcase {
         $outsidequestion->version = (int) $outsideversion->version;
 
         return (object) [
-            'course'          => $course,
-            'pool'            => $pool,
-            'instance'        => $instance,
-            'instancerecord'  => $DB->get_record('stackmastery', ['id' => $instance->id], '*', MUST_EXIST),
-            'cm'              => $cm,
-            'context'         => \context_module::instance($cm->id),
-            'student'         => $generator->create_and_enrol($course, 'student'),
-            'student2'        => $generator->create_and_enrol($course, 'student'),
-            'student3'        => $generator->create_and_enrol($course, 'student'),
-            'outsidequestion' => $outsidequestion,
+            'course'            => $course,
+            'pool'              => $pool,
+            'instance'          => $instance,
+            'instancerecord'    => $DB->get_record('stackmastery', ['id' => $instance->id], '*', MUST_EXIST),
+            'cm'                => $cm,
+            'context'           => \context_module::instance($cm->id),
+            'student'           => $generator->create_and_enrol($course, 'student'),
+            'student2'          => $generator->create_and_enrol($course, 'student'),
+            'student3'          => $generator->create_and_enrol($course, 'student'),
+            'outsidequestion'   => $outsidequestion,
+            'outsidecategoryid' => (int) $outsidecategory->id,
         ];
     }
 
@@ -681,12 +721,40 @@ final class backup_restore_test extends \advanced_testcase {
             \backup::MODE_IMPORT,
             $USER->id
         );
-        $bc->get_plan()->get_setting('users')->set_status(\backup_setting::NOT_LOCKED);
-        $bc->get_plan()->get_setting('users')->set_value(true);
+        $this->force_userinfo_on($bc->get_plan());
         $backupid = $bc->get_backupid();
         $bc->execute_plan();
         $bc->destroy();
         return $backupid;
+    }
+
+    /**
+     * Forces user data ON for the root users setting AND every task-level
+     * userinfo setting of a backup or restore plan.
+     *
+     * Import-mode backups force-disable the root users setting at construction
+     * (backup_check::check_security), and that cascades the per-activity
+     * userinfo checkbox to false. Re-enabling the root setting afterwards only
+     * UNLOCKS the dependent userinfo setting - the dependency never sets its
+     * value back to true (setting_dependency_disabledif_equals only unlocks on
+     * the parent leaving the disabled state) - so each userinfo setting must be
+     * re-enabled explicitly or the structure step silently skips all user data.
+     *
+     * @param \base_plan $plan the backup or restore plan
+     * @return void
+     */
+    private function force_userinfo_on(\base_plan $plan): void {
+        // Task order matters: the root task (users) comes first, so the userinfo
+        // settings' own users-dependency is already satisfied when they unlock.
+        foreach ($plan->get_tasks() as $task) {
+            foreach ($task->get_settings() as $setting) {
+                $name = $setting->get_name();
+                if ($name === 'users' || $name === 'userinfo' || str_ends_with($name, '_userinfo')) {
+                    $setting->set_status(\backup_setting::NOT_LOCKED);
+                    $setting->set_value(true);
+                }
+            }
+        }
     }
 
     /**
@@ -706,8 +774,7 @@ final class backup_restore_test extends \advanced_testcase {
             $USER->id,
             \backup::TARGET_CURRENT_ADDING
         );
-        $rc->get_plan()->get_setting('users')->set_status(\backup_setting::NOT_LOCKED);
-        $rc->get_plan()->get_setting('users')->set_value(true);
+        $this->force_userinfo_on($rc->get_plan());
         $this->assertTrue($rc->execute_precheck());
         $rc->execute_plan();
         $rc->destroy();

@@ -309,8 +309,34 @@ class restore_stackmastery_activity_structure_step extends restore_questions_act
      * @return void
      */
     protected function after_execute() {
+        global $DB;
         parent::after_execute();
         // Add stackmastery related files, no itemid to match.
         $this->add_related_files('mod_stackmastery', 'intro', null);
+
+        // Normalise any in-progress attempt that restored with an open slot but no question
+        // usage (a partial or hand-edited backup can carry currentslot/pendingjson without a
+        // restorable QUBA). Such a row is NOT slotless, so the engine's recovery path would
+        // never run and submits would throw; slotless is the designed safe state - the next
+        // view legitimately re-provisions (codex #09).
+        $instanceid = $this->task->get_activityid();
+        $wedged = $DB->get_records_select(
+            'stackmastery_attempts',
+            "stackmasteryid = :sid AND state = 'inprogress' AND currentslot > 0 AND qubaid = 0",
+            ['sid' => $instanceid],
+            '',
+            'id'
+        );
+        if ($wedged !== []) {
+            [$insql, $params] = $DB->get_in_or_equal(array_keys($wedged));
+            $DB->set_field_select('stackmastery_attempts', 'currentslot', 0, "id $insql", $params);
+            $DB->set_field_select('stackmastery_attempts', 'pendingjson', null, "id $insql", $params);
+            $this->log(
+                'stackmastery attempt(s) restored without a question usage were reset to the '
+                    . 'slotless state and will re-provision on next view: ids '
+                    . implode(', ', array_keys($wedged)),
+                \backup::LOG_WARNING
+            );
+        }
     }
 }
