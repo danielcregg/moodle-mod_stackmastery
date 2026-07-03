@@ -159,7 +159,7 @@ class mod_stackmastery_mod_form extends moodleform_mod {
     /**
      * Build the pool_coverage template context from a cell-count matrix.
      *
-     * @param array<string, array<string, int>> $counts Map skill => difficulty => count.
+     * @param array $counts Map of skill code to difficulty code to question count.
      * @return stdClass The template context.
      */
     public static function coverage_context(array $counts): stdClass {

@@ -262,6 +262,11 @@ final class lib_test extends \advanced_testcase {
         $qubaid = (int) $DB->get_field('stackmastery_attempts', 'qubaid', ['id' => $attemptid]);
         $this->assertTrue($DB->record_exists('question_usages', ['id' => $qubaid]));
 
+        // The recycle bin backs the module up before deletion, which needs the backup task
+        // classes that land with the backup/restore work package. Deletion semantics under
+        // test here are stackmastery_delete_instance's, not the bin's.
+        set_config('coursebinenable', 0, 'tool_recyclebin');
+
         course_delete_module($made->cmid);
 
         $this->assertFalse($DB->record_exists('stackmastery', ['id' => $made->instance->id]));

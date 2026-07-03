@@ -283,7 +283,17 @@ final class pool_test extends \advanced_testcase {
         $frozen = $DB->get_records('stackmastery_pool_snapshot', ['attemptid' => $attemptid]);
         $this->assertCount(6, $frozen);
         $original = $made->pool->questions['differentiate']['easy'][0];
-        $questiongenerator->update_question($original, null, ['name' => 'New version']);
+        // Note update_question creates a new version WITHOUT copying tags (the editing UI
+        // copies them via the form). Re-tag the new version explicitly: eligibility is strictly
+        // "latest READY version carries both tags" (master plan R6), so an untagged new
+        // version would - correctly - drop the entry from the pool.
+        $newversion = $questiongenerator->update_question($original, null, ['name' => 'New version']);
+        $questiongenerator->create_question_tag([
+            'questionid' => $newversion->id, 'tag' => skills::skill_tag('differentiate'),
+        ]);
+        $questiongenerator->create_question_tag([
+            'questionid' => $newversion->id, 'tag' => skills::diff_tag('easy'),
+        ]);
         $extra = $questiongenerator->create_question(
             'shortanswer',
             'frogtoad',

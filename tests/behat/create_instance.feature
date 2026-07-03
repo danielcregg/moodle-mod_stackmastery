@@ -44,7 +44,7 @@ Feature: Teachers create a mastery check with a valid question pool
       | Question pool category | C1: Pool      |
     And I press "Save and return to course"
     Then I should see "The pool has no questions for"
-    And I should see "Adding a new"
+    And I should see "New STACK Mastery"
 
   Scenario: A fully covered single-skill pool saves, with a thin-cell warning
     Given I log in as "teacher1"
@@ -60,5 +60,11 @@ Feature: Teachers create a mastery check with a valid question pool
       | Quadratic equations    | 0             |
       | Numerical evaluation   | 0             |
     And I press "Save and display"
-    Then I should see "Mastery check"
+    # Probes: each names the exact failure state if it trips (form re-render vs missing banner).
+    Then I should not see "The pool has no questions for"
+    And I should not see "Select at least one skill"
+    And I should not see "Choose a valid target mastery level"
+    And I should not see "The question budget must be between 1 and 500"
+    And I should not see "New STACK Mastery"
+    And I should see "Mastery check"
     And I should see "Thin question pool"
