@@ -61,7 +61,11 @@ Feature: Teachers create a mastery check with a valid question pool
       | Numerical evaluation   | 0             |
     And I press "Save and display"
     # Probes: each names the exact failure state if it trips (form re-render vs missing banner).
-    Then I should not see "The pool has no questions for"
+    # differentiate/* in the error = tags invisible to the eligibility SQL under Behat;
+    # integrate/* alone = the seven advcheckbox unchecks never reached validation.
+    Then I should not see "differentiate/easy"
+    And I should not see "integrate/easy"
+    And I should not see "The pool has no questions for"
     And I should not see "Select at least one skill"
     And I should not see "Choose a valid target mastery level"
     And I should not see "The question budget must be between 1 and 500"

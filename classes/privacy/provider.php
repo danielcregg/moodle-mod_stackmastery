@@ -101,8 +101,11 @@ class provider implements
 
         // Transparency-only: the optional experience export writes pseudonymised files into
         // moodledata. Post-run they cannot be re-linked to a user (the per-run salt is
-        // discarded), so they are not exported or deleted per user.
-        $collection->add_external_location_link('exportfiles', [], 'privacy:metadata:exportfiles');
+        // discarded), so they are not exported or deleted per user. Core requires at least
+        // one described field on an external location.
+        $collection->add_external_location_link('exportfiles', [
+            'seqkey' => 'privacy:metadata:exportfiles:seqkey',
+        ], 'privacy:metadata:exportfiles');
 
         return $collection;
     }

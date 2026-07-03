@@ -168,6 +168,7 @@ $string['poolcoverage'] = 'Pool coverage';
 $string['poolcoverage_addhint'] = 'Question counts per skill and difficulty are checked when you save.';
 $string['privacy:metadata:core_question'] = 'The STACK Mastery activity asks and grades questions through the core question subsystem, which stores each question shown to the user and the responses they gave.';
 $string['privacy:metadata:exportfiles'] = 'When experience export is enabled, pseudonymised training records (no user ids; per-run random keys that cannot be re-linked after the run) are written as files inside this site\'s moodledata.';
+$string['privacy:metadata:exportfiles:seqkey'] = 'A pseudonymous per-export-run grouping key derived from the attempt with a salt that is discarded when the run completes, so the key cannot be linked back to any user afterwards.';
 $string['privacy:metadata:stackmastery_attempts'] = 'Details of each of the user\'s attempts at a STACK Mastery activity, including the evolving and final per-skill mastery estimates.';
 $string['privacy:metadata:stackmastery_attempts:attemptnumber'] = 'The sequential attempt number.';
 $string['privacy:metadata:stackmastery_attempts:masterycurrent'] = 'The current estimated mastery of each skill during the attempt.';
