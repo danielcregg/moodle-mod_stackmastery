@@ -1,0 +1,5191 @@
+{
+ "meta": {
+  "generator": "phase3/tools/make_stackmastery_fixtures.py",
+  "seed": 20260702,
+  "tolerance": 1e-09
+ },
+ "update": [
+  {
+   "id": "D1-differentiate-d0-p0.05-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.25271469091835086
+  },
+  {
+   "id": "D1-differentiate-d0-p0.05-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.07331239605029462
+  },
+  {
+   "id": "D1-differentiate-d0-p0.2-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6039723431915729
+  },
+  {
+   "id": "D1-differentiate-d0-p0.2-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.16153483529434262
+  },
+  {
+   "id": "D1-differentiate-d0-p0.35-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7674832214765102
+  },
+  {
+   "id": "D1-differentiate-d0-p0.35-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.22411392405063293
+  },
+  {
+   "id": "D1-differentiate-d0-p0.5-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8488137661508369
+  },
+  {
+   "id": "D1-differentiate-d0-p0.5-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.22159343557522537
+  },
+  {
+   "id": "D1-differentiate-d0-p0.7-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9205114312305883
+  },
+  {
+   "id": "D1-differentiate-d0-p0.7-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.23796200351470956
+  },
+  {
+   "id": "D1-differentiate-d0-p0.9-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9772887389904026
+  },
+  {
+   "id": "D1-differentiate-d0-p0.9-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.49658002972307824
+  },
+  {
+   "id": "D1-differentiate-d0-p0.97-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9935551520998372
+  },
+  {
+   "id": "D1-differentiate-d0-p0.97-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.7770216564788435
+  },
+  {
+   "id": "D1-differentiate-d1-p0.05-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.25381278442928795
+  },
+  {
+   "id": "D1-differentiate-d1-p0.05-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.02421671809983805
+  },
+  {
+   "id": "D1-differentiate-d1-p0.2-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6147246091615932
+  },
+  {
+   "id": "D1-differentiate-d1-p0.2-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.06433119367815499
+  },
+  {
+   "id": "D1-differentiate-d1-p0.35-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7849604302040352
+  },
+  {
+   "id": "D1-differentiate-d1-p0.35-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.14441703081179927
+  },
+  {
+   "id": "D1-differentiate-d1-p0.5-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8800773552954299
+  },
+  {
+   "id": "D1-differentiate-d1-p0.5-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.24890554106085017
+  },
+  {
+   "id": "D1-differentiate-d1-p0.7-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9440360991378672
+  },
+  {
+   "id": "D1-differentiate-d1-p0.7-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.34134793600720703
+  },
+  {
+   "id": "D1-differentiate-d1-p0.9-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9830574990653553
+  },
+  {
+   "id": "D1-differentiate-d1-p0.9-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5473931893173494
+  },
+  {
+   "id": "D1-differentiate-d1-p0.97-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9950990459457851
+  },
+  {
+   "id": "D1-differentiate-d1-p0.97-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8010612731870714
+  },
+  {
+   "id": "D1-differentiate-d2-p0.05-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.34805376981242514
+  },
+  {
+   "id": "D1-differentiate-d2-p0.05-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.02152951505296087
+  },
+  {
+   "id": "D1-differentiate-d2-p0.2-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.7129451102050819
+  },
+  {
+   "id": "D1-differentiate-d2-p0.2-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.047936733374594094
+  },
+  {
+   "id": "D1-differentiate-d2-p0.35-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.8430926482197947
+  },
+  {
+   "id": "D1-differentiate-d2-p0.35-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.08905364517442496
+  },
+  {
+   "id": "D1-differentiate-d2-p0.5-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.9114188767320546
+  },
+  {
+   "id": "D1-differentiate-d2-p0.5-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.16492202471555234
+  },
+  {
+   "id": "D1-differentiate-d2-p0.7-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9636651115377846
+  },
+  {
+   "id": "D1-differentiate-d2-p0.7-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.34828458418419034
+  },
+  {
+   "id": "D1-differentiate-d2-p0.9-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9906768929223647
+  },
+  {
+   "id": "D1-differentiate-d2-p0.9-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.6310386100750109
+  },
+  {
+   "id": "D1-differentiate-d2-p0.97-c",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9973132256937297
+  },
+  {
+   "id": "D1-differentiate-d2-p0.97-w",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8442899790869404
+  },
+  {
+   "id": "D1-integrate-d0-p0.05-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.2615848865921838
+  },
+  {
+   "id": "D1-integrate-d0-p0.05-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.04394916847957503
+  },
+  {
+   "id": "D1-integrate-d0-p0.2-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.621764672714182
+  },
+  {
+   "id": "D1-integrate-d0-p0.2-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.10450119081684009
+  },
+  {
+   "id": "D1-integrate-d0-p0.35-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.780466682703873
+  },
+  {
+   "id": "D1-integrate-d0-p0.35-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.15498887557761426
+  },
+  {
+   "id": "D1-integrate-d0-p0.5-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.863454893707539
+  },
+  {
+   "id": "D1-integrate-d0-p0.5-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.1769173207349286
+  },
+  {
+   "id": "D1-integrate-d0-p0.7-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9326407333466135
+  },
+  {
+   "id": "D1-integrate-d0-p0.7-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.24172325108503426
+  },
+  {
+   "id": "D1-integrate-d0-p0.9-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9812545693231418
+  },
+  {
+   "id": "D1-integrate-d0-p0.9-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5258353703503126
+  },
+  {
+   "id": "D1-integrate-d0-p0.97-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9947027265251203
+  },
+  {
+   "id": "D1-integrate-d0-p0.97-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.7980173433743031
+  },
+  {
+   "id": "D1-integrate-d1-p0.05-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.28576623651333755
+  },
+  {
+   "id": "D1-integrate-d1-p0.05-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.01715100479824275
+  },
+  {
+   "id": "D1-integrate-d1-p0.2-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6542767691968595
+  },
+  {
+   "id": "D1-integrate-d1-p0.2-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.05274367530861117
+  },
+  {
+   "id": "D1-integrate-d1-p0.35-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.8080554720312775
+  },
+  {
+   "id": "D1-integrate-d1-p0.35-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.11509612838740949
+  },
+  {
+   "id": "D1-integrate-d1-p0.5-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8907027658045339
+  },
+  {
+   "id": "D1-integrate-d1-p0.5-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.19848694923324883
+  },
+  {
+   "id": "D1-integrate-d1-p0.7-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9497098615665033
+  },
+  {
+   "id": "D1-integrate-d1-p0.7-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3090404734769386
+  },
+  {
+   "id": "D1-integrate-d1-p0.9-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9856398212984622
+  },
+  {
+   "id": "D1-integrate-d1-p0.9-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5680223794680266
+  },
+  {
+   "id": "D1-integrate-d1-p0.97-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9959036723271769
+  },
+  {
+   "id": "D1-integrate-d1-p0.97-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8196774374762742
+  },
+  {
+   "id": "D1-integrate-d2-p0.05-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.3881813435457608
+  },
+  {
+   "id": "D1-integrate-d2-p0.05-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.01639861481774133
+  },
+  {
+   "id": "D1-integrate-d2-p0.2-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.7490674521004788
+  },
+  {
+   "id": "D1-integrate-d2-p0.2-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.04697900388054577
+  },
+  {
+   "id": "D1-integrate-d2-p0.35-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.865708901717714
+  },
+  {
+   "id": "D1-integrate-d2-p0.35-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.09114511784241393
+  },
+  {
+   "id": "D1-integrate-d2-p0.5-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.9240873540836022
+  },
+  {
+   "id": "D1-integrate-d2-p0.5-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.16316127540191877
+  },
+  {
+   "id": "D1-integrate-d2-p0.7-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9676821557850674
+  },
+  {
+   "id": "D1-integrate-d2-p0.7-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3301010843970371
+  },
+  {
+   "id": "D1-integrate-d2-p0.9-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9915819996043993
+  },
+  {
+   "id": "D1-integrate-d2-p0.9-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.6322095068598124
+  },
+  {
+   "id": "D1-integrate-d2-p0.97-c",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9976087688970212
+  },
+  {
+   "id": "D1-integrate-d2-p0.97-w",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.853017658284778
+  },
+  {
+   "id": "D1-expand-d0-p0.05-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.23836344233865076
+  },
+  {
+   "id": "D1-expand-d0-p0.05-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.09902754451751357
+  },
+  {
+   "id": "D1-expand-d0-p0.2-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.5747249659207762
+  },
+  {
+   "id": "D1-expand-d0-p0.2-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.21172219320809652
+  },
+  {
+   "id": "D1-expand-d0-p0.35-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7440428109854604
+  },
+  {
+   "id": "D1-expand-d0-p0.35-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.2853605388272583
+  },
+  {
+   "id": "D1-expand-d0-p0.5-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8241102417776365
+  },
+  {
+   "id": "D1-expand-d0-p0.5-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.2614773518051102
+  },
+  {
+   "id": "D1-expand-d0-p0.7-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9006568963484777
+  },
+  {
+   "id": "D1-expand-d0-p0.7-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.23398553196711439
+  },
+  {
+   "id": "D1-expand-d0-p0.9-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9706941595764152
+  },
+  {
+   "id": "D1-expand-d0-p0.9-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.46647897158756724
+  },
+  {
+   "id": "D1-expand-d0-p0.97-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9916330612054963
+  },
+  {
+   "id": "D1-expand-d0-p0.97-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.7536956840673705
+  },
+  {
+   "id": "D1-expand-d1-p0.05-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.21523773603649943
+  },
+  {
+   "id": "D1-expand-d1-p0.05-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.0303461031655176
+  },
+  {
+   "id": "D1-expand-d1-p0.2-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.5586637744857771
+  },
+  {
+   "id": "D1-expand-d1-p0.2-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.07427035623845946
+  },
+  {
+   "id": "D1-expand-d1-p0.35-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7484274723826798
+  },
+  {
+   "id": "D1-expand-d1-p0.35-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.16999428844504574
+  },
+  {
+   "id": "D1-expand-d1-p0.5-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8612454084990101
+  },
+  {
+   "id": "D1-expand-d1-p0.5-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.2936129887222336
+  },
+  {
+   "id": "D1-expand-d1-p0.7-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9337762176927094
+  },
+  {
+   "id": "D1-expand-d1-p0.7-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3699791521036137
+  },
+  {
+   "id": "D1-expand-d1-p0.9-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9786478789502929
+  },
+  {
+   "id": "D1-expand-d1-p0.9-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5235105618381161
+  },
+  {
+   "id": "D1-expand-d1-p0.97-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9937325055601448
+  },
+  {
+   "id": "D1-expand-d1-p0.97-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.7783182281588217
+  },
+  {
+   "id": "D1-expand-d2-p0.05-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.29741381025222396
+  },
+  {
+   "id": "D1-expand-d2-p0.05-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.025903094832453146
+  },
+  {
+   "id": "D1-expand-d2-p0.2-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6595373203210897
+  },
+  {
+   "id": "D1-expand-d2-p0.2-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.04820930432304638
+  },
+  {
+   "id": "D1-expand-d2-p0.35-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.8075018539165495
+  },
+  {
+   "id": "D1-expand-d2-p0.35-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.08603021908977837
+  },
+  {
+   "id": "D1-expand-d2-p0.5-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8905577633377498
+  },
+  {
+   "id": "D1-expand-d2-p0.5-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.16466537731262165
+  },
+  {
+   "id": "D1-expand-d2-p0.7-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9564115193760796
+  },
+  {
+   "id": "D1-expand-d2-p0.7-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3626163491999177
+  },
+  {
+   "id": "D1-expand-d2-p0.9-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9889477904223294
+  },
+  {
+   "id": "D1-expand-d2-p0.9-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.6257150599202316
+  },
+  {
+   "id": "D1-expand-d2-p0.97-c",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.99676432093891
+  },
+  {
+   "id": "D1-expand-d2-p0.97-w",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8314405245031542
+  },
+  {
+   "id": "D1-factor-d0-p0.05-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.24081067999905514
+  },
+  {
+   "id": "D1-factor-d0-p0.05-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.06305041302707946
+  },
+  {
+   "id": "D1-factor-d0-p0.2-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.5891602710119767
+  },
+  {
+   "id": "D1-factor-d0-p0.2-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.14330539600837908
+  },
+  {
+   "id": "D1-factor-d0-p0.35-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7557249744926879
+  },
+  {
+   "id": "D1-factor-d0-p0.35-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.2042892924232937
+  },
+  {
+   "id": "D1-factor-d0-p0.5-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8423172311889517
+  },
+  {
+   "id": "D1-factor-d0-p0.5-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.21556243813115636
+  },
+  {
+   "id": "D1-factor-d0-p0.7-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9184222219354063
+  },
+  {
+   "id": "D1-factor-d0-p0.7-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.2604840818630222
+  },
+  {
+   "id": "D1-factor-d0-p0.9-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9767975584641269
+  },
+  {
+   "id": "D1-factor-d0-p0.9-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5398677919642255
+  },
+  {
+   "id": "D1-factor-d0-p0.97-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9934164403853633
+  },
+  {
+   "id": "D1-factor-d0-p0.97-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.806378182499558
+  },
+  {
+   "id": "D1-factor-d1-p0.05-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.24749730598968495
+  },
+  {
+   "id": "D1-factor-d1-p0.05-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.022409427838678973
+  },
+  {
+   "id": "D1-factor-d1-p0.2-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6070309198999942
+  },
+  {
+   "id": "D1-factor-d1-p0.2-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.06372139627688031
+  },
+  {
+   "id": "D1-factor-d1-p0.35-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7776329170965156
+  },
+  {
+   "id": "D1-factor-d1-p0.35-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.14051724923175227
+  },
+  {
+   "id": "D1-factor-d1-p0.5-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8738521222169914
+  },
+  {
+   "id": "D1-factor-d1-p0.5-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.2409452439929619
+  },
+  {
+   "id": "D1-factor-d1-p0.7-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9410292069062788
+  },
+  {
+   "id": "D1-factor-d1-p0.7-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3484220236045779
+  },
+  {
+   "id": "D1-factor-d1-p0.9-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9824684394144135
+  },
+  {
+   "id": "D1-factor-d1-p0.9-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5846019349332303
+  },
+  {
+   "id": "D1-factor-d1-p0.97-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9949495132826656
+  },
+  {
+   "id": "D1-factor-d1-p0.97-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.826932146848815
+  },
+  {
+   "id": "D1-factor-d2-p0.05-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.340077797840208
+  },
+  {
+   "id": "D1-factor-d2-p0.05-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.020543602095150687
+  },
+  {
+   "id": "D1-factor-d2-p0.2-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.7062584098507412
+  },
+  {
+   "id": "D1-factor-d2-p0.2-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.05177700113354149
+  },
+  {
+   "id": "D1-factor-d2-p0.35-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.8386424237784881
+  },
+  {
+   "id": "D1-factor-d2-p0.35-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.09811248459763645
+  },
+  {
+   "id": "D1-factor-d2-p0.5-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.9082617163532205
+  },
+  {
+   "id": "D1-factor-d2-p0.5-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.17743262231178986
+  },
+  {
+   "id": "D1-factor-d2-p0.7-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9616342963939084
+  },
+  {
+   "id": "D1-factor-d2-p0.7-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.36167679144268217
+  },
+  {
+   "id": "D1-factor-d2-p0.9-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9900669091436946
+  },
+  {
+   "id": "D1-factor-d2-p0.9-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.656033765303336
+  },
+  {
+   "id": "D1-factor-d2-p0.97-c",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9971513801750143
+  },
+  {
+   "id": "D1-factor-d2-p0.97-w",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8621203529772616
+  },
+  {
+   "id": "D1-simplify-d0-p0.05-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.2334867554667117
+  },
+  {
+   "id": "D1-simplify-d0-p0.05-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.08110270714036136
+  },
+  {
+   "id": "D1-simplify-d0-p0.2-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.572651267213914
+  },
+  {
+   "id": "D1-simplify-d0-p0.2-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.17770227102285002
+  },
+  {
+   "id": "D1-simplify-d0-p0.35-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.742394410924103
+  },
+  {
+   "id": "D1-simplify-d0-p0.35-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.2451056571591017
+  },
+  {
+   "id": "D1-simplify-d0-p0.5-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8278889241977708
+  },
+  {
+   "id": "D1-simplify-d0-p0.5-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.23930213027348846
+  },
+  {
+   "id": "D1-simplify-d0-p0.7-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9067351258011935
+  },
+  {
+   "id": "D1-simplify-d0-p0.7-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.24998680712790006
+  },
+  {
+   "id": "D1-simplify-d0-p0.9-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.972927786781453
+  },
+  {
+   "id": "D1-simplify-d0-p0.9-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5097770757873676
+  },
+  {
+   "id": "D1-simplify-d0-p0.97-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9922900356387161
+  },
+  {
+   "id": "D1-simplify-d0-p0.97-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.7858513179196916
+  },
+  {
+   "id": "D1-simplify-d1-p0.05-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.2243203523487129
+  },
+  {
+   "id": "D1-simplify-d1-p0.05-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.02644289121318044
+  },
+  {
+   "id": "D1-simplify-d1-p0.2-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.5737340853846831
+  },
+  {
+   "id": "D1-simplify-d1-p0.2-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.06927738169791732
+  },
+  {
+   "id": "D1-simplify-d1-p0.35-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7563153625282855
+  },
+  {
+   "id": "D1-simplify-d1-p0.35-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.15568421383039746
+  },
+  {
+   "id": "D1-simplify-d1-p0.5-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8630632383459276
+  },
+  {
+   "id": "D1-simplify-d1-p0.5-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.26768601376300405
+  },
+  {
+   "id": "D1-simplify-d1-p0.7-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9351352181638605
+  },
+  {
+   "id": "D1-simplify-d1-p0.7-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3603839867043959
+  },
+  {
+   "id": "D1-simplify-d1-p0.9-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9799073055216073
+  },
+  {
+   "id": "D1-simplify-d1-p0.9-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5593625373692024
+  },
+  {
+   "id": "D1-simplify-d1-p0.97-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9941551499960936
+  },
+  {
+   "id": "D1-simplify-d1-p0.97-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8076582913188136
+  },
+  {
+   "id": "D1-simplify-d2-p0.05-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.31020111375247417
+  },
+  {
+   "id": "D1-simplify-d2-p0.05-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.023265630960795133
+  },
+  {
+   "id": "D1-simplify-d2-p0.2-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6750698404522072
+  },
+  {
+   "id": "D1-simplify-d2-p0.2-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.0502104157820175
+  },
+  {
+   "id": "D1-simplify-d2-p0.35-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.8180122847236734
+  },
+  {
+   "id": "D1-simplify-d2-p0.35-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.09255734532456532
+  },
+  {
+   "id": "D1-simplify-d2-p0.5-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8962620766991287
+  },
+  {
+   "id": "D1-simplify-d2-p0.5-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.17184579085688867
+  },
+  {
+   "id": "D1-simplify-d2-p0.7-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9575414045142157
+  },
+  {
+   "id": "D1-simplify-d2-p0.7-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3631334673572952
+  },
+  {
+   "id": "D1-simplify-d2-p0.9-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9891004137336232
+  },
+  {
+   "id": "D1-simplify-d2-p0.9-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.64370367491727
+  },
+  {
+   "id": "D1-simplify-d2-p0.97-c",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9968424449691133
+  },
+  {
+   "id": "D1-simplify-d2-p0.97-w",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8498810680207773
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.05-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.2379276185370257
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.05-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.10993427264132964
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.2-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.5701955402275795
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.2-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.2328294022586465
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.35-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.740138814735718
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.35-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.31092024539877305
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.5-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.817381288953198
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.5-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.2770892444360323
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.7-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.8937066855049218
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.7-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.2281850383979917
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.9-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9682401839168902
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.9-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.44472673199749646
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.97-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9909110355290858
+  },
+  {
+   "id": "D1-solve_linear-d0-p0.97-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.7359574341182472
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.05-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.2051225136128543
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.05-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.03284001305272444
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.2-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.5416524224786416
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.2-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.07794940161776318
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.35-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7376057971844366
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.35-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.17996482053458232
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.5-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8564703169245863
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.5-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.3115180442853148
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.7-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9309376001938385
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.7-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.37963640032775714
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.9-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9771043893632285
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.9-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5054636673484955
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.97-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9932375444592586
+  },
+  {
+   "id": "D1-solve_linear-d1-p0.97-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.7613694208453715
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.05-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.28326149079191715
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.05-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.027645342684173423
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.2-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6421513158744213
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.2-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.04770942975657583
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.35-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7953798176637237
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.35-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.08346788138360711
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.5-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8834949810634275
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.5-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.16253207666627836
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.7-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9542819025374892
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.7-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.36597816214955603
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.9-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9884850897619445
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.9-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.6183392628707705
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.97-c",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9966041039963331
+  },
+  {
+   "id": "D1-solve_linear-d2-p0.97-w",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8209999404247081
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.05-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.2525089822277083
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.05-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.05207572149477385
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.2-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6083191194073972
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.2-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.12211780078790661
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.35-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.770480204190657
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.35-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.1787984278495227
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.5-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8551779833330846
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.5-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.1993928801927948
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.7-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9272253904997306
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.7-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.2623465043086248
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.9-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9795764492885503
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.9-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5502978870776756
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.97-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9942195745349227
+  },
+  {
+   "id": "D1-solve_quadratic-d0-p0.97-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8132828636605851
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.05-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.26943943101700313
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.05-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.01982505247447028
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.2-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6350800920431996
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.2-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.05966834712942956
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.35-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7958412233041002
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.35-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.13013401992706383
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.5-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8839135955458941
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.5-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.2231140624994452
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.7-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9462562942342102
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.7-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3378813032665726
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.9-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.984410478921046
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.9-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5929089314631544
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.97-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9955357587809778
+  },
+  {
+   "id": "D1-solve_quadratic-d1-p0.97-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8335812279503859
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.05-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.3672265945159934
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.05-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.018739378435476475
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.2-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.7313357012939959
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.2-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.05193497455784102
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.35-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.8546721364642815
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.35-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.09987467830530587
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.5-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.917652760900716
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.5-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.17829836036276075
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.7-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9651843884756736
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.7-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3572579100388922
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.9-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9909520138177037
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.9-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.6584224314772346
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.97-c",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9974202566116189
+  },
+  {
+   "id": "D1-solve_quadratic-d2-p0.97-w",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8659155925998272
+  },
+  {
+   "id": "D1-numerical-d0-p0.05-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.22017696101281736
+  },
+  {
+   "id": "D1-numerical-d0-p0.05-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.08129013214243516
+  },
+  {
+   "id": "D1-numerical-d0-p0.2-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.5504276758243563
+  },
+  {
+   "id": "D1-numerical-d0-p0.2-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.17848139271832283
+  },
+  {
+   "id": "D1-numerical-d0-p0.35-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7236586612161472
+  },
+  {
+   "id": "D1-numerical-d0-p0.35-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.2465981399902105
+  },
+  {
+   "id": "D1-numerical-d0-p0.5-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8129970438801312
+  },
+  {
+   "id": "D1-numerical-d0-p0.5-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.24196237600827059
+  },
+  {
+   "id": "D1-numerical-d0-p0.7-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.8974973384472409
+  },
+  {
+   "id": "D1-numerical-d0-p0.7-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.255367671526349
+  },
+  {
+   "id": "D1-numerical-d0-p0.9-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9700118273823981
+  },
+  {
+   "id": "D1-numerical-d0-p0.9-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5182349871555567
+  },
+  {
+   "id": "D1-numerical-d0-p0.97-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9914408359007045
+  },
+  {
+   "id": "D1-numerical-d0-p0.97-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.7915781099465219
+  },
+  {
+   "id": "D1-numerical-d1-p0.05-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.20781653005825995
+  },
+  {
+   "id": "D1-numerical-d1-p0.05-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.026598089221914194
+  },
+  {
+   "id": "D1-numerical-d1-p0.2-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.5486596198190761
+  },
+  {
+   "id": "D1-numerical-d1-p0.2-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.06996527720294474
+  },
+  {
+   "id": "D1-numerical-d1-p0.35-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.7371491550866899
+  },
+  {
+   "id": "D1-numerical-d1-p0.35-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.15698287577352804
+  },
+  {
+   "id": "D1-numerical-d1-p0.5-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8506144418319209
+  },
+  {
+   "id": "D1-numerical-d1-p0.5-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.26967060451161384
+  },
+  {
+   "id": "D1-numerical-d1-p0.7-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9285547330500491
+  },
+  {
+   "id": "D1-numerical-d1-p0.7-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.3639066555423733
+  },
+  {
+   "id": "D1-numerical-d1-p0.9-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9777285796143117
+  },
+  {
+   "id": "D1-numerical-d1-p0.9-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.5650522607030289
+  },
+  {
+   "id": "D1-numerical-d1-p0.97-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.9935101551719991
+  },
+  {
+   "id": "D1-numerical-d1-p0.97-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8114190544194134
+  },
+  {
+   "id": "D1-numerical-d2-p0.05-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": true,
+   "expected": 0.28894476490702303
+  },
+  {
+   "id": "D1-numerical-d2-p0.05-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.05,
+   "correct": false,
+   "expected": 0.0233631370772033
+  },
+  {
+   "id": "D1-numerical-d2-p0.2-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": true,
+   "expected": 0.6517558683649322
+  },
+  {
+   "id": "D1-numerical-d2-p0.2-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": false,
+   "expected": 0.05064859953896908
+  },
+  {
+   "id": "D1-numerical-d2-p0.35-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": true,
+   "expected": 0.8018961167764818
+  },
+  {
+   "id": "D1-numerical-d2-p0.35-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": false,
+   "expected": 0.0934247249533031
+  },
+  {
+   "id": "D1-numerical-d2-p0.5-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": true,
+   "expected": 0.8861257637021145
+  },
+  {
+   "id": "D1-numerical-d2-p0.5-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected": 0.17323149832148793
+  },
+  {
+   "id": "D1-numerical-d2-p0.7-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": true,
+   "expected": 0.9530856708150734
+  },
+  {
+   "id": "D1-numerical-d2-p0.7-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.7,
+   "correct": false,
+   "expected": 0.36526625464073403
+  },
+  {
+   "id": "D1-numerical-d2-p0.9-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": true,
+   "expected": 0.9879075259308615
+  },
+  {
+   "id": "D1-numerical-d2-p0.9-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.9,
+   "correct": false,
+   "expected": 0.6463931398136706
+  },
+  {
+   "id": "D1-numerical-d2-p0.97-c",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": true,
+   "expected": 0.996493087332714
+  },
+  {
+   "id": "D1-numerical-d2-p0.97-w",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.97,
+   "correct": false,
+   "expected": 0.8515395095086445
+  },
+  {
+   "id": "D2-clamp-p0.995-d0",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.995,
+   "correct": true,
+   "expected": 0.999
+  },
+  {
+   "id": "D2-clamp-p0.995-d2",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.995,
+   "correct": true,
+   "expected": 0.999
+  },
+  {
+   "id": "D2-clamp-p0.999-d0",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.999,
+   "correct": true,
+   "expected": 0.999
+  },
+  {
+   "id": "D2-clamp-p0.999-d2",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.999,
+   "correct": true,
+   "expected": 0.999
+  }
+ ],
+ "latent_vs_deployed": [
+  {
+   "id": "F1-differentiate-d0",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.2,
+   "correct": true,
+   "expected_latent": 0.31152115047150375,
+   "expected_deployed": 0.6039723431915729
+  },
+  {
+   "id": "F1-differentiate-d1",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.2,
+   "correct": true,
+   "expected_latent": 0.2294492183231865,
+   "expected_deployed": 0.6147246091615932
+  },
+  {
+   "id": "F1-differentiate-d2",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.2,
+   "correct": true,
+   "expected_latent": 0.2121938024517246,
+   "expected_deployed": 0.7129451102050819
+  },
+  {
+   "id": "F1-integrate-d0",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "prior": 0.1,
+   "correct": true,
+   "expected_latent": 0.1451086023546897,
+   "expected_deployed": 0.4206643873472267
+  },
+  {
+   "id": "F1-integrate-d1",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.1,
+   "correct": true,
+   "expected_latent": 0.11083797810401814,
+   "expected_deployed": 0.4556150886351132
+  },
+  {
+   "id": "F1-integrate-d2",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.1,
+   "correct": true,
+   "expected_latent": 0.10727318081821423,
+   "expected_deployed": 0.5709190188178334
+  },
+  {
+   "id": "F1-expand-d0",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.3,
+   "correct": true,
+   "expected_latent": 0.47004655075069135,
+   "expected_deployed": 0.7014993570086216
+  },
+  {
+   "id": "F1-expand-d1",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.3,
+   "correct": true,
+   "expected_latent": 0.36626904724469433,
+   "expected_deployed": 0.6953216573291799
+  },
+  {
+   "id": "F1-expand-d2",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.3,
+   "correct": true,
+   "expected_latent": 0.3176698631222616,
+   "expected_deployed": 0.768701648516021
+  },
+  {
+   "id": "F1-factor-d0",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "prior": 0.18,
+   "correct": true,
+   "expected_latent": 0.2686904283951313,
+   "expected_deployed": 0.556492609121884
+  },
+  {
+   "id": "F1-factor-d1",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "prior": 0.18,
+   "correct": true,
+   "expected_latent": 0.20231594944345554,
+   "expected_deployed": 0.574795282219326
+  },
+  {
+   "id": "F1-factor-d2",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "prior": 0.18,
+   "correct": true,
+   "expected_latent": 0.19025376907378677,
+   "expected_deployed": 0.678672130584836
+  },
+  {
+   "id": "F1-simplify-d0",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "prior": 0.22,
+   "correct": true,
+   "expected_latent": 0.34866972301681515,
+   "expected_deployed": 0.6029094762803782
+  },
+  {
+   "id": "F1-simplify-d1",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "prior": 0.22,
+   "correct": true,
+   "expected_latent": 0.2560853740079533,
+   "expected_deployed": 0.6043007308552943
+  },
+  {
+   "id": "F1-simplify-d2",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "prior": 0.22,
+   "correct": true,
+   "expected_latent": 0.23348523806927649,
+   "expected_deployed": 0.7008614790470545
+  },
+  {
+   "id": "F1-solve_linear-d0",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "prior": 0.35,
+   "correct": true,
+   "expected_latent": 0.532,
+   "expected_deployed": 0.740138814735718
+  },
+  {
+   "id": "F1-solve_linear-d1",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "prior": 0.35,
+   "correct": true,
+   "expected_latent": 0.44121961809503907,
+   "expected_deployed": 0.7376057971844366
+  },
+  {
+   "id": "F1-solve_linear-d2",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "prior": 0.35,
+   "correct": true,
+   "expected_latent": 0.37191680016590334,
+   "expected_deployed": 0.7953798176637237
+  },
+  {
+   "id": "F1-solve_quadratic-d0",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "prior": 0.12,
+   "correct": true,
+   "expected_latent": 0.1785984136351529,
+   "expected_deployed": 0.4566003754182292
+  },
+  {
+   "id": "F1-solve_quadratic-d1",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.12,
+   "correct": true,
+   "expected_latent": 0.13390160447886176,
+   "expected_deployed": 0.4854077174691592
+  },
+  {
+   "id": "F1-solve_quadratic-d2",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.12,
+   "correct": true,
+   "expected_latent": 0.12857231044695885,
+   "expected_deployed": 0.5981355103160859
+  },
+  {
+   "id": "F1-numerical-d0",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "prior": 0.25,
+   "correct": true,
+   "expected_latent": 0.3837845725566742,
+   "expected_deployed": 0.621909118264862
+  },
+  {
+   "id": "F1-numerical-d1",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "prior": 0.25,
+   "correct": true,
+   "expected_latent": 0.29184459302252447,
+   "expected_deployed": 0.6223171162786797
+  },
+  {
+   "id": "F1-numerical-d2",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "prior": 0.25,
+   "correct": true,
+   "expected_latent": 0.2635330415222774,
+   "expected_deployed": 0.7137618299033953
+  },
+  {
+   "id": "F2-integrate-d1",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected_latent": 0.5445948575188914,
+   "expected_deployed": 0.19848694923324883
+  },
+  {
+   "id": "F2-integrate-d2",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected_latent": 0.5139481976741748,
+   "expected_deployed": 0.16316127540191877
+  },
+  {
+   "id": "F2-solve_quadratic-d1",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "prior": 0.5,
+   "correct": false,
+   "expected_latent": 0.5535138290226697,
+   "expected_deployed": 0.2231140624994452
+  },
+  {
+   "id": "F2-solve_quadratic-d2",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "prior": 0.5,
+   "correct": false,
+   "expected_latent": 0.5167378372090098,
+   "expected_deployed": 0.17829836036276075
+  }
+ ]
+}

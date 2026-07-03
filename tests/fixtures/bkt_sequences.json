@@ -1,0 +1,2585 @@
+{
+ "meta": {
+  "generator": "phase3/tools/make_stackmastery_fixtures.py",
+  "seed": 20260702,
+  "tolerance": 1e-09
+ },
+ "single_skill": [
+  {
+   "id": "E1-differentiate",
+   "skillcode": "differentiate",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "start": 0.2,
+   "steps": [
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.16153483529434262
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.13815982377941105
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.12373457311010323
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.45971133320922614
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.22637278289863946
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.17664053905413876
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.14745170965840668
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.510675183067663
+    },
+    {
+     "difficulty": 1,
+     "correct": true,
+     "expected_after": 0.884915564218559
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9891428327577547
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    }
+   ]
+  },
+  {
+   "id": "E1-integrate",
+   "skillcode": "integrate",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "start": 0.1,
+   "steps": [
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.06270675550449219
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.048481594088944514
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04341928905795324
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04167122637527818
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04107428741305739
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.040871232975392364
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04080225420417763
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04077883236482728
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.2254015788269482
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.11489857144517043
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.06871351079268068
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.05068337752256276
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.2641658775762438
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.7038722661308334
+    },
+    {
+     "difficulty": 1,
+     "correct": false,
+     "expected_after": 0.3115399873588055
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.14506912276690045
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.08126582602099072
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.05540032066103518
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04585421229737777
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04250845290217221
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04135975778206894
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04096828802462754
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.040835218529970185
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.04079002477435285
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.040774680408422075
+    }
+   ]
+  },
+  {
+   "id": "E1-expand",
+   "skillcode": "expand",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "start": 0.3,
+   "steps": [
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.2716093008088998
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.2584054574340925
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.25108153801930255
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.2467273644742392
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.6418269548486432
+    },
+    {
+     "difficulty": 1,
+     "correct": true,
+     "expected_after": 0.9183188422331006
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9910568324233309
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.9929643939012547
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.9929643939012547
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    }
+   ]
+  },
+  {
+   "id": "E1-factor",
+   "skillcode": "factor",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "start": 0.18,
+   "steps": [
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.556492609121884
+    },
+    {
+     "difficulty": 1,
+     "correct": false,
+     "expected_after": 0.27517061153518535
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.1801102614248984
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.13235480177986497
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.10562244589657849
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.40241167436480674
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.7916006883270974
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9767926726713339
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9978040408591271
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.9946674695413178
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.9722247067389901
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9973656709786648
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.9860771650955144
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9986885837758632
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    }
+   ]
+  },
+  {
+   "id": "E1-simplify",
+   "skillcode": "simplify",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "start": 0.22,
+   "steps": [
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.6029094762803782
+    },
+    {
+     "difficulty": 1,
+     "correct": true,
+     "expected_after": 0.906883391906441
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9898969253196723
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9989432412597689
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    }
+   ]
+  },
+  {
+   "id": "E1-solve_linear",
+   "skillcode": "solve_linear",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "start": 0.35,
+   "steps": [
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.740138814735718
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.4125835928420282
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.3081844899524351
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.7056416200404809
+    },
+    {
+     "difficulty": 1,
+     "correct": true,
+     "expected_after": 0.9323188402174983
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.6898125975823611
+    },
+    {
+     "difficulty": 1,
+     "correct": true,
+     "expected_after": 0.9283994280736974
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.6796617088714535
+    },
+    {
+     "difficulty": 1,
+     "correct": true,
+     "expected_after": 0.9258055639815789
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9915441416040516
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.9393895122817446
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9931156160843466
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    }
+   ]
+  },
+  {
+   "id": "E1-solve_quadratic",
+   "skillcode": "solve_quadratic",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "start": 0.12,
+   "steps": [
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.08321283172269056
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.0662204323767221
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.05882055256871897
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.28353066960949563
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.15835680320673057
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.10182859015407911
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.4117459291443181
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.8110308453336973
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9812653398122682
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9984000322591601
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.9948791532650793
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    }
+   ]
+  },
+  {
+   "id": "E1-numerical",
+   "skillcode": "numerical",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "start": 0.25,
+   "steps": [
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.20867780250228007
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.1840648650926084
+    },
+    {
+     "difficulty": 0,
+     "correct": false,
+     "expected_after": 0.16797874357419415
+    },
+    {
+     "difficulty": 0,
+     "correct": true,
+     "expected_after": 0.4958253589601852
+    },
+    {
+     "difficulty": 1,
+     "correct": true,
+     "expected_after": 0.8482453805883148
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9808415459991452
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9977680118738643
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.994089788031448
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.994089788031448
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.999
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.994089788031448
+    },
+    {
+     "difficulty": 2,
+     "correct": false,
+     "expected_after": 0.9661713111334815
+    },
+    {
+     "difficulty": 2,
+     "correct": true,
+     "expected_after": 0.9960404164823661
+    }
+   ]
+  }
+ ],
+ "full_vector": [
+  {
+   "id": "E2-frominit",
+   "start": [
+    0.2,
+    0.1,
+    0.3,
+    0.18,
+    0.22,
+    0.35,
+    0.12,
+    0.25
+   ],
+   "steps": [
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.2716093008088998,
+      0.18,
+      0.22,
+      0.35,
+      0.12,
+      0.25
+     ],
+     "expected_state": 0,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.2584054574340925,
+      0.18,
+      0.22,
+      0.35,
+      0.12,
+      0.25
+     ],
+     "expected_state": 0,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.25108153801930255,
+      0.18,
+      0.22,
+      0.35,
+      0.12,
+      0.25
+     ],
+     "expected_state": 0,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.2467273644742392,
+      0.18,
+      0.22,
+      0.35,
+      0.12,
+      0.25
+     ],
+     "expected_state": 0,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.2440463969387012,
+      0.18,
+      0.22,
+      0.35,
+      0.12,
+      0.25
+     ],
+     "expected_state": 0,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.24236283456561697,
+      0.18,
+      0.22,
+      0.35,
+      0.12,
+      0.25
+     ],
+     "expected_state": 0,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.24129316894304736,
+      0.18,
+      0.22,
+      0.35,
+      0.12,
+      0.25
+     ],
+     "expected_state": 0,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.24060864915954755,
+      0.18,
+      0.22,
+      0.35,
+      0.12,
+      0.25
+     ],
+     "expected_state": 0,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.6338761589277064,
+      0.18,
+      0.22,
+      0.35,
+      0.12,
+      0.25
+     ],
+     "expected_state": 1024,
+     "expected_action": 15,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.6338761589277064,
+      0.18,
+      0.22,
+      0.31092024539877305,
+      0.12,
+      0.25
+     ],
+     "expected_state": 1024,
+     "expected_action": 15,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.6338761589277064,
+      0.18,
+      0.22,
+      0.30139707146636596,
+      0.12,
+      0.25
+     ],
+     "expected_state": 1024,
+     "expected_action": 15,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.6338761589277064,
+      0.18,
+      0.22,
+      0.29775223940276563,
+      0.12,
+      0.25
+     ],
+     "expected_state": 1024,
+     "expected_action": 15,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.6338761589277064,
+      0.18,
+      0.22,
+      0.2962248846833919,
+      0.12,
+      0.25
+     ],
+     "expected_state": 1024,
+     "expected_action": 15,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.6338761589277064,
+      0.18,
+      0.22,
+      0.6941686204914095,
+      0.12,
+      0.25
+     ],
+     "expected_state": 1040,
+     "expected_action": 7,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 1,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.35789321085253145,
+      0.18,
+      0.22,
+      0.6941686204914095,
+      0.12,
+      0.25
+     ],
+     "expected_state": 16,
+     "expected_action": 21,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 7,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.35789321085253145,
+      0.18,
+      0.22,
+      0.6941686204914095,
+      0.12,
+      0.20867780250228007
+     ],
+     "expected_state": 16,
+     "expected_action": 21,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 7,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.35789321085253145,
+      0.18,
+      0.22,
+      0.6941686204914095,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 17,
+     "expected_action": 12,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 4,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.35789321085253145,
+      0.18,
+      0.6029094762803782,
+      0.6941686204914095,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 81,
+     "expected_action": 16,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 1,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.35789321085253145,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.28637163223841433,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.2657265071033677,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.2552289782593741,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.24921758156924487,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.24558788977227983,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.2433338482038906,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.24191126936708746,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.24100465613336436,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.2404233736407498,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.6336316371652517,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 1089,
+     "expected_action": 7,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 1,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.3578333062182512,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 65,
+     "expected_action": 6,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.6029094762803782,
+      0.3793887428638126,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 2113,
+     "expected_action": 15,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.2,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.6029094762803782,
+      0.75990106206071,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 2145,
+     "expected_action": 0,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 0,
+     "difficulty": 0,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.16153483529434262,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.6029094762803782,
+      0.75990106206071,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 2145,
+     "expected_action": 0,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 0,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.13815982377941105,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.6029094762803782,
+      0.75990106206071,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 2145,
+     "expected_action": 0,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 0,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.12373457311010323,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.6029094762803782,
+      0.75990106206071,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 2145,
+     "expected_action": 0,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 0,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.11492050341064929,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.6029094762803782,
+      0.75990106206071,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 2145,
+     "expected_action": 0,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 0,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.4391183049811114,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.6029094762803782,
+      0.75990106206071,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 2145,
+     "expected_action": 0,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 0,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.22815582540209667,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.6029094762803782,
+      0.75990106206071,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 2145,
+     "expected_action": 0,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 0,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.6447278222123682,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.6029094762803782,
+      0.75990106206071,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 18529,
+     "expected_action": 13,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 4,
+     "difficulty": 1,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.6447278222123682,
+      0.1,
+      0.7497283463204785,
+      0.18,
+      0.906883391906441,
+      0.75990106206071,
+      0.12,
+      0.5639889524312323
+     ],
+     "expected_state": 18593,
+     "expected_action": 22,
+     "expected_source": "policy"
+    }
+   ]
+  },
+  {
+   "id": "E2-random",
+   "start": [
+    0.08645350469307314,
+    0.7500233355465463,
+    0.2944455322719509,
+    0.5355631650934719,
+    0.5745390220253359,
+    0.6023531915903471,
+    0.4321743119761257,
+    0.1579814527622032
+   ],
+   "steps": [
+    {
+     "skill": 0,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.3656085084087116,
+      0.7500233355465463,
+      0.2944455322719509,
+      0.5355631650934719,
+      0.5745390220253359,
+      0.6023531915903471,
+      0.4321743119761257,
+      0.1579814527622032
+     ],
+     "expected_state": 8528,
+     "expected_action": 21,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.3656085084087116,
+      0.7500233355465463,
+      0.2944455322719509,
+      0.5355631650934719,
+      0.5745390220253359,
+      0.6023531915903471,
+      0.4321743119761257,
+      0.4772304600321272
+     ],
+     "expected_state": 8529,
+     "expected_action": 6,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.3656085084087116,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.5355631650934719,
+      0.5745390220253359,
+      0.6023531915903471,
+      0.4321743119761257,
+      0.4772304600321272
+     ],
+     "expected_state": 9553,
+     "expected_action": 0,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 0,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.5355631650934719,
+      0.5745390220253359,
+      0.6023531915903471,
+      0.4321743119761257,
+      0.4772304600321272
+     ],
+     "expected_state": 42321,
+     "expected_action": 18,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 6,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.5355631650934719,
+      0.5745390220253359,
+      0.6023531915903471,
+      0.8224233088187172,
+      0.4772304600321272
+     ],
+     "expected_state": 42329,
+     "expected_action": 22,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 1,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.5355631650934719,
+      0.5745390220253359,
+      0.6023531915903471,
+      0.8224233088187172,
+      0.253578433006572
+     ],
+     "expected_state": 42328,
+     "expected_action": 21,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.5355631650934719,
+      0.5745390220253359,
+      0.6023531915903471,
+      0.8224233088187172,
+      0.6264356320858746
+     ],
+     "expected_state": 42329,
+     "expected_action": 10,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 3,
+     "difficulty": 1,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.5745390220253359,
+      0.6023531915903471,
+      0.8224233088187172,
+      0.6264356320858746
+     ],
+     "expected_state": 42585,
+     "expected_action": 13,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 4,
+     "difficulty": 1,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.311842180395737,
+      0.6023531915903471,
+      0.8224233088187172,
+      0.6264356320858746
+     ],
+     "expected_state": 42521,
+     "expected_action": 12,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 4,
+     "difficulty": 0,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.23514218979029097,
+      0.6023531915903471,
+      0.8224233088187172,
+      0.6264356320858746
+     ],
+     "expected_state": 42521,
+     "expected_action": 12,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 4,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.19934155158109826,
+      0.6023531915903471,
+      0.8224233088187172,
+      0.6264356320858746
+     ],
+     "expected_state": 42521,
+     "expected_action": 12,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 4,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.571606916871112,
+      0.6023531915903471,
+      0.8224233088187172,
+      0.6264356320858746
+     ],
+     "expected_state": 42585,
+     "expected_action": 13,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 4,
+     "difficulty": 1,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.6023531915903471,
+      0.8224233088187172,
+      0.6264356320858746
+     ],
+     "expected_state": 42649,
+     "expected_action": 16,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 1,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.6264356320858746
+     ],
+     "expected_state": 42665,
+     "expected_action": 22,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 1,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.337309172362054
+     ],
+     "expected_state": 42664,
+     "expected_action": 21,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 0,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.24383971202826968
+     ],
+     "expected_state": 42664,
+     "expected_action": 21,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.6139409563370013
+     ],
+     "expected_state": 42665,
+     "expected_action": 22,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 1,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.3322850356733459
+     ],
+     "expected_state": 42664,
+     "expected_action": 21,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.6960258707868114,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.7089694665746648
+     ],
+     "expected_state": 42665,
+     "expected_action": 7,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 2,
+     "difficulty": 1,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.3693612288536715,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.7089694665746648
+     ],
+     "expected_state": 41641,
+     "expected_action": 6,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 2,
+     "difficulty": 0,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.7089694665746648
+     ],
+     "expected_state": 43689,
+     "expected_action": 22,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 1,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.3672858574683585
+     ],
+     "expected_state": 43688,
+     "expected_action": 21,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 7,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.902745626976076,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43690,
+     "expected_action": 17,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 2,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.623496443180776,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43674,
+     "expected_action": 16,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 1,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.3716168049258217,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43658,
+     "expected_action": 15,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.31238677376045637,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43658,
+     "expected_action": 15,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.3019132793678387,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43658,
+     "expected_action": 15,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.29796268693899597,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43658,
+     "expected_action": 15,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.6958838165244966,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43674,
+     "expected_action": 16,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 1,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.9299192527750099,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43690,
+     "expected_action": 17,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 2,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.6835393237118796,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43674,
+     "expected_action": 16,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 1,
+     "fraction": 0.5,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.37887952307305905,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43658,
+     "expected_action": 15,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.31228677355078327,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43658,
+     "expected_action": 15,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 0.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.30187846582715805,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43658,
+     "expected_action": 15,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 0,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.6996881725219126,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43674,
+     "expected_action": 16,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 1,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.9308607769948632,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43690,
+     "expected_action": 17,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 2,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.6859783528689769,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43674,
+     "expected_action": 16,
+     "expected_source": "fallback"
+    },
+    {
+     "skill": 5,
+     "difficulty": 1,
+     "fraction": 0.999,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.9274278145750571,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43690,
+     "expected_action": 17,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 5,
+     "difficulty": 2,
+     "fraction": 1.0,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.7576775842645528,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.9917329386138832,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 43706,
+     "expected_action": 8,
+     "expected_source": "policy"
+    },
+    {
+     "skill": 2,
+     "difficulty": 2,
+     "fraction": 0.9989,
+     "expected_vector": [
+      0.7784961910696413,
+      0.7500233355465463,
+      0.42947056289594976,
+      0.8896372790466524,
+      0.8954777550998996,
+      0.9917329386138832,
+      0.8224233088187172,
+      0.7368663774249307
+     ],
+     "expected_state": 41658,
+     "expected_action": 6,
+     "expected_source": "fallback"
+    }
+   ]
+  }
+ ]
+}

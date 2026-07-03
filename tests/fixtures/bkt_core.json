@@ -1,0 +1,6439 @@
+{
+ "meta": {
+  "generator": "phase3/tools/make_stackmastery_fixtures.py",
+  "seed": 20260702,
+  "tolerance": 1e-09
+ },
+ "posterior": [
+  {
+   "id": "A1-differentiate-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-differentiate-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-integrate-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-integrate-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-expand-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-expand-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-factor-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-factor-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-simplify-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-simplify-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-solve_linear-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-solve_linear-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-solve_quadratic-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-solve_quadratic-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-numerical-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-numerical-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A1-differentiate-p0.02-c",
+   "prior": 0.02,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.10909090909090911
+  },
+  {
+   "id": "A1-differentiate-p0.02-w",
+   "prior": 0.02,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.0023952095808383233
+  },
+  {
+   "id": "A1-integrate-p0.02-c",
+   "prior": 0.02,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.13017751479289943
+  },
+  {
+   "id": "A1-integrate-p0.02-w",
+   "prior": 0.02,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.0027752081406105457
+  },
+  {
+   "id": "A1-expand-p0.02-c",
+   "prior": 0.02,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.08582089552238806
+  },
+  {
+   "id": "A1-expand-p0.02-w",
+   "prior": 0.02,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.002036659877800407
+  },
+  {
+   "id": "A1-factor-p0.02-c",
+   "prior": 0.02,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.1069258809234508
+  },
+  {
+   "id": "A1-factor-p0.02-w",
+   "prior": 0.02,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.0028728752693320567
+  },
+  {
+   "id": "A1-simplify-p0.02-c",
+   "prior": 0.02,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.0925925925925926
+  },
+  {
+   "id": "A1-simplify-p0.02-w",
+   "prior": 0.02,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.002482621648460774
+  },
+  {
+   "id": "A1-solve_linear-p0.02-c",
+   "prior": 0.02,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.07941929974380871
+  },
+  {
+   "id": "A1-solve_linear-p0.02-w",
+   "prior": 0.02,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.001828153564899452
+  },
+  {
+   "id": "A1-solve_quadratic-p0.02-c",
+   "prior": 0.02,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.12016574585635358
+  },
+  {
+   "id": "A1-solve_quadratic-p0.02-w",
+   "prior": 0.02,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.00304022450888681
+  },
+  {
+   "id": "A1-numerical-p0.02-c",
+   "prior": 0.02,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.08411214953271028
+  },
+  {
+   "id": "A1-numerical-p0.02-w",
+   "prior": 0.02,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.0025445292620865138
+  },
+  {
+   "id": "A1-differentiate-p0.1-c",
+   "prior": 0.1,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.39999999999999997
+  },
+  {
+   "id": "A1-differentiate-p0.1-w",
+   "prior": 0.1,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.012903225806451615
+  },
+  {
+   "id": "A1-integrate-p0.1-c",
+   "prior": 0.1,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.44897959183673475
+  },
+  {
+   "id": "A1-integrate-p0.1-w",
+   "prior": 0.1,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.014925373134328358
+  },
+  {
+   "id": "A1-expand-p0.1-c",
+   "prior": 0.1,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.3382352941176471
+  },
+  {
+   "id": "A1-expand-p0.1-w",
+   "prior": 0.1,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.010989010989010988
+  },
+  {
+   "id": "A1-factor-p0.1-c",
+   "prior": 0.1,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.39461883408071746
+  },
+  {
+   "id": "A1-factor-p0.1-w",
+   "prior": 0.1,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.015444015444015444
+  },
+  {
+   "id": "A1-simplify-p0.1-c",
+   "prior": 0.1,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.3571428571428572
+  },
+  {
+   "id": "A1-simplify-p0.1-w",
+   "prior": 0.1,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.013368983957219253
+  },
+  {
+   "id": "A1-solve_linear-p0.1-c",
+   "prior": 0.1,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.31958762886597936
+  },
+  {
+   "id": "A1-solve_linear-p0.1-w",
+   "prior": 0.1,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.009873060648801129
+  },
+  {
+   "id": "A1-solve_quadratic-p0.1-c",
+   "prior": 0.1,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.4264705882352941
+  },
+  {
+   "id": "A1-solve_quadratic-p0.1-w",
+   "prior": 0.1,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.016331658291457288
+  },
+  {
+   "id": "A1-numerical-p0.1-c",
+   "prior": 0.1,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.33333333333333337
+  },
+  {
+   "id": "A1-numerical-p0.1-w",
+   "prior": 0.1,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.013698630136986302
+  },
+  {
+   "id": "A1-differentiate-p0.2-c",
+   "prior": 0.2,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.6
+  },
+  {
+   "id": "A1-differentiate-p0.2-w",
+   "prior": 0.2,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.028571428571428574
+  },
+  {
+   "id": "A1-integrate-p0.2-c",
+   "prior": 0.2,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.6470588235294118
+  },
+  {
+   "id": "A1-integrate-p0.2-w",
+   "prior": 0.2,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.03296703296703296
+  },
+  {
+   "id": "A1-expand-p0.2-c",
+   "prior": 0.2,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.5348837209302325
+  },
+  {
+   "id": "A1-expand-p0.2-w",
+   "prior": 0.2,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.02439024390243902
+  },
+  {
+   "id": "A1-factor-p0.2-c",
+   "prior": 0.2,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.5945945945945945
+  },
+  {
+   "id": "A1-factor-p0.2-w",
+   "prior": 0.2,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.03409090909090909
+  },
+  {
+   "id": "A1-simplify-p0.2-c",
+   "prior": 0.2,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.5555555555555556
+  },
+  {
+   "id": "A1-simplify-p0.2-w",
+   "prior": 0.2,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.029585798816568046
+  },
+  {
+   "id": "A1-solve_linear-p0.2-c",
+   "prior": 0.2,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.5138121546961326
+  },
+  {
+   "id": "A1-solve_linear-p0.2-w",
+   "prior": 0.2,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.0219435736677116
+  },
+  {
+   "id": "A1-solve_quadratic-p0.2-c",
+   "prior": 0.2,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.6258992805755396
+  },
+  {
+   "id": "A1-solve_quadratic-p0.2-w",
+   "prior": 0.2,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.03601108033240997
+  },
+  {
+   "id": "A1-numerical-p0.2-c",
+   "prior": 0.2,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.5294117647058822
+  },
+  {
+   "id": "A1-numerical-p0.2-w",
+   "prior": 0.2,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.030303030303030304
+  },
+  {
+   "id": "A1-differentiate-p0.475-c",
+   "prior": 0.475,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.8444444444444444
+  },
+  {
+   "id": "A1-differentiate-p0.475-w",
+   "prior": 0.475,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.09620253164556963
+  },
+  {
+   "id": "A1-integrate-p0.475-c",
+   "prior": 0.475,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.8690228690228691
+  },
+  {
+   "id": "A1-integrate-p0.475-w",
+   "prior": 0.475,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.10982658959537571
+  },
+  {
+   "id": "A1-expand-p0.475-c",
+   "prior": 0.475,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.8062730627306273
+  },
+  {
+   "id": "A1-expand-p0.475-w",
+   "prior": 0.475,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.08296943231441048
+  },
+  {
+   "id": "A1-factor-p0.475-c",
+   "prior": 0.475,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.8414695520885758
+  },
+  {
+   "id": "A1-factor-p0.475-w",
+   "prior": 0.475,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.11326378539493293
+  },
+  {
+   "id": "A1-simplify-p0.475-c",
+   "prior": 0.475,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.8189655172413792
+  },
+  {
+   "id": "A1-simplify-p0.475-w",
+   "prior": 0.475,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.09937238493723849
+  },
+  {
+   "id": "A1-solve_linear-p0.475-c",
+   "prior": 0.475,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.7927321668909825
+  },
+  {
+   "id": "A1-solve_linear-p0.475-w",
+   "prior": 0.475,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.07509881422924901
+  },
+  {
+   "id": "A1-solve_quadratic-p0.475-c",
+   "prior": 0.475,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.8582554517133956
+  },
+  {
+   "id": "A1-solve_quadratic-p0.475-w",
+   "prior": 0.475,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.11909353905496625
+  },
+  {
+   "id": "A1-numerical-p0.475-c",
+   "prior": 0.475,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.8028169014084507
+  },
+  {
+   "id": "A1-numerical-p0.475-w",
+   "prior": 0.475,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.1016042780748663
+  },
+  {
+   "id": "A1-differentiate-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.8571428571428571
+  },
+  {
+   "id": "A1-differentiate-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.10526315789473685
+  },
+  {
+   "id": "A1-integrate-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.88
+  },
+  {
+   "id": "A1-integrate-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.12
+  },
+  {
+   "id": "A1-expand-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.8214285714285714
+  },
+  {
+   "id": "A1-expand-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.09090909090909091
+  },
+  {
+   "id": "A1-factor-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.8543689320388349
+  },
+  {
+   "id": "A1-factor-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.12371134020618557
+  },
+  {
+   "id": "A1-simplify-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.8333333333333333
+  },
+  {
+   "id": "A1-simplify-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.10869565217391304
+  },
+  {
+   "id": "A1-solve_linear-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.808695652173913
+  },
+  {
+   "id": "A1-solve_linear-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.08235294117647059
+  },
+  {
+   "id": "A1-solve_quadratic-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.87
+  },
+  {
+   "id": "A1-solve_quadratic-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.13
+  },
+  {
+   "id": "A1-numerical-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.8181818181818181
+  },
+  {
+   "id": "A1-numerical-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.11111111111111112
+  },
+  {
+   "id": "A1-differentiate-p0.725-c",
+   "prior": 0.725,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.9405405405405405
+  },
+  {
+   "id": "A1-differentiate-p0.725-w",
+   "prior": 0.725,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.236734693877551
+  },
+  {
+   "id": "A1-integrate-p0.725-c",
+   "prior": 0.725,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.9508196721311475
+  },
+  {
+   "id": "A1-integrate-p0.725-w",
+   "prior": 0.725,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.2644376899696048
+  },
+  {
+   "id": "A1-expand-p0.725-c",
+   "prior": 0.725,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.9238227146814404
+  },
+  {
+   "id": "A1-expand-p0.725-w",
+   "prior": 0.725,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.20863309352517984
+  },
+  {
+   "id": "A1-factor-p0.725-c",
+   "prior": 0.725,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.9392712550607287
+  },
+  {
+   "id": "A1-factor-p0.725-w",
+   "prior": 0.725,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.2712392829306313
+  },
+  {
+   "id": "A1-simplify-p0.725-c",
+   "prior": 0.725,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.9294871794871795
+  },
+  {
+   "id": "A1-simplify-p0.725-w",
+   "prior": 0.725,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.2432885906040268
+  },
+  {
+   "id": "A1-solve_linear-p0.725-c",
+   "prior": 0.725,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.9176590677101055
+  },
+  {
+   "id": "A1-solve_linear-p0.725-w",
+   "prior": 0.725,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.19132893496701223
+  },
+  {
+   "id": "A1-solve_quadratic-p0.725-c",
+   "prior": 0.725,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.9463615903975994
+  },
+  {
+   "id": "A1-solve_quadratic-p0.725-w",
+   "prior": 0.725,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.2826086956521739
+  },
+  {
+   "id": "A1-numerical-p0.725-c",
+   "prior": 0.725,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.9222614840989398
+  },
+  {
+   "id": "A1-numerical-p0.725-w",
+   "prior": 0.725,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.24786324786324782
+  },
+  {
+   "id": "A1-differentiate-p0.9-c",
+   "prior": 0.9,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.9818181818181818
+  },
+  {
+   "id": "A1-differentiate-p0.9-w",
+   "prior": 0.9,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.5142857142857143
+  },
+  {
+   "id": "A1-integrate-p0.9-c",
+   "prior": 0.9,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.9850746268656716
+  },
+  {
+   "id": "A1-integrate-p0.9-w",
+   "prior": 0.9,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.5510204081632654
+  },
+  {
+   "id": "A1-expand-p0.9-c",
+   "prior": 0.9,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.9764150943396226
+  },
+  {
+   "id": "A1-expand-p0.9-w",
+   "prior": 0.9,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.4736842105263159
+  },
+  {
+   "id": "A1-factor-p0.9-c",
+   "prior": 0.9,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.9814126394052044
+  },
+  {
+   "id": "A1-factor-p0.9-w",
+   "prior": 0.9,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.5595854922279794
+  },
+  {
+   "id": "A1-simplify-p0.9-c",
+   "prior": 0.9,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.9782608695652174
+  },
+  {
+   "id": "A1-simplify-p0.9-w",
+   "prior": 0.9,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.5232558139534885
+  },
+  {
+   "id": "A1-solve_linear-p0.9-c",
+   "prior": 0.9,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.9743888242142026
+  },
+  {
+   "id": "A1-solve_linear-p0.9-w",
+   "prior": 0.9,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.4468085106382979
+  },
+  {
+   "id": "A1-solve_quadratic-p0.9-c",
+   "prior": 0.9,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.9836683417085427
+  },
+  {
+   "id": "A1-solve_quadratic-p0.9-w",
+   "prior": 0.9,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.573529411764706
+  },
+  {
+   "id": "A1-numerical-p0.9-c",
+   "prior": 0.9,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.9759036144578314
+  },
+  {
+   "id": "A1-numerical-p0.9-w",
+   "prior": 0.9,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.5294117647058825
+  },
+  {
+   "id": "A1-differentiate-p0.95-c",
+   "prior": 0.95,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.9913043478260869
+  },
+  {
+   "id": "A1-differentiate-p0.95-w",
+   "prior": 0.95,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.6909090909090907
+  },
+  {
+   "id": "A1-integrate-p0.95-c",
+   "prior": 0.95,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.9928741092636579
+  },
+  {
+   "id": "A1-integrate-p0.95-w",
+   "prior": 0.95,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.721518987341772
+  },
+  {
+   "id": "A1-expand-p0.95-c",
+   "prior": 0.95,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.9886877828054299
+  },
+  {
+   "id": "A1-expand-p0.95-w",
+   "prior": 0.95,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.6551724137931032
+  },
+  {
+   "id": "A1-factor-p0.95-c",
+   "prior": 0.95,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.991108476585655
+  },
+  {
+   "id": "A1-factor-p0.95-w",
+   "prior": 0.95,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.7284345047923321
+  },
+  {
+   "id": "A1-simplify-p0.95-c",
+   "prior": 0.95,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.9895833333333334
+  },
+  {
+   "id": "A1-simplify-p0.95-w",
+   "prior": 0.95,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.6985294117647057
+  },
+  {
+   "id": "A1-solve_linear-p0.95-c",
+   "prior": 0.95,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.9877026271660145
+  },
+  {
+   "id": "A1-solve_linear-p0.95-w",
+   "prior": 0.95,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.6303317535545022
+  },
+  {
+   "id": "A1-solve_quadratic-p0.95-c",
+   "prior": 0.95,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.9921968787515006
+  },
+  {
+   "id": "A1-solve_quadratic-p0.95-w",
+   "prior": 0.95,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.7395209580838321
+  },
+  {
+   "id": "A1-numerical-p0.95-c",
+   "prior": 0.95,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.9884393063583815
+  },
+  {
+   "id": "A1-numerical-p0.95-w",
+   "prior": 0.95,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.7037037037037035
+  },
+  {
+   "id": "A1-differentiate-p0.999-c",
+   "prior": 0.999,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.9998331943286072
+  },
+  {
+   "id": "A1-differentiate-p0.999-w",
+   "prior": 0.999,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.9915632754342432
+  },
+  {
+   "id": "A1-integrate-p0.999-c",
+   "prior": 0.999,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 0.9998635184932442
+  },
+  {
+   "id": "A1-integrate-p0.999-w",
+   "prior": 0.999,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 0.9927128188141768
+  },
+  {
+   "id": "A1-expand-p0.999-c",
+   "prior": 0.999,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.9997824384300757
+  },
+  {
+   "id": "A1-expand-p0.999-w",
+   "prior": 0.999,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.9900891972249752
+  },
+  {
+   "id": "A1-factor-p0.999-c",
+   "prior": 0.999,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 0.9998294039373572
+  },
+  {
+   "id": "A1-factor-p0.999-w",
+   "prior": 0.999,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 0.9929594963969187
+  },
+  {
+   "id": "A1-simplify-p0.999-c",
+   "prior": 0.999,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 0.9997998398718976
+  },
+  {
+   "id": "A1-simplify-p0.999-w",
+   "prior": 0.999,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 0.9918586179507546
+  },
+  {
+   "id": "A1-solve_linear-p0.999-c",
+   "prior": 0.999,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 0.99976326012332
+  },
+  {
+   "id": "A1-solve_linear-p0.999-w",
+   "prior": 0.999,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 0.9889690284259651
+  },
+  {
+   "id": "A1-solve_quadratic-p0.999-c",
+   "prior": 0.999,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 0.9998504475070751
+  },
+  {
+   "id": "A1-solve_quadratic-p0.999-w",
+   "prior": 0.999,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 0.9933455713630105
+  },
+  {
+   "id": "A1-numerical-p0.999-c",
+   "prior": 0.999,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 0.9997776048037362
+  },
+  {
+   "id": "A1-numerical-p0.999-w",
+   "prior": 0.999,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 0.9920556107249255
+  },
+  {
+   "id": "A1-differentiate-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-differentiate-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.1,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-integrate-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-integrate-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.12,
+   "guess": 0.12,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-expand-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-expand-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.08,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-factor-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-factor-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.12,
+   "guess": 0.15,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-simplify-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-simplify-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.1,
+   "guess": 0.18,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-solve_linear-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-solve_linear-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.07,
+   "guess": 0.22,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-solve_quadratic-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-solve_quadratic-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.13,
+   "guess": 0.13,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-numerical-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A1-numerical-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.1,
+   "guess": 0.2,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.02-g0.02-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.02,
+   "guess": 0.02,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s0.02-g0.02-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.02,
+   "guess": 0.02,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s0.02-g0.02-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.02,
+   "guess": 0.02,
+   "correct": true,
+   "expected": 0.98
+  },
+  {
+   "id": "A2-s0.02-g0.02-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.02,
+   "guess": 0.02,
+   "correct": false,
+   "expected": 0.02
+  },
+  {
+   "id": "A2-s0.02-g0.02-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.02,
+   "guess": 0.02,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.02-g0.02-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.02,
+   "guess": 0.02,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.4-g0.6-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.4,
+   "guess": 0.6,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s0.4-g0.6-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.4,
+   "guess": 0.6,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s0.4-g0.6-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.4,
+   "guess": 0.6,
+   "correct": true,
+   "expected": 0.5
+  },
+  {
+   "id": "A2-s0.4-g0.6-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.4,
+   "guess": 0.6,
+   "correct": false,
+   "expected": 0.5
+  },
+  {
+   "id": "A2-s0.4-g0.6-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.4,
+   "guess": 0.6,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.4-g0.6-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.4,
+   "guess": 0.6,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.0-g0.0-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.0,
+   "guess": 0.0,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s0.0-g0.0-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.0,
+   "guess": 0.0,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s0.0-g0.0-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.0,
+   "guess": 0.0,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.0-g0.0-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.0,
+   "guess": 0.0,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s0.0-g0.0-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.0,
+   "guess": 0.0,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.0-g0.0-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.0,
+   "guess": 0.0,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s1.0-g0.3-p0.0-c",
+   "prior": 0.0,
+   "slip": 1.0,
+   "guess": 0.3,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s1.0-g0.3-p0.0-w",
+   "prior": 0.0,
+   "slip": 1.0,
+   "guess": 0.3,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s1.0-g0.3-p0.5-c",
+   "prior": 0.5,
+   "slip": 1.0,
+   "guess": 0.3,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s1.0-g0.3-p0.5-w",
+   "prior": 0.5,
+   "slip": 1.0,
+   "guess": 0.3,
+   "correct": false,
+   "expected": 0.5882352941176471
+  },
+  {
+   "id": "A2-s1.0-g0.3-p1.0-c",
+   "prior": 1.0,
+   "slip": 1.0,
+   "guess": 0.3,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s1.0-g0.3-p1.0-w",
+   "prior": 1.0,
+   "slip": 1.0,
+   "guess": 0.3,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.3-g1.0-p0.0-c",
+   "prior": 0.0,
+   "slip": 0.3,
+   "guess": 1.0,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s0.3-g1.0-p0.0-w",
+   "prior": 0.0,
+   "slip": 0.3,
+   "guess": 1.0,
+   "correct": false,
+   "expected": 0.0
+  },
+  {
+   "id": "A2-s0.3-g1.0-p0.5-c",
+   "prior": 0.5,
+   "slip": 0.3,
+   "guess": 1.0,
+   "correct": true,
+   "expected": 0.4117647058823529
+  },
+  {
+   "id": "A2-s0.3-g1.0-p0.5-w",
+   "prior": 0.5,
+   "slip": 0.3,
+   "guess": 1.0,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.3-g1.0-p1.0-c",
+   "prior": 1.0,
+   "slip": 0.3,
+   "guess": 1.0,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A2-s0.3-g1.0-p1.0-w",
+   "prior": 1.0,
+   "slip": 0.3,
+   "guess": 1.0,
+   "correct": false,
+   "expected": 1.0
+  },
+  {
+   "id": "A3-zero-prior-zero-guess",
+   "prior": 0.0,
+   "slip": 0.1,
+   "guess": 0.0,
+   "correct": true,
+   "expected": 0.0
+  },
+  {
+   "id": "A3-one-prior-one-slip",
+   "prior": 1.0,
+   "slip": 1.0,
+   "guess": 0.3,
+   "correct": true,
+   "expected": 1.0
+  },
+  {
+   "id": "A3-one-prior-zero-slip-wrong",
+   "prior": 1.0,
+   "slip": 0.0,
+   "guess": 0.3,
+   "correct": false,
+   "expected": 1.0
+  }
+ ],
+ "learn": [
+  {
+   "id": "B-m0.0-t0.0",
+   "mastery": 0.0,
+   "transit": 0.0,
+   "expected": 0.0
+  },
+  {
+   "id": "B-m0.0-t0.08",
+   "mastery": 0.0,
+   "transit": 0.08,
+   "expected": 0.08
+  },
+  {
+   "id": "B-m0.0-t0.18",
+   "mastery": 0.0,
+   "transit": 0.18,
+   "expected": 0.18
+  },
+  {
+   "id": "B-m0.0-t0.5",
+   "mastery": 0.0,
+   "transit": 0.5,
+   "expected": 0.5
+  },
+  {
+   "id": "B-m0.0-t0.95",
+   "mastery": 0.0,
+   "transit": 0.95,
+   "expected": 0.95
+  },
+  {
+   "id": "B-m0.0-t1.0",
+   "mastery": 0.0,
+   "transit": 1.0,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m0.02-t0.0",
+   "mastery": 0.02,
+   "transit": 0.0,
+   "expected": 0.02
+  },
+  {
+   "id": "B-m0.02-t0.08",
+   "mastery": 0.02,
+   "transit": 0.08,
+   "expected": 0.0984
+  },
+  {
+   "id": "B-m0.02-t0.18",
+   "mastery": 0.02,
+   "transit": 0.18,
+   "expected": 0.1964
+  },
+  {
+   "id": "B-m0.02-t0.5",
+   "mastery": 0.02,
+   "transit": 0.5,
+   "expected": 0.51
+  },
+  {
+   "id": "B-m0.02-t0.95",
+   "mastery": 0.02,
+   "transit": 0.95,
+   "expected": 0.951
+  },
+  {
+   "id": "B-m0.02-t1.0",
+   "mastery": 0.02,
+   "transit": 1.0,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m0.3-t0.0",
+   "mastery": 0.3,
+   "transit": 0.0,
+   "expected": 0.3
+  },
+  {
+   "id": "B-m0.3-t0.08",
+   "mastery": 0.3,
+   "transit": 0.08,
+   "expected": 0.356
+  },
+  {
+   "id": "B-m0.3-t0.18",
+   "mastery": 0.3,
+   "transit": 0.18,
+   "expected": 0.426
+  },
+  {
+   "id": "B-m0.3-t0.5",
+   "mastery": 0.3,
+   "transit": 0.5,
+   "expected": 0.6499999999999999
+  },
+  {
+   "id": "B-m0.3-t0.95",
+   "mastery": 0.3,
+   "transit": 0.95,
+   "expected": 0.9649999999999999
+  },
+  {
+   "id": "B-m0.3-t1.0",
+   "mastery": 0.3,
+   "transit": 1.0,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m0.5-t0.0",
+   "mastery": 0.5,
+   "transit": 0.0,
+   "expected": 0.5
+  },
+  {
+   "id": "B-m0.5-t0.08",
+   "mastery": 0.5,
+   "transit": 0.08,
+   "expected": 0.54
+  },
+  {
+   "id": "B-m0.5-t0.18",
+   "mastery": 0.5,
+   "transit": 0.18,
+   "expected": 0.59
+  },
+  {
+   "id": "B-m0.5-t0.5",
+   "mastery": 0.5,
+   "transit": 0.5,
+   "expected": 0.75
+  },
+  {
+   "id": "B-m0.5-t0.95",
+   "mastery": 0.5,
+   "transit": 0.95,
+   "expected": 0.975
+  },
+  {
+   "id": "B-m0.5-t1.0",
+   "mastery": 0.5,
+   "transit": 1.0,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m0.9-t0.0",
+   "mastery": 0.9,
+   "transit": 0.0,
+   "expected": 0.9
+  },
+  {
+   "id": "B-m0.9-t0.08",
+   "mastery": 0.9,
+   "transit": 0.08,
+   "expected": 0.908
+  },
+  {
+   "id": "B-m0.9-t0.18",
+   "mastery": 0.9,
+   "transit": 0.18,
+   "expected": 0.918
+  },
+  {
+   "id": "B-m0.9-t0.5",
+   "mastery": 0.9,
+   "transit": 0.5,
+   "expected": 0.95
+  },
+  {
+   "id": "B-m0.9-t0.95",
+   "mastery": 0.9,
+   "transit": 0.95,
+   "expected": 0.995
+  },
+  {
+   "id": "B-m0.9-t1.0",
+   "mastery": 0.9,
+   "transit": 1.0,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m0.999-t0.0",
+   "mastery": 0.999,
+   "transit": 0.0,
+   "expected": 0.999
+  },
+  {
+   "id": "B-m0.999-t0.08",
+   "mastery": 0.999,
+   "transit": 0.08,
+   "expected": 0.99908
+  },
+  {
+   "id": "B-m0.999-t0.18",
+   "mastery": 0.999,
+   "transit": 0.18,
+   "expected": 0.99918
+  },
+  {
+   "id": "B-m0.999-t0.5",
+   "mastery": 0.999,
+   "transit": 0.5,
+   "expected": 0.9995
+  },
+  {
+   "id": "B-m0.999-t0.95",
+   "mastery": 0.999,
+   "transit": 0.95,
+   "expected": 0.99995
+  },
+  {
+   "id": "B-m0.999-t1.0",
+   "mastery": 0.999,
+   "transit": 1.0,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m1.0-t0.0",
+   "mastery": 1.0,
+   "transit": 0.0,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m1.0-t0.08",
+   "mastery": 1.0,
+   "transit": 0.08,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m1.0-t0.18",
+   "mastery": 1.0,
+   "transit": 0.18,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m1.0-t0.5",
+   "mastery": 1.0,
+   "transit": 0.5,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m1.0-t0.95",
+   "mastery": 1.0,
+   "transit": 0.95,
+   "expected": 1.0
+  },
+  {
+   "id": "B-m1.0-t1.0",
+   "mastery": 1.0,
+   "transit": 1.0,
+   "expected": 1.0
+  }
+ ],
+ "zpd": [
+  {
+   "id": "C1-d0-m0.0",
+   "difficulty": 0,
+   "mastery": 0.0,
+   "expected": 0.2789639534834964
+  },
+  {
+   "id": "C1-d0-m0.02",
+   "difficulty": 0,
+   "mastery": 0.02,
+   "expected": 0.3158329393018679
+  },
+  {
+   "id": "C1-d0-m0.1",
+   "difficulty": 0,
+   "mastery": 0.1,
+   "expected": 0.5012066928298853
+  },
+  {
+   "id": "C1-d0-m0.35",
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": 1.0
+  },
+  {
+   "id": "C1-d0-m0.475",
+   "difficulty": 0,
+   "mastery": 0.475,
+   "expected": 0.8367713574067714
+  },
+  {
+   "id": "C1-d0-m0.6",
+   "difficulty": 0,
+   "mastery": 0.6,
+   "expected": 0.5012066928298852
+  },
+  {
+   "id": "C1-d0-m0.725",
+   "difficulty": 0,
+   "mastery": 0.725,
+   "expected": 0.23862789398225265
+  },
+  {
+   "id": "C1-d0-m0.85",
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": 0.12042197893353485
+  },
+  {
+   "id": "C1-d0-m0.95",
+   "difficulty": 0,
+   "mastery": 0.95,
+   "expected": 0.09022027681518294
+  },
+  {
+   "id": "C1-d0-m0.999",
+   "difficulty": 0,
+   "mastery": 0.999,
+   "expected": 0.08475578213840643
+  },
+  {
+   "id": "C1-d1-m0.0",
+   "difficulty": 1,
+   "mastery": 0.0,
+   "expected": 0.09022027681518294
+  },
+  {
+   "id": "C1-d1-m0.02",
+   "difficulty": 1,
+   "mastery": 0.02,
+   "expected": 0.09372712318354243
+  },
+  {
+   "id": "C1-d1-m0.1",
+   "difficulty": 1,
+   "mastery": 0.1,
+   "expected": 0.12042197893353485
+  },
+  {
+   "id": "C1-d1-m0.35",
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": 0.5012066928298852
+  },
+  {
+   "id": "C1-d1-m0.475",
+   "difficulty": 1,
+   "mastery": 0.475,
+   "expected": 0.8367713574067714
+  },
+  {
+   "id": "C1-d1-m0.6",
+   "difficulty": 1,
+   "mastery": 0.6,
+   "expected": 1.0
+  },
+  {
+   "id": "C1-d1-m0.725",
+   "difficulty": 1,
+   "mastery": 0.725,
+   "expected": 0.8367713574067714
+  },
+  {
+   "id": "C1-d1-m0.85",
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": 0.5012066928298852
+  },
+  {
+   "id": "C1-d1-m0.95",
+   "difficulty": 1,
+   "mastery": 0.95,
+   "expected": 0.2789639534834964
+  },
+  {
+   "id": "C1-d1-m0.999",
+   "difficulty": 1,
+   "mastery": 0.999,
+   "expected": 0.20575821942231431
+  },
+  {
+   "id": "C1-d2-m0.0",
+   "difficulty": 2,
+   "mastery": 0.0,
+   "expected": 0.08011004385289454
+  },
+  {
+   "id": "C1-d2-m0.02",
+   "difficulty": 2,
+   "mastery": 0.02,
+   "expected": 0.08016748251353764
+  },
+  {
+   "id": "C1-d2-m0.1",
+   "difficulty": 2,
+   "mastery": 0.1,
+   "expected": 0.08081312020238025
+  },
+  {
+   "id": "C1-d2-m0.35",
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": 0.12042197893353485
+  },
+  {
+   "id": "C1-d2-m0.475",
+   "difficulty": 2,
+   "mastery": 0.475,
+   "expected": 0.23862789398225265
+  },
+  {
+   "id": "C1-d2-m0.6",
+   "difficulty": 2,
+   "mastery": 0.6,
+   "expected": 0.5012066928298852
+  },
+  {
+   "id": "C1-d2-m0.725",
+   "difficulty": 2,
+   "mastery": 0.725,
+   "expected": 0.8367713574067714
+  },
+  {
+   "id": "C1-d2-m0.85",
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": 1.0
+  },
+  {
+   "id": "C1-d2-m0.95",
+   "difficulty": 2,
+   "mastery": 0.95,
+   "expected": 0.8918971503778278
+  },
+  {
+   "id": "C1-d2-m0.999",
+   "difficulty": 2,
+   "mastery": 0.999,
+   "expected": 0.7770528062202012
+  }
+ ],
+ "effective": [
+  {
+   "id": "C2-differentiate-d0-m0.0",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.0,
+   "expected": [
+    0.085,
+    0.195,
+    0.05021351162702935
+   ]
+  },
+  {
+   "id": "C2-differentiate-d0-m0.02",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.02,
+   "expected": [
+    0.085,
+    0.195,
+    0.05684992907433622
+   ]
+  },
+  {
+   "id": "C2-differentiate-d0-m0.1",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.1,
+   "expected": [
+    0.085,
+    0.195,
+    0.09021720470937934
+   ]
+  },
+  {
+   "id": "C2-differentiate-d0-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.085,
+    0.195,
+    0.18
+   ]
+  },
+  {
+   "id": "C2-differentiate-d0-m0.475",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.475,
+   "expected": [
+    0.085,
+    0.195,
+    0.15061884433321884
+   ]
+  },
+  {
+   "id": "C2-differentiate-d0-m0.6",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.6,
+   "expected": [
+    0.085,
+    0.195,
+    0.09021720470937933
+   ]
+  },
+  {
+   "id": "C2-differentiate-d0-m0.725",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.725,
+   "expected": [
+    0.085,
+    0.195,
+    0.04295302091680547
+   ]
+  },
+  {
+   "id": "C2-differentiate-d0-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.085,
+    0.195,
+    0.021675956208036272
+   ]
+  },
+  {
+   "id": "C2-differentiate-d0-m0.95",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.95,
+   "expected": [
+    0.085,
+    0.195,
+    0.016239649826732927
+   ]
+  },
+  {
+   "id": "C2-differentiate-d0-m0.999",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.999,
+   "expected": [
+    0.085,
+    0.195,
+    0.015256040784913156
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.0",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.0,
+   "expected": [
+    0.1,
+    0.15,
+    0.016239649826732927
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.02",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.02,
+   "expected": [
+    0.1,
+    0.15,
+    0.016870882173037637
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.1",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.1,
+   "expected": [
+    0.1,
+    0.15,
+    0.021675956208036272
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.1,
+    0.15,
+    0.09021720470937933
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.475",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.475,
+   "expected": [
+    0.1,
+    0.15,
+    0.15061884433321884
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.6",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.6,
+   "expected": [
+    0.1,
+    0.15,
+    0.18
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.725",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.725,
+   "expected": [
+    0.1,
+    0.15,
+    0.15061884433321884
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.1,
+    0.15,
+    0.09021720470937933
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.95",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.95,
+   "expected": [
+    0.1,
+    0.15,
+    0.05021351162702935
+   ]
+  },
+  {
+   "id": "C2-differentiate-d1-m0.999",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.999,
+   "expected": [
+    0.1,
+    0.15,
+    0.03703647949601657
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.0",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.0,
+   "expected": [
+    0.125,
+    0.09,
+    0.014419807893521016
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.02",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.02,
+   "expected": [
+    0.125,
+    0.09,
+    0.014430146852436775
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.1",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.1,
+   "expected": [
+    0.125,
+    0.09,
+    0.014546361636428445
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.125,
+    0.09,
+    0.021675956208036272
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.475",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.475,
+   "expected": [
+    0.125,
+    0.09,
+    0.04295302091680547
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.6",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.6,
+   "expected": [
+    0.125,
+    0.09,
+    0.09021720470937933
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.725",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.725,
+   "expected": [
+    0.125,
+    0.09,
+    0.15061884433321884
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.125,
+    0.09,
+    0.18
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.95",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.95,
+   "expected": [
+    0.125,
+    0.09,
+    0.160541487068009
+   ]
+  },
+  {
+   "id": "C2-differentiate-d2-m0.999",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.18,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.999,
+   "expected": [
+    0.125,
+    0.09,
+    0.13986950511963622
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.0",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.0,
+   "expected": [
+    0.102,
+    0.156,
+    0.02789639534834964
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.02",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.02,
+   "expected": [
+    0.102,
+    0.156,
+    0.031583293930186794
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.1",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.1,
+   "expected": [
+    0.102,
+    0.156,
+    0.05012066928298853
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.35",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.102,
+    0.156,
+    0.1
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.475",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.475,
+   "expected": [
+    0.102,
+    0.156,
+    0.08367713574067714
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.6",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.6,
+   "expected": [
+    0.102,
+    0.156,
+    0.05012066928298852
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.725",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.725,
+   "expected": [
+    0.102,
+    0.156,
+    0.023862789398225268
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.85",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.102,
+    0.156,
+    0.012042197893353486
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.95",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.95,
+   "expected": [
+    0.102,
+    0.156,
+    0.009022027681518293
+   ]
+  },
+  {
+   "id": "C2-integrate-d0-m0.999",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 0,
+   "mastery": 0.999,
+   "expected": [
+    0.102,
+    0.156,
+    0.008475578213840642
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.0",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.0,
+   "expected": [
+    0.12,
+    0.12,
+    0.009022027681518293
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.02",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.02,
+   "expected": [
+    0.12,
+    0.12,
+    0.009372712318354242
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.1",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.1,
+   "expected": [
+    0.12,
+    0.12,
+    0.012042197893353486
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.35",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.12,
+    0.12,
+    0.05012066928298852
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.475",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.475,
+   "expected": [
+    0.12,
+    0.12,
+    0.08367713574067714
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.6",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.6,
+   "expected": [
+    0.12,
+    0.12,
+    0.1
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.725",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.725,
+   "expected": [
+    0.12,
+    0.12,
+    0.08367713574067714
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.85",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.12,
+    0.12,
+    0.05012066928298852
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.95",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.95,
+   "expected": [
+    0.12,
+    0.12,
+    0.02789639534834964
+   ]
+  },
+  {
+   "id": "C2-integrate-d1-m0.999",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 1,
+   "mastery": 0.999,
+   "expected": [
+    0.12,
+    0.12,
+    0.020575821942231433
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.0",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.0,
+   "expected": [
+    0.15,
+    0.072,
+    0.008011004385289454
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.02",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.02,
+   "expected": [
+    0.15,
+    0.072,
+    0.008016748251353765
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.1",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.1,
+   "expected": [
+    0.15,
+    0.072,
+    0.008081312020238025
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.35",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.15,
+    0.072,
+    0.012042197893353486
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.475",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.475,
+   "expected": [
+    0.15,
+    0.072,
+    0.023862789398225268
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.6",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.6,
+   "expected": [
+    0.15,
+    0.072,
+    0.05012066928298852
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.725",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.725,
+   "expected": [
+    0.15,
+    0.072,
+    0.08367713574067714
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.85",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.15,
+    0.072,
+    0.1
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.95",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.95,
+   "expected": [
+    0.15,
+    0.072,
+    0.08918971503778278
+   ]
+  },
+  {
+   "id": "C2-integrate-d2-m0.999",
+   "params": {
+    "p_init": 0.1,
+    "p_transit": 0.1,
+    "p_slip": 0.12,
+    "p_guess": 0.12
+   },
+   "difficulty": 2,
+   "mastery": 0.999,
+   "expected": [
+    0.15,
+    0.072,
+    0.07770528062202013
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.0",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.0,
+   "expected": [
+    0.068,
+    0.26,
+    0.0697409883708741
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.02",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.02,
+   "expected": [
+    0.068,
+    0.26,
+    0.07895823482546697
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.1",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.1,
+   "expected": [
+    0.068,
+    0.26,
+    0.12530167320747132
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.35",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.068,
+    0.26,
+    0.25
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.475",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.475,
+   "expected": [
+    0.068,
+    0.26,
+    0.20919283935169286
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.6",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.6,
+   "expected": [
+    0.068,
+    0.26,
+    0.1253016732074713
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.725",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.725,
+   "expected": [
+    0.068,
+    0.26,
+    0.05965697349556316
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.85",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.068,
+    0.26,
+    0.03010549473338371
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.95",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.95,
+   "expected": [
+    0.068,
+    0.26,
+    0.022555069203795734
+   ]
+  },
+  {
+   "id": "C2-expand-d0-m0.999",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.999,
+   "expected": [
+    0.068,
+    0.26,
+    0.021188945534601607
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.0",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.0,
+   "expected": [
+    0.08,
+    0.2,
+    0.022555069203795734
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.02",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.02,
+   "expected": [
+    0.08,
+    0.2,
+    0.023431780795885607
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.1",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.1,
+   "expected": [
+    0.08,
+    0.2,
+    0.03010549473338371
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.35",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.08,
+    0.2,
+    0.1253016732074713
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.475",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.475,
+   "expected": [
+    0.08,
+    0.2,
+    0.20919283935169286
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.6",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.6,
+   "expected": [
+    0.08,
+    0.2,
+    0.25
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.725",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.725,
+   "expected": [
+    0.08,
+    0.2,
+    0.20919283935169286
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.85",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.08,
+    0.2,
+    0.1253016732074713
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.95",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.95,
+   "expected": [
+    0.08,
+    0.2,
+    0.0697409883708741
+   ]
+  },
+  {
+   "id": "C2-expand-d1-m0.999",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.999,
+   "expected": [
+    0.08,
+    0.2,
+    0.05143955485557858
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.0",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.0,
+   "expected": [
+    0.1,
+    0.12,
+    0.020027510963223635
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.02",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.02,
+   "expected": [
+    0.1,
+    0.12,
+    0.02004187062838441
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.1",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.1,
+   "expected": [
+    0.1,
+    0.12,
+    0.020203280050595063
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.35",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.1,
+    0.12,
+    0.03010549473338371
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.475",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.475,
+   "expected": [
+    0.1,
+    0.12,
+    0.05965697349556316
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.6",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.6,
+   "expected": [
+    0.1,
+    0.12,
+    0.1253016732074713
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.725",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.725,
+   "expected": [
+    0.1,
+    0.12,
+    0.20919283935169286
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.85",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.1,
+    0.12,
+    0.25
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.95",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.95,
+   "expected": [
+    0.1,
+    0.12,
+    0.22297428759445695
+   ]
+  },
+  {
+   "id": "C2-expand-d2-m0.999",
+   "params": {
+    "p_init": 0.3,
+    "p_transit": 0.25,
+    "p_slip": 0.08,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.999,
+   "expected": [
+    0.1,
+    0.12,
+    0.1942632015550503
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.0",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.0,
+   "expected": [
+    0.102,
+    0.195,
+    0.04184459302252446
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.02",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.02,
+   "expected": [
+    0.102,
+    0.195,
+    0.04737494089528018
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.1",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.1,
+   "expected": [
+    0.102,
+    0.195,
+    0.07518100392448279
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.35",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.102,
+    0.195,
+    0.15
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.475",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.475,
+   "expected": [
+    0.102,
+    0.195,
+    0.12551570361101572
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.6",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.6,
+   "expected": [
+    0.102,
+    0.195,
+    0.07518100392448278
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.725",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.725,
+   "expected": [
+    0.102,
+    0.195,
+    0.035794184097337894
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.85",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.102,
+    0.195,
+    0.018063296840030225
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.95",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.95,
+   "expected": [
+    0.102,
+    0.195,
+    0.013533041522277441
+   ]
+  },
+  {
+   "id": "C2-factor-d0-m0.999",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.999,
+   "expected": [
+    0.102,
+    0.195,
+    0.012713367320760964
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.0",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.0,
+   "expected": [
+    0.12,
+    0.15,
+    0.013533041522277441
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.02",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.02,
+   "expected": [
+    0.12,
+    0.15,
+    0.014059068477531364
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.1",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.1,
+   "expected": [
+    0.12,
+    0.15,
+    0.018063296840030225
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.35",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.12,
+    0.15,
+    0.07518100392448278
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.475",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.475,
+   "expected": [
+    0.12,
+    0.15,
+    0.12551570361101572
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.6",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.6,
+   "expected": [
+    0.12,
+    0.15,
+    0.15
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.725",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.725,
+   "expected": [
+    0.12,
+    0.15,
+    0.12551570361101572
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.85",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.12,
+    0.15,
+    0.07518100392448278
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.95",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.95,
+   "expected": [
+    0.12,
+    0.15,
+    0.04184459302252446
+   ]
+  },
+  {
+   "id": "C2-factor-d1-m0.999",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.999,
+   "expected": [
+    0.12,
+    0.15,
+    0.030863732913347146
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.0",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.0,
+   "expected": [
+    0.15,
+    0.09,
+    0.012016506577934181
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.02",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.02,
+   "expected": [
+    0.15,
+    0.09,
+    0.012025122377030645
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.1",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.1,
+   "expected": [
+    0.15,
+    0.09,
+    0.012121968030357038
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.35",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.15,
+    0.09,
+    0.018063296840030225
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.475",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.475,
+   "expected": [
+    0.15,
+    0.09,
+    0.035794184097337894
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.6",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.6,
+   "expected": [
+    0.15,
+    0.09,
+    0.07518100392448278
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.725",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.725,
+   "expected": [
+    0.15,
+    0.09,
+    0.12551570361101572
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.85",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.15,
+    0.09,
+    0.15
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.95",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.95,
+   "expected": [
+    0.15,
+    0.09,
+    0.13378457255667417
+   ]
+  },
+  {
+   "id": "C2-factor-d2-m0.999",
+   "params": {
+    "p_init": 0.18,
+    "p_transit": 0.15,
+    "p_slip": 0.12,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.999,
+   "expected": [
+    0.15,
+    0.09,
+    0.11655792093303018
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.0",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.0,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.05579279069669928
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.02",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.02,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.06316658786037359
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.1",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.1,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.10024133856597706
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.35",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.2
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.475",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.475,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.1673542714813543
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.6",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.6,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.725",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.725,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.047725578796450535
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.85",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.95",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.95,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.018044055363036587
+   ]
+  },
+  {
+   "id": "C2-simplify-d0-m0.999",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 0,
+   "mastery": 0.999,
+   "expected": [
+    0.085,
+    0.23399999999999999,
+    0.016951156427681285
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.0",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.0,
+   "expected": [
+    0.1,
+    0.18,
+    0.018044055363036587
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.02",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.02,
+   "expected": [
+    0.1,
+    0.18,
+    0.018745424636708485
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.1",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.1,
+   "expected": [
+    0.1,
+    0.18,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.35",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.1,
+    0.18,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.475",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.475,
+   "expected": [
+    0.1,
+    0.18,
+    0.1673542714813543
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.6",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.6,
+   "expected": [
+    0.1,
+    0.18,
+    0.2
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.725",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.725,
+   "expected": [
+    0.1,
+    0.18,
+    0.1673542714813543
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.85",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.1,
+    0.18,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.95",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.95,
+   "expected": [
+    0.1,
+    0.18,
+    0.05579279069669928
+   ]
+  },
+  {
+   "id": "C2-simplify-d1-m0.999",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 1,
+   "mastery": 0.999,
+   "expected": [
+    0.1,
+    0.18,
+    0.041151643884462866
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.0",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.0,
+   "expected": [
+    0.125,
+    0.108,
+    0.016022008770578907
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.02",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.02,
+   "expected": [
+    0.125,
+    0.108,
+    0.01603349650270753
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.1",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.1,
+   "expected": [
+    0.125,
+    0.108,
+    0.01616262404047605
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.35",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.125,
+    0.108,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.475",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.475,
+   "expected": [
+    0.125,
+    0.108,
+    0.047725578796450535
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.6",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.6,
+   "expected": [
+    0.125,
+    0.108,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.725",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.725,
+   "expected": [
+    0.125,
+    0.108,
+    0.1673542714813543
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.85",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.125,
+    0.108,
+    0.2
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.95",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.95,
+   "expected": [
+    0.125,
+    0.108,
+    0.17837943007556556
+   ]
+  },
+  {
+   "id": "C2-simplify-d2-m0.999",
+   "params": {
+    "p_init": 0.22,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.18
+   },
+   "difficulty": 2,
+   "mastery": 0.999,
+   "expected": [
+    0.125,
+    0.108,
+    0.15541056124404026
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.0",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.0,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.07810990697537899
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.02",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.02,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.08843322300452303
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.1",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.1,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.14033787399236788
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.35",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.28
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.475",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.475,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.23429598007389602
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.6",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.6,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.14033787399236786
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.725",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.725,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.06681581031503074
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.85",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.03371815410138976
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.95",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.95,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.025261677508251226
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d0-m0.999",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 0,
+   "mastery": 0.999,
+   "expected": [
+    0.059500000000000004,
+    0.28600000000000003,
+    0.0237316189987538
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.0",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.0,
+   "expected": [
+    0.07,
+    0.22,
+    0.025261677508251226
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.02",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.02,
+   "expected": [
+    0.07,
+    0.22,
+    0.02624359449139188
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.1",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.1,
+   "expected": [
+    0.07,
+    0.22,
+    0.03371815410138976
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.35",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.07,
+    0.22,
+    0.14033787399236786
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.475",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.475,
+   "expected": [
+    0.07,
+    0.22,
+    0.23429598007389602
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.6",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.6,
+   "expected": [
+    0.07,
+    0.22,
+    0.28
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.725",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.725,
+   "expected": [
+    0.07,
+    0.22,
+    0.23429598007389602
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.85",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.07,
+    0.22,
+    0.14033787399236786
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.95",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.95,
+   "expected": [
+    0.07,
+    0.22,
+    0.07810990697537899
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d1-m0.999",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 1,
+   "mastery": 0.999,
+   "expected": [
+    0.07,
+    0.22,
+    0.05761230143824801
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.0",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.0,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.022430812278810473
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.02",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.02,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.02244689510379054
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.1",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.1,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.022627673656666472
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.35",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.03371815410138976
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.475",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.475,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.06681581031503074
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.6",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.6,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.14033787399236786
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.725",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.725,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.23429598007389602
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.85",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.28
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.95",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.95,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.2497312021057918
+   ]
+  },
+  {
+   "id": "C2-solve_linear-d2-m0.999",
+   "params": {
+    "p_init": 0.35,
+    "p_transit": 0.28,
+    "p_slip": 0.07,
+    "p_guess": 0.22
+   },
+   "difficulty": 2,
+   "mastery": 0.999,
+   "expected": [
+    0.08750000000000001,
+    0.132,
+    0.21757478574165637
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.0",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.0,
+   "expected": [
+    0.1105,
+    0.169,
+    0.03347567441801957
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.02",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.02,
+   "expected": [
+    0.1105,
+    0.169,
+    0.03789995271622414
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.1",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.1,
+   "expected": [
+    0.1105,
+    0.169,
+    0.06014480313958623
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.35",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.1105,
+    0.169,
+    0.12
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.475",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.475,
+   "expected": [
+    0.1105,
+    0.169,
+    0.10041256288881258
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.6",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.6,
+   "expected": [
+    0.1105,
+    0.169,
+    0.06014480313958622
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.725",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.725,
+   "expected": [
+    0.1105,
+    0.169,
+    0.028635347277870316
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.85",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.1105,
+    0.169,
+    0.01445063747202418
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.95",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.95,
+   "expected": [
+    0.1105,
+    0.169,
+    0.010826433217821951
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d0-m0.999",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 0,
+   "mastery": 0.999,
+   "expected": [
+    0.1105,
+    0.169,
+    0.010170693856608772
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.0",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.0,
+   "expected": [
+    0.13,
+    0.13,
+    0.010826433217821951
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.02",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.02,
+   "expected": [
+    0.13,
+    0.13,
+    0.01124725478202509
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.1",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.1,
+   "expected": [
+    0.13,
+    0.13,
+    0.01445063747202418
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.35",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.13,
+    0.13,
+    0.06014480313958622
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.475",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.475,
+   "expected": [
+    0.13,
+    0.13,
+    0.10041256288881258
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.6",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.6,
+   "expected": [
+    0.13,
+    0.13,
+    0.12
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.725",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.725,
+   "expected": [
+    0.13,
+    0.13,
+    0.10041256288881258
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.85",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.13,
+    0.13,
+    0.06014480313958622
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.95",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.95,
+   "expected": [
+    0.13,
+    0.13,
+    0.03347567441801957
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d1-m0.999",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 1,
+   "mastery": 0.999,
+   "expected": [
+    0.13,
+    0.13,
+    0.024690986330677716
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.0",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.0,
+   "expected": [
+    0.1625,
+    0.078,
+    0.009613205262347345
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.02",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.02,
+   "expected": [
+    0.1625,
+    0.078,
+    0.009620097901624517
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.1",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.1,
+   "expected": [
+    0.1625,
+    0.078,
+    0.00969757442428563
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.35",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.1625,
+    0.078,
+    0.01445063747202418
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.475",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.475,
+   "expected": [
+    0.1625,
+    0.078,
+    0.028635347277870316
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.6",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.6,
+   "expected": [
+    0.1625,
+    0.078,
+    0.06014480313958622
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.725",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.725,
+   "expected": [
+    0.1625,
+    0.078,
+    0.10041256288881258
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.85",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.1625,
+    0.078,
+    0.12
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.95",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.95,
+   "expected": [
+    0.1625,
+    0.078,
+    0.10702765804533933
+   ]
+  },
+  {
+   "id": "C2-solve_quadratic-d2-m0.999",
+   "params": {
+    "p_init": 0.12,
+    "p_transit": 0.12,
+    "p_slip": 0.13,
+    "p_guess": 0.13
+   },
+   "difficulty": 2,
+   "mastery": 0.999,
+   "expected": [
+    0.1625,
+    0.078,
+    0.09324633674642414
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.0",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.0,
+   "expected": [
+    0.085,
+    0.26,
+    0.05579279069669928
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.02",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.02,
+   "expected": [
+    0.085,
+    0.26,
+    0.06316658786037359
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.1",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.1,
+   "expected": [
+    0.085,
+    0.26,
+    0.10024133856597706
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.35",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.085,
+    0.26,
+    0.2
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.475",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.475,
+   "expected": [
+    0.085,
+    0.26,
+    0.1673542714813543
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.6",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.6,
+   "expected": [
+    0.085,
+    0.26,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.725",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.725,
+   "expected": [
+    0.085,
+    0.26,
+    0.047725578796450535
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.85",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.085,
+    0.26,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.95",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.95,
+   "expected": [
+    0.085,
+    0.26,
+    0.018044055363036587
+   ]
+  },
+  {
+   "id": "C2-numerical-d0-m0.999",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 0,
+   "mastery": 0.999,
+   "expected": [
+    0.085,
+    0.26,
+    0.016951156427681285
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.0",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.0,
+   "expected": [
+    0.1,
+    0.2,
+    0.018044055363036587
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.02",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.02,
+   "expected": [
+    0.1,
+    0.2,
+    0.018745424636708485
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.1",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.1,
+   "expected": [
+    0.1,
+    0.2,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.35",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.1,
+    0.2,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.475",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.475,
+   "expected": [
+    0.1,
+    0.2,
+    0.1673542714813543
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.6",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.6,
+   "expected": [
+    0.1,
+    0.2,
+    0.2
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.725",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.725,
+   "expected": [
+    0.1,
+    0.2,
+    0.1673542714813543
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.85",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.1,
+    0.2,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.95",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.95,
+   "expected": [
+    0.1,
+    0.2,
+    0.05579279069669928
+   ]
+  },
+  {
+   "id": "C2-numerical-d1-m0.999",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 1,
+   "mastery": 0.999,
+   "expected": [
+    0.1,
+    0.2,
+    0.041151643884462866
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.0",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.0,
+   "expected": [
+    0.125,
+    0.12,
+    0.016022008770578907
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.02",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.02,
+   "expected": [
+    0.125,
+    0.12,
+    0.01603349650270753
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.1",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.1,
+   "expected": [
+    0.125,
+    0.12,
+    0.01616262404047605
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.35",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.125,
+    0.12,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.475",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.475,
+   "expected": [
+    0.125,
+    0.12,
+    0.047725578796450535
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.6",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.6,
+   "expected": [
+    0.125,
+    0.12,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.725",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.725,
+   "expected": [
+    0.125,
+    0.12,
+    0.1673542714813543
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.85",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.125,
+    0.12,
+    0.2
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.95",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.95,
+   "expected": [
+    0.125,
+    0.12,
+    0.17837943007556556
+   ]
+  },
+  {
+   "id": "C2-numerical-d2-m0.999",
+   "params": {
+    "p_init": 0.25,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.2
+   },
+   "difficulty": 2,
+   "mastery": 0.999,
+   "expected": [
+    0.125,
+    0.12,
+    0.15541056124404026
+   ]
+  },
+  {
+   "id": "C3-guess-high-d0-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.55
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.085,
+    0.6,
+    0.2
+   ]
+  },
+  {
+   "id": "C3-guess-high-d0-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.55
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.085,
+    0.6,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C3-guess-high-d1-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.55
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.1,
+    0.55,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C3-guess-high-d1-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.55
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.1,
+    0.55,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C3-guess-high-d2-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.55
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.125,
+    0.33,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C3-guess-high-d2-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.55
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.125,
+    0.33,
+    0.2
+   ]
+  },
+  {
+   "id": "C3-slip-high-d0-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.38,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.323,
+    0.195,
+    0.2
+   ]
+  },
+  {
+   "id": "C3-slip-high-d0-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.38,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.323,
+    0.195,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C3-slip-high-d1-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.38,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.38,
+    0.15,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C3-slip-high-d1-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.38,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.38,
+    0.15,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C3-slip-high-d2-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.38,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.4,
+    0.09,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C3-slip-high-d2-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.38,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.4,
+    0.09,
+    0.2
+   ]
+  },
+  {
+   "id": "C3-guess-low-d0-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.01
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.085,
+    0.02,
+    0.2
+   ]
+  },
+  {
+   "id": "C3-guess-low-d0-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.01
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.085,
+    0.02,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C3-guess-low-d1-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.01
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.1,
+    0.02,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C3-guess-low-d1-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.01
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.1,
+    0.02,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C3-guess-low-d2-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.01
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.125,
+    0.02,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C3-guess-low-d2-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.1,
+    "p_guess": 0.01
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.125,
+    0.02,
+    0.2
+   ]
+  },
+  {
+   "id": "C3-slip-low-d0-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.01,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.02,
+    0.195,
+    0.2
+   ]
+  },
+  {
+   "id": "C3-slip-low-d0-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.01,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.02,
+    0.195,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C3-slip-low-d1-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.01,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.02,
+    0.15,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C3-slip-low-d1-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.01,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.02,
+    0.15,
+    0.10024133856597704
+   ]
+  },
+  {
+   "id": "C3-slip-low-d2-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.01,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.02,
+    0.09,
+    0.024084395786706972
+   ]
+  },
+  {
+   "id": "C3-slip-low-d2-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 0.2,
+    "p_slip": 0.01,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.02,
+    0.09,
+    0.2
+   ]
+  },
+  {
+   "id": "C3-transit-high-d0-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 1.2,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.35,
+   "expected": [
+    0.085,
+    0.195,
+    0.95
+   ]
+  },
+  {
+   "id": "C3-transit-high-d0-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 1.2,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 0,
+   "mastery": 0.85,
+   "expected": [
+    0.085,
+    0.195,
+    0.1445063747202418
+   ]
+  },
+  {
+   "id": "C3-transit-high-d1-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 1.2,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.35,
+   "expected": [
+    0.1,
+    0.15,
+    0.6014480313958622
+   ]
+  },
+  {
+   "id": "C3-transit-high-d1-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 1.2,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 1,
+   "mastery": 0.85,
+   "expected": [
+    0.1,
+    0.15,
+    0.6014480313958622
+   ]
+  },
+  {
+   "id": "C3-transit-high-d2-m0.35",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 1.2,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.35,
+   "expected": [
+    0.125,
+    0.09,
+    0.1445063747202418
+   ]
+  },
+  {
+   "id": "C3-transit-high-d2-m0.85",
+   "params": {
+    "p_init": 0.2,
+    "p_transit": 1.2,
+    "p_slip": 0.1,
+    "p_guess": 0.15
+   },
+   "difficulty": 2,
+   "mastery": 0.85,
+   "expected": [
+    0.125,
+    0.09,
+    0.95
+   ]
+  }
+ ]
+}
