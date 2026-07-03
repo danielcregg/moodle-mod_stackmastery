@@ -260,6 +260,11 @@ final class attempt_manager_test extends \advanced_testcase {
      */
     public function test_start_with_empty_pool_throws_and_persists_nothing(): void {
         global $DB;
+        // On pgsql/mssql the harness wraps every test in an outer DB transaction, which turns the
+        // engine's delegated-transaction rollback into a logical no-op (the inserts would stay
+        // visible to the asserts below). Committing the wrapper first makes the engine's rollback
+        // a REAL top-level rollback, exactly as in production; the harness then resets by table.
+        $this->preventResetByRollback();
         $setup = $this->setup_mastery([], ['percell' => 0]);
         $manager = $this->make_manager($setup);
         try {
@@ -477,6 +482,9 @@ final class attempt_manager_test extends \advanced_testcase {
      */
     public function test_t1_rollback_leaves_no_partial_state(): void {
         global $DB;
+        // Commit the harness's outer test transaction (pgsql/mssql) so the engine's T1 rollback
+        // is a real top-level rollback rather than a logical no-op - see the empty-pool test.
+        $this->preventResetByRollback();
         $setup = $this->setup_mastery();
         $manager = $this->make_manager($setup);
         $attempt = $manager->start_or_resume((int) $setup->student->id);
@@ -553,7 +561,11 @@ final class attempt_manager_test extends \advanced_testcase {
         $this->assertSame(1, $stateone->slot);
         $this->assertSame(1, $statetwo->slot);
         $this->assertNotNull($stateone->questionhtml);
-        $this->assertNotNull($stateone->headhtml);
+        // The rendered question is the real slot-1 form (its field prefix names slot 1).
+        $this->assertStringContainsString(':1_answer', $stateone->questionhtml);
+        // The headhtml is legitimately null here: shortanswer and the adaptive behaviour
+        // contribute no head code (it is non-empty for qtypes like STACK that inject head content).
+        $this->assertNull($stateone->headhtml);
         $this->assertNull($stateone->notice);
         $this->assertSame(
             $qacount,
@@ -704,6 +716,10 @@ final class attempt_manager_test extends \advanced_testcase {
         $this->assertCount(2, $unserved);
         $victim = reset($unserved);
         $DB->delete_records('question', ['id' => $victim->questionid]);
+        // A raw DB delete is invisible to the MUC-backed question loader (the pool generator's
+        // tagging already warmed the cache); purge it the way every real deletion flow does, so
+        // question_bank::load_question() actually hits the missing row.
+        \question_bank::notify_question_edited((int) $victim->questionid);
 
         $final = $this->drive($manager, $attempt, 'wrong');
         $this->assertSame(attempt_store::STATE_COMPLETE, $final->state);
