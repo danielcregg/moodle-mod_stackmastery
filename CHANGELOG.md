@@ -4,7 +4,23 @@ All notable changes to **mod_stackmastery** are documented in this file. The for
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
-## [Unreleased] - 0.1.0-alpha
+## [0.1.0-beta] - 2026-07-03
+
+First complete release: built, reviewed and verified in one continuous campaign.
+
+- Full adaptive mastery loop on real STACK questions, live-verified end to end on Moodle 4.5
+  (22-check Playwright E2E: CAS grading, mastery movement, resume, end-attempt-now, teacher
+  report drilldown, activity duplication).
+- Two pre-release Codex reviews folded: the build plan (export re-linkability closed with a
+  discarded-salt seqkey; open-slot sealing on early finish) and the implementation
+  (availability enforced on every mutating POST; crash-safe policy promote/rollback swap;
+  export run lock; restore normalisation of usage-less in-progress attempts).
+- Behaviour-agnostic graded-try detection: qtype_stack substitutes qbehaviour_adaptivemultipart
+  for adaptive requests and never sets the _try variable; the engine now recognises graded
+  tries for both behaviours (found by the live VM gate, invisible to shortanswer-based CI).
+- Mirror CI green across the battery: 170+ PHPUnit tests (31 on real question usages), Behat
+  incl. a @javascript full-loop flow, phpcs/phpdoc at zero warnings, plus an advisory CAS job
+  running the suite against real qtype_stack + Maxima.
 
 ### Added
 - **Activity module skeleton for adaptive formative mastery checks on STACK questions.** A teacher
