@@ -1,0 +1,167 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_stackmastery/view_page
+
+    The activity landing page: state card (start/resume/closed/no attempts left), intro facts,
+    mastery bars, the attempt history and the grade line; teachers additionally get live pool
+    warnings and a report link.
+
+    Context variables required for this template:
+    * state - string, one of the view_helper state codes
+    * cmid - int
+    * sesskey - string
+    * actionurl - string, processattempt.php URL for the start POST
+    * showstart / startlabel - bool / string
+    * showresume / resumeurl - bool / string
+    * statemessage - string, optional
+    * teacherplaceholder - bool
+    * facts - { skills: [{name}], targetpercent, budget, maxattemptslabel }
+    * hasprogress / progress - bool / progress_bars context
+    * hasattempts / attempts - bool / array of history rows
+    * gradeline - string, optional
+    * canviewreports / reporturl - bool / string
+    * haspoolwarnings / poolwarnings - bool / array of { message }
+
+    Example context (json):
+    {
+        "state": "canstart",
+        "cmid": 12,
+        "sesskey": "abc123",
+        "actionurl": "https://example.com/mod/stackmastery/processattempt.php",
+        "showstart": true,
+        "startlabel": "Start attempt",
+        "showresume": false,
+        "resumeurl": "https://example.com/mod/stackmastery/attempt.php?id=12",
+        "statemessage": "",
+        "teacherplaceholder": false,
+        "facts": {
+            "skills": [{"name": "Differentiation"}],
+            "targetpercent": 95,
+            "budget": 40,
+            "maxattemptslabel": "Unlimited"
+        },
+        "hasprogress": false,
+        "progress": null,
+        "hasattempts": false,
+        "attempts": [],
+        "gradeline": "",
+        "canviewreports": false,
+        "reporturl": "https://example.com/mod/stackmastery/report.php?id=12",
+        "haspoolwarnings": false,
+        "poolwarnings": []
+    }
+}}
+<div class="stackmastery-view" data-region="stackmastery-view" data-state="{{state}}">
+
+    {{#haspoolwarnings}}
+        <div class="stackmastery-poolwarnings">
+            {{#poolwarnings}}
+                <div class="alert alert-warning" role="alert">{{message}}</div>
+            {{/poolwarnings}}
+        </div>
+    {{/haspoolwarnings}}
+
+    <div class="stackmastery-statuscard card mb-3">
+        <div class="card-body">
+            {{#statemessage}}
+                <p class="stackmastery-statemessage">{{statemessage}}</p>
+            {{/statemessage}}
+            {{#teacherplaceholder}}
+                <p class="stackmastery-teacherplaceholder text-muted">{{#str}} teacherplaceholder, mod_stackmastery {{/str}}</p>
+                {{#canviewreports}}
+                    <a href="{{reporturl}}">{{#str}} report, mod_stackmastery {{/str}}</a>
+                {{/canviewreports}}
+            {{/teacherplaceholder}}
+            {{#showstart}}
+                <form method="post" action="{{actionurl}}" class="stackmastery-startform">
+                    <input type="hidden" name="id" value="{{cmid}}">
+                    <input type="hidden" name="action" value="start">
+                    <input type="hidden" name="sesskey" value="{{sesskey}}">
+                    <button type="submit" class="btn btn-primary">{{startlabel}}</button>
+                </form>
+            {{/showstart}}
+            {{#showresume}}
+                <a href="{{resumeurl}}" class="btn btn-primary">{{#str}} resumeattempt, mod_stackmastery {{/str}}</a>
+            {{/showresume}}
+
+            <div class="stackmastery-facts mt-3">
+                <p class="mb-1">
+                    <strong>{{#str}} skills, mod_stackmastery {{/str}}:</strong>
+                    {{#facts.skills}}
+                        <span class="stackmastery-skill-chip badge badge-secondary bg-secondary">{{name}}</span>
+                    {{/facts.skills}}
+                </p>
+                <p class="mb-1">
+                    <strong>{{#str}} targetmastery, mod_stackmastery {{/str}}:</strong> {{facts.targetpercent}}%
+                </p>
+                <p class="mb-1">
+                    <strong>{{#str}} budget, mod_stackmastery {{/str}}:</strong> {{facts.budget}}
+                </p>
+                <p class="mb-0">
+                    <strong>{{#str}} attemptsallowed, mod_stackmastery {{/str}}:</strong> {{facts.maxattemptslabel}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {{#hasprogress}}
+        {{#progress}}
+            {{> mod_stackmastery/progress_bars }}
+        {{/progress}}
+    {{/hasprogress}}
+
+    {{#hasattempts}}
+        <h3 class="h5">{{#str}} attempts, mod_stackmastery {{/str}}</h3>
+        <div class="table-responsive">
+            <table class="generaltable stackmastery-history">
+                <thead>
+                    <tr>
+                        <th scope="col">{{#str}} colattempt, mod_stackmastery {{/str}}</th>
+                        <th scope="col">{{#str}} colstate, mod_stackmastery {{/str}}</th>
+                        <th scope="col">{{#str}} colquestions, mod_stackmastery {{/str}}</th>
+                        <th scope="col">{{#str}} colreached, mod_stackmastery {{/str}}</th>
+                        <th scope="col">{{#str}} colgrade, mod_stackmastery {{/str}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#attempts}}
+                        <tr>
+                            <td>
+                                {{number}}
+                                {{#counted}}
+                                    <span class="badge badge-info bg-info">{{#str}} countstowardgrade, mod_stackmastery {{/str}}</span>
+                                {{/counted}}
+                            </td>
+                            <td>{{statelabel}}</td>
+                            <td>{{questions}}</td>
+                            <td>
+                                {{#reached}}{{#str}} yes {{/str}}{{/reached}}
+                                {{^reached}}{{#str}} no {{/str}}{{/reached}}
+                            </td>
+                            <td>{{grade}}</td>
+                        </tr>
+                    {{/attempts}}
+                </tbody>
+            </table>
+        </div>
+    {{/hasattempts}}
+
+    {{#gradeline}}
+        <p class="stackmastery-gradeline"><strong>{{gradeline}}</strong></p>
+    {{/gradeline}}
+</div>

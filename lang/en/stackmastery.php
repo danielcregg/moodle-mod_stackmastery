@@ -1,0 +1,258 @@
+<?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * English language strings for mod_stackmastery.
+ *
+ * The complete merged string set for the module, including strings consumed by the attempt loop,
+ * reports, privacy provider, tasks and the policy admin page that land in later work packages.
+ * Keys are kept in strict alphabetical order (CI-enforced).
+ *
+ * @package    mod_stackmastery
+ * @copyright  2026 Daniel Cregg
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+defined('MOODLE_INTERNAL') || die();
+
+$string['abandonafter'] = 'Auto-abandon stale attempts after';
+$string['abandonafter_desc'] = 'An in-progress attempt untouched for this long is closed as abandoned by the cleanup task and graded as-is. Set to 0 to never auto-close.';
+$string['activepolicy'] = 'Active policy';
+$string['activityclosedgraded'] = 'This activity has closed. Your attempt was ended and graded as it stood.';
+$string['allowedqtypes'] = 'Allowed question types';
+$string['allowedqtypes_desc'] = 'Comma-separated list of question types eligible for the question pool. The default (stack) keeps non-CAS questions out of the adaptive loop; a tagged question of another type could otherwise soft-lock a slot.';
+$string['artifacterror_actions'] = 'The policy table contains an out-of-range action index.';
+$string['artifacterror_encoding'] = 'The encoding metadata (bin edges, bins, skills or threshold) does not match the deployed encoder.';
+$string['artifacterror_gate'] = 'The artifact does not record a passed acceptance gate.';
+$string['artifacterror_json'] = 'The file is not valid JSON.';
+$string['artifacterror_policyid'] = 'The artifact is missing a valid policy id.';
+$string['artifacterror_same'] = 'The pending policy is identical to the active policy.';
+$string['artifacterror_schema'] = 'The artifact does not match the stackmastery-policy/v1 schema.';
+$string['artifacterror_size'] = 'The file is larger than the accepted maximum.';
+$string['artifactinvalid'] = 'The pending policy artifact is invalid:';
+$string['attemptabandoned'] = 'This attempt was closed automatically and graded as it stood.';
+$string['attemptalreadyfinished'] = 'That attempt has already finished.';
+$string['attemptdeleted'] = 'Attempt deleted and grade recalculated.';
+$string['attemptdetail'] = 'Attempt detail';
+$string['attemptended'] = 'Your attempt has ended. Your mastery so far has been recorded.';
+$string['attemptfinishedbudget'] = 'You have used all {$a} questions in this attempt.';
+$string['attemptfinishedexhausted'] = 'There are no more eligible questions in this attempt.';
+$string['attemptfinishedtarget'] = 'You reached the target mastery in every skill.';
+$string['attempts'] = 'Attempts';
+$string['attemptsallowed'] = 'Attempts allowed';
+$string['attemptsused'] = 'Attempts used: {$a->used} of {$a->max}';
+$string['budget'] = 'Maximum questions per attempt';
+$string['budget_help'] = 'The attempt ends after this many questions even if the target is not reached. It is automatically capped at the number of eligible unique questions when an attempt starts.';
+$string['budgetspent'] = 'You have used all {$a->budget} questions. Mastery reached: {$a->k} of {$a->total} skills.';
+$string['checkexplainer'] = 'Check your answer to see how you did, then continue to the next question.';
+$string['cleanuptask'] = 'STACK Mastery cleanup (abandon stale attempts, apply step retention, sweep orphans)';
+$string['closedat'] = 'Closed on {$a}';
+$string['colattempt'] = 'Attempt';
+$string['colcorrect'] = 'Correct';
+$string['coldifficulty'] = 'Difficulty';
+$string['colduration'] = 'Duration';
+$string['colexplore'] = 'Exploration';
+$string['colfraction'] = 'Fraction';
+$string['colgrade'] = 'Grade';
+$string['colmastery'] = 'Mastery: {$a}';
+$string['colmasterychange'] = 'Mastery change';
+$string['colquestion'] = 'Question';
+$string['colquestions'] = 'Questions';
+$string['colreached'] = 'Target reached';
+$string['colseq'] = 'Step';
+$string['colskill'] = 'Skill';
+$string['colsource'] = 'Source';
+$string['colstate'] = 'State';
+$string['colstepstotarget'] = 'Questions to target';
+$string['coltimetotarget'] = 'Time to target';
+$string['completiondetail:reachedtarget'] = 'Reach the mastery target';
+$string['completionreachedtarget'] = 'Student must reach the mastery target';
+$string['continueattempt'] = 'Continue attempt';
+$string['continuetonext'] = 'Continue to question {$a}';
+$string['correct'] = 'Correct.';
+$string['countstowardgrade'] = 'Counts toward your grade';
+$string['deleteattempt'] = 'Delete attempt';
+$string['deleteattemptconfirm'] = 'Delete this attempt? The answers, steps and mastery recorded for it are removed and the grade is recalculated. This cannot be undone.';
+$string['difficulty_easy'] = 'Easy';
+$string['difficulty_hard'] = 'Hard';
+$string['difficulty_medium'] = 'Medium';
+$string['endattempt'] = 'End attempt now';
+$string['endattemptconfirm'] = 'Your mastery so far will be recorded and this attempt will end. You cannot resume it.';
+$string['epsilon'] = 'Exploration rate (epsilon)';
+$string['epsilon_desc'] = 'Probability (0 to 0.2) that the next question is drawn uniformly from eligible questions instead of following the policy. Exploration keeps batch self-improvement able to discover better strategies; it is logged with each step. 0 disables exploration. The value is snapshotted per activity when the activity is created.';
+$string['errattemptbusy'] = 'Your attempt is busy in another window. Try again in a moment.';
+$string['errbudgetrange'] = 'The question budget must be between 1 and 500.';
+$string['errgrading'] = 'Your answer could not be graded. Please try again.';
+$string['errmaxattempts'] = 'You have used all available attempts.';
+$string['errnextquestion'] = 'The next question could not be prepared. Your progress is saved; please try again.';
+$string['errnoskills'] = 'Select at least one skill.';
+$string['errpolicyunavailable'] = 'The question selection policy is unavailable. Contact your administrator.';
+$string['errpoolcategorymissing'] = 'The selected question category no longer exists. Choose another category.';
+$string['errpoolempty'] = 'The pool has no questions for: {$a->cells}. Every selected skill needs at least one tagged question per difficulty (tags stackmastery_skill_... and stackmastery_diff_...). Generate or tag questions, then save again.';
+$string['errtargetmastery'] = 'Choose a valid target mastery level.';
+$string['eventattemptcompleted'] = 'Mastery attempt completed';
+$string['eventattemptstarted'] = 'Mastery attempt started';
+$string['eventpolicypromoted'] = 'Teaching policy promoted';
+$string['eventreportviewed'] = 'Mastery report viewed';
+$string['eventstepsubmitted'] = 'Mastery step submitted';
+$string['experienceexport'] = 'Export experience for retraining';
+$string['experienceexport_desc'] = 'When enabled, a weekly task writes pseudonymised experience logs (no user ids) as JSONL files inside this site\'s moodledata for offline policy retraining. The files never leave the server by themselves. Off by default. Note that step retention wins over export: steps deleted by retention before an export run are gone.';
+$string['experienceheading'] = 'Experience data and policy improvement';
+$string['experienceheading_desc'] = 'Every answered question is logged as a pseudonymised experience record with full provenance. These settings control how long the log is kept and whether it is exported for gated offline policy retraining. The policy is never updated per answer; an administrator must explicitly promote any retrained policy.';
+$string['explorationshare'] = 'Exploration share';
+$string['explorationshare_help'] = 'The fraction of served questions that were chosen by random exploration rather than by the policy. A small exploration rate is what keeps batch self-improvement able to discover better strategies; each explored step is logged as such.';
+$string['exportfileretention'] = 'Export file retention';
+$string['exportfileretention_desc'] = 'Export files in moodledata older than this are deleted by the cleanup task. They are re-derivable while the experience log itself is kept.';
+$string['exportrun_counts'] = '{$a->attempts} attempts, {$a->steps} steps, {$a->skipped} skipped';
+$string['exportrun_file'] = 'Export file';
+$string['exportruns'] = 'Export runs';
+$string['exporttask'] = 'STACK Mastery experience export (pseudonymised JSONL for offline retraining)';
+$string['finish'] = 'Finish';
+$string['finishreason_abandoned'] = 'Abandoned';
+$string['finishreason_budget'] = 'Budget spent';
+$string['finishreason_exhausted'] = 'Pool exhausted';
+$string['finishreason_target'] = 'Reached target';
+$string['finishreason_timeclose'] = 'Activity closed';
+$string['finishreason_user'] = 'Ended by student';
+$string['funnelanswered'] = 'Answered a question';
+$string['funnelcompleted'] = 'Completed an attempt';
+$string['funnelreached'] = 'Reached the target';
+$string['funnelstarted'] = 'Started';
+$string['gradeline'] = 'Your grade: {$a}';
+$string['grademode'] = 'Grade';
+$string['grademode_help'] = 'How the gradebook grade is calculated. "Reached target" gives 100 when the mastery target was reached in an attempt, otherwise 0. "Mean final mastery" gives the average final mastery over the selected skills as a percentage. The highest attempt counts.';
+$string['grademode_meanmastery'] = 'Mean final mastery (0 to 100)';
+$string['grademode_reachedtarget'] = 'Reached target (100 or 0)';
+$string['inprogressattempts'] = 'Attempts in progress';
+$string['invalidnotchecked'] = 'This answer was not checked because it is not valid. Fix it and press Check again.';
+$string['leavenote'] = 'Anything you typed but did not check is not saved.';
+$string['masterymoved'] = 'Your mastery in {$a->skill} moved from {$a->from} to {$a->to}.';
+$string['masterysettings'] = 'Mastery check';
+$string['maxattempts'] = 'Maximum attempts';
+$string['medianquestionstotarget'] = 'Median questions to target';
+$string['mediantimetotarget'] = 'Median time to target';
+$string['modulename'] = 'STACK Mastery';
+$string['modulename_help'] = 'An adaptive formative mastery check for STACK mathematics questions. Pick the skills and the mastery level students should reach; after every answer the activity updates its estimate of the student and picks the next question that leads most rapidly to the target. Formative only: designed for practice, not for exams.';
+$string['modulenameplural'] = 'STACK Mastery checks';
+$string['noattemptsleft'] = 'You have used all {$a} attempts.';
+$string['noeligibleattempt'] = 'You cannot start a new attempt.';
+$string['nogroupsnote'] = 'Group mode is not supported in this version; the report lists all participants.';
+$string['nopendingpolicy'] = 'No pending policy. Drop a candidate artifact at stackmastery/pending/policy_pending.json inside moodledata; see the retraining section of the plugin README.';
+$string['norollback'] = 'No previous policy to roll back to.';
+$string['notquite'] = 'Not quite.';
+$string['opensat'] = 'Opens on {$a}';
+$string['pendingpolicy'] = 'Pending policy';
+$string['pluginadministration'] = 'STACK Mastery administration';
+$string['pluginname'] = 'STACK Mastery';
+$string['policypage'] = 'STACK Mastery policy';
+$string['policypagelink_desc'] = 'Review, promote or roll back the question selection policy on the <a href="{$a}">policy page</a>.';
+$string['policypromoted'] = 'Policy promoted: {$a->old} to {$a->new}.';
+$string['policyrolledback'] = 'Policy rolled back: {$a->old} to {$a->new}.';
+$string['policyswapfailed'] = 'The policy swap failed; the previous policy remains active.';
+$string['poolcategory'] = 'Question pool category';
+$string['poolcategory_help'] = 'One question bank category (subcategories are not included). Eligible questions are STACK questions in this category tagged with a skill tag (stackmastery_skill_...) and a difficulty tag (stackmastery_diff_easy, stackmastery_diff_medium or stackmastery_diff_hard). STACK Question Forge can tag generated questions automatically.';
+$string['poolcoverage'] = 'Pool coverage';
+$string['poolcoverage_addhint'] = 'Question counts per skill and difficulty are checked when you save.';
+$string['privacy:metadata:core_question'] = 'The STACK Mastery activity asks and grades questions through the core question subsystem, which stores each question shown to the user and the responses they gave.';
+$string['privacy:metadata:exportfiles'] = 'When experience export is enabled, pseudonymised training records (no user ids; per-run random keys that cannot be re-linked after the run) are written as files inside this site\'s moodledata.';
+$string['privacy:metadata:stackmastery_attempts'] = 'Details of each of the user\'s attempts at a STACK Mastery activity, including the evolving and final per-skill mastery estimates.';
+$string['privacy:metadata:stackmastery_attempts:attemptnumber'] = 'The sequential attempt number.';
+$string['privacy:metadata:stackmastery_attempts:masterycurrent'] = 'The current estimated mastery of each skill during the attempt.';
+$string['privacy:metadata:stackmastery_attempts:masteryfinal'] = 'The estimated mastery of each skill when the attempt ended.';
+$string['privacy:metadata:stackmastery_attempts:skillssnapshot'] = 'The skills the attempt covered.';
+$string['privacy:metadata:stackmastery_attempts:state'] = 'Whether the attempt is in progress, complete or abandoned.';
+$string['privacy:metadata:stackmastery_attempts:targetsnapshot'] = 'The per-skill target mastery the attempt worked towards.';
+$string['privacy:metadata:stackmastery_attempts:timefinish'] = 'When the attempt ended.';
+$string['privacy:metadata:stackmastery_attempts:timestart'] = 'When the attempt started.';
+$string['privacy:metadata:stackmastery_attempts:userid'] = 'The user who made the attempt.';
+$string['privacy:metadata:stackmastery_pool_snapshot'] = 'The list of course questions that were eligible for the user\'s attempt, frozen when the attempt started. It contains no personal content and is deleted with the attempt.';
+$string['privacy:metadata:stackmastery_pool_snapshot:difficulty'] = 'The difficulty cell the question belongs to.';
+$string['privacy:metadata:stackmastery_pool_snapshot:questionbankentryid'] = 'The question bank entry frozen for the attempt.';
+$string['privacy:metadata:stackmastery_pool_snapshot:questionid'] = 'The pinned question version.';
+$string['privacy:metadata:stackmastery_pool_snapshot:questionversion'] = 'The pinned version number.';
+$string['privacy:metadata:stackmastery_pool_snapshot:skill'] = 'The skill cell the question belongs to.';
+$string['privacy:metadata:stackmastery_pool_snapshot:timecreated'] = 'When the snapshot was taken.';
+$string['privacy:metadata:stackmastery_pool_snapshot:timeserved'] = 'When the question was served in the attempt, if it was.';
+$string['privacy:metadata:stackmastery_steps'] = 'One record per question answered in an attempt: which question was chosen for the user, why, and how their estimated mastery changed.';
+$string['privacy:metadata:stackmastery_steps:actionsource'] = 'How the question was selected (policy, exploration, fallback or pool exhausted).';
+$string['privacy:metadata:stackmastery_steps:correct'] = 'Whether the answer was graded correct.';
+$string['privacy:metadata:stackmastery_steps:fraction'] = 'The raw grade fraction for the answer.';
+$string['privacy:metadata:stackmastery_steps:masteryafter'] = 'The estimated per-skill mastery after this answer.';
+$string['privacy:metadata:stackmastery_steps:masterybefore'] = 'The estimated per-skill mastery before this answer.';
+$string['privacy:metadata:stackmastery_steps:recommendeddifficulty'] = 'The difficulty the selection policy recommended.';
+$string['privacy:metadata:stackmastery_steps:recommendedskill'] = 'The skill the selection policy recommended.';
+$string['privacy:metadata:stackmastery_steps:seq'] = 'The order of the question within the attempt.';
+$string['privacy:metadata:stackmastery_steps:serveddifficulty'] = 'The difficulty of the question the user was given.';
+$string['privacy:metadata:stackmastery_steps:servedskill'] = 'The skill of the question the user was given.';
+$string['privacy:metadata:stackmastery_steps:timeanswered'] = 'When the answer was submitted.';
+$string['promote'] = 'Promote';
+$string['promoteconfirm'] = 'Promote the pending policy to active? All new question selections will use it immediately.';
+$string['questionprogress'] = 'Question {$a->n} of up to {$a->budget}';
+$string['questionx'] = 'Question {$a}';
+$string['reachedtarget'] = 'Target reached';
+$string['reattempt'] = 'Start another attempt';
+$string['recommendedvsserved'] = 'Policy recommended {$a->rec}; served {$a->served}';
+$string['report'] = 'Report';
+$string['reportoverview'] = 'Overview';
+$string['resumeattempt'] = 'Resume mastery check';
+$string['rollback'] = 'Roll back';
+$string['rollbackconfirm'] = 'Roll back to the previous policy? All new question selections will use it immediately.';
+$string['showprogress'] = 'Show mastery progress to students';
+$string['showprogress_help'] = 'When enabled, students see per-skill progress bars and the target line during an attempt.';
+$string['skill_differentiate'] = 'Differentiation';
+$string['skill_expand'] = 'Expanding brackets';
+$string['skill_factor'] = 'Factorising';
+$string['skill_integrate'] = 'Integration';
+$string['skill_numerical'] = 'Numerical evaluation';
+$string['skill_simplify'] = 'Simplifying fractions';
+$string['skill_solve_linear'] = 'Linear equations';
+$string['skill_solve_quadratic'] = 'Quadratic equations';
+$string['skills'] = 'Skills';
+$string['skills_help'] = 'Which skills this mastery check covers. The attempt ends when every selected skill reaches the target mastery.';
+$string['skillsattarget'] = 'Skills at target: {$a->k} of {$a->total}';
+$string['skillslabel'] = 'Skill: {$a}';
+$string['sourceexhausted'] = 'Exhausted';
+$string['sourceexplore'] = 'Exploration';
+$string['sourcefallback'] = 'Fallback';
+$string['sourcepolicy'] = 'Policy';
+$string['stackmastery:addinstance'] = 'Add a new STACK Mastery activity';
+$string['stackmastery:attempt'] = 'Attempt a STACK Mastery activity';
+$string['stackmastery:deleteattempts'] = 'Delete STACK Mastery attempts';
+$string['stackmastery:manageinstance'] = 'Manage STACK Mastery attempt data';
+$string['stackmastery:view'] = 'View a STACK Mastery activity';
+$string['stackmastery:viewreports'] = 'View STACK Mastery reports';
+$string['startattempt'] = 'Start attempt';
+$string['stateabandoned'] = 'Abandoned';
+$string['statecomplete'] = 'Complete';
+$string['stateinprogress'] = 'In progress';
+$string['stepretention'] = 'Experience log retention';
+$string['stepretention_desc'] = 'How long the per-question experience log (used for reporting and gated policy improvement) of finished attempts is kept. Attempts, final mastery and grades are unaffected. Set to 0 to keep the log indefinitely. Retention wins over export: steps deleted before an export run are not exported.';
+$string['targetmastery'] = 'Target mastery';
+$string['targetmastery_confident'] = 'Confident (95%)';
+$string['targetmastery_help'] = 'The mastery level every selected skill must reach for the attempt to succeed. The target affects when the attempt ends; question selection always uses the trained policy.';
+$string['targetmastery_working'] = 'Working (85%)';
+$string['targetnote'] = 'The line marks the target: {$a}%';
+$string['targetreached'] = 'target reached';
+$string['targetreachedall'] = 'You reached the target mastery in every skill.';
+$string['targetseries'] = 'Target';
+$string['teacherplaceholder'] = 'Students see a Start button here.';
+$string['timeclose'] = 'Close attempts';
+$string['timeopen'] = 'Allow attempts from';
+$string['trajectorychart'] = 'Mastery trajectory';
+$string['unlimited'] = 'Unlimited';
+$string['warnpoolthin'] = 'Thin question pool for {$a->cell}: only {$a->count} question(s). Aim for at least 3 per skill and difficulty so students do not exhaust a cell.';
+$string['yourbestresult'] = 'Your best result';
+$string['yourmastery'] = 'Your mastery';

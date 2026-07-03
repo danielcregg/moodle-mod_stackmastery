@@ -1,0 +1,107 @@
+/*
+ * Namespaced styles for mod_stackmastery (progress bars, chips, coverage badges).
+ *
+ * All colours meet WCAG 1.4.11 non-text contrast against the track (#dee2e6):
+ * fill #0f6cbf = 4.0:1, reached #357a32 = 4.1:1, target line #1d2125 clears 3:1 on all.
+ *
+ * @package    mod_stackmastery
+ * @copyright  2026 Daniel Cregg
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+.stackmastery-progress {
+    margin: 1rem 0;
+    max-width: 40rem;
+}
+
+.stackmastery-progress-row {
+    align-items: center;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: auto 1fr auto;
+    margin-bottom: 0.375rem;
+}
+
+@media (max-width: 576px) {
+    .stackmastery-progress-row {
+        grid-template-columns: 1fr;
+        gap: 0.125rem;
+    }
+}
+
+.stackmastery-progress-skill {
+    min-width: 9rem;
+}
+
+.stackmastery-progress-track {
+    background-color: #dee2e6;
+    border-radius: 0.25rem;
+    height: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.stackmastery-progress-fill {
+    background-color: var(--primary, #0f6cbf);
+    height: 100%;
+}
+
+.stackmastery-progress-fill.stackmastery-reached {
+    background-color: var(--success, #357a32);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .stackmastery-progress-fill {
+        transition: width 0.4s ease;
+    }
+}
+
+.stackmastery-target-line {
+    background-color: #1d2125;
+    bottom: 0;
+    position: absolute;
+    top: 0;
+    width: 2px;
+}
+
+.stackmastery-progress-value {
+    font-variant-numeric: tabular-nums;
+    min-width: 4.5rem;
+}
+
+.stackmastery-reached-check {
+    color: var(--success, #357a32);
+    margin-left: 0.25rem;
+}
+
+.stackmastery-progress-targetnote {
+    color: #495057;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.stackmastery-skill-chip {
+    margin-right: 0.25rem;
+}
+
+.stackmastery-outcome {
+    margin: 0.75rem 0;
+}
+
+.stackmastery-report-meter {
+    display: inline-block;
+    width: 40px;
+}
+
+.stackmastery-coverage-table .badge {
+    font-size: 0.875rem;
+    min-width: 2rem;
+}
+
+.stackmastery-statemessage {
+    font-weight: bold;
+}
+
+.stackmastery-gradeline {
+    margin-top: 1rem;
+}

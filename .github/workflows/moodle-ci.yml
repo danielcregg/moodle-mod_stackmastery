@@ -1,0 +1,184 @@
+name: Moodle Plugin CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:                                   # T1 - blocking; no Maxima; CAS-group tests self-skip.
+    runs-on: ubuntu-22.04
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready" --health-interval 10s
+          --health-timeout 5s --health-retries 3
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.1', '8.3']
+        moodle-branch: ['MOODLE_405_STABLE']
+        database: ['pgsql']
+
+    steps:
+      - name: Check out plugin
+        uses: actions/checkout@v4
+        with:
+          path: plugin
+
+      - name: Set up PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: pgsql, mbstring, sodium, gd, zip, intl
+          ini-values: max_input_vars=5000
+          coverage: none
+
+      - name: Initialise moodle-plugin-ci
+        run: |
+          composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^4
+          echo $(cd ci/bin; pwd) >> $GITHUB_PATH
+          echo $(cd ci/vendor/bin; pwd) >> $GITHUB_PATH
+          sudo locale-gen en_AU.UTF-8
+          echo "NVM_DIR=$HOME/.nvm" >> $GITHUB_ENV
+
+      # qtype_stack master needs the three behaviours plus qbank_importasversion. add-plugin
+      # tracks each repo's default branch; if qtype_stack master ever breaks 4.5 compatibility,
+      # pin with: moodle-plugin-ci add-plugin --branch <tag-or-branch> maths/moodle-qtype_stack
+      - name: Add STACK plugin dependencies
+        run: |
+          moodle-plugin-ci add-plugin maths/moodle-qbehaviour_dfexplicitvaildate
+          moodle-plugin-ci add-plugin maths/moodle-qbehaviour_dfcbmexplicitvaildate
+          moodle-plugin-ci add-plugin maths/moodle-qbehaviour_adaptivemultipart
+          moodle-plugin-ci add-plugin maths/moodle-qbank_importasversion
+          moodle-plugin-ci add-plugin maths/moodle-qtype_stack
+
+      - name: Install Moodle + plugin
+        run: moodle-plugin-ci install --plugin ./plugin --db-host=127.0.0.1
+        env:
+          DB: ${{ matrix.database }}
+          MOODLE_BRANCH: ${{ matrix.moodle-branch }}
+
+      - name: PHP Lint
+        if: ${{ always() }}
+        run: moodle-plugin-ci phplint
+
+      - name: PHP Mess Detector
+        continue-on-error: true
+        if: ${{ always() }}
+        run: moodle-plugin-ci phpmd
+
+      - name: Moodle Code Checker
+        if: ${{ always() }}
+        run: moodle-plugin-ci phpcs --max-warnings 0
+
+      - name: Moodle PHPDoc Checker
+        if: ${{ always() }}
+        run: moodle-plugin-ci phpdoc --max-warnings 0
+
+      - name: Validating
+        if: ${{ always() }}
+        run: moodle-plugin-ci validate
+
+      - name: Check upgrade savepoints
+        if: ${{ always() }}
+        run: moodle-plugin-ci savepoints
+
+      - name: Mustache Lint
+        if: ${{ always() }}
+        run: moodle-plugin-ci mustache
+
+      - name: Grunt
+        if: ${{ always() }}
+        run: moodle-plugin-ci grunt --max-lint-warnings 0
+
+      - name: PHPUnit tests
+        if: ${{ always() }}
+        run: moodle-plugin-ci phpunit
+
+      - name: Behat features
+        if: ${{ always() }}
+        run: moodle-plugin-ci behat --profile chrome
+
+  cas:                                    # T2 - advisory (continue-on-error) until proven stable.
+    runs-on: ubuntu-22.04
+    # Flip to false after ~2 weeks of green (tracked in CHANGELOG). The sourceforge Maxima deb
+    # fetch is the one flaky link; the authoritative STACK gate is the demo-VM E2E.
+    continue-on-error: true
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready" --health-interval 10s
+          --health-timeout 5s --health-retries 3
+
+    steps:
+      - name: Check out plugin
+        uses: actions/checkout@v4
+        with:
+          path: plugin
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pgsql, mbstring, sodium, gd, zip, intl
+          ini-values: max_input_vars=5000
+          coverage: none
+
+      - name: Install Maxima (SBCL)            # qtype_stack's own pinned recipe, verbatim.
+        run: |
+          wget http://mirrors.kernel.org/ubuntu/pool/main/r/readline/libreadline7_7.0-3_amd64.deb \
+               https://sourceforge.net/projects/maxima/files/Maxima-Linux-RPM/5.42.2-Linux/maxima-common_5.42.2-1_all.deb \
+               https://sourceforge.net/projects/maxima/files/Maxima-Linux-RPM/5.42.2-Linux/maxima-sbcl_5.42.2-1_amd64.deb
+          sudo locale-gen en_AU.UTF-8
+          sudo apt-get install -y libtinfo5
+          sudo dpkg -i libreadline7_7.0-3_amd64.deb maxima-common_5.42.2-1_all.deb maxima-sbcl_5.42.2-1_amd64.deb
+          echo "diff(x^2,x);" | maxima
+
+      - name: Initialise moodle-plugin-ci
+        run: |
+          composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^4
+          echo $(cd ci/bin; pwd) >> $GITHUB_PATH
+          echo $(cd ci/vendor/bin; pwd) >> $GITHUB_PATH
+          echo "NVM_DIR=$HOME/.nvm" >> $GITHUB_ENV
+
+      - name: Add STACK plugin dependencies
+        run: |
+          moodle-plugin-ci add-plugin maths/moodle-qbehaviour_dfexplicitvaildate
+          moodle-plugin-ci add-plugin maths/moodle-qbehaviour_dfcbmexplicitvaildate
+          moodle-plugin-ci add-plugin maths/moodle-qbehaviour_adaptivemultipart
+          moodle-plugin-ci add-plugin maths/moodle-qbank_importasversion
+          moodle-plugin-ci add-plugin maths/moodle-qtype_stack
+
+      - name: Configure STACK test CAS
+        run: |
+          moodle-plugin-ci add-config 'define("QTYPE_STACK_TEST_CONFIG_PLATFORM", "linux");'
+          moodle-plugin-ci add-config 'define("QTYPE_STACK_TEST_CONFIG_MAXIMAVERSION", "5.42.2");'
+          moodle-plugin-ci add-config 'define("QTYPE_STACK_TEST_CONFIG_MAXIMACOMMAND", "maxima");'
+          moodle-plugin-ci add-config 'define("QTYPE_STACK_TEST_CONFIG_CASTIMEOUT", "100");'
+          moodle-plugin-ci add-config 'define("QTYPE_STACK_TEST_CONFIG_CASRESULTSCACHE", "db");'
+          moodle-plugin-ci add-config 'define("QTYPE_STACK_TEST_CONFIG_CASDEBUGGING", "0");'
+          moodle-plugin-ci add-config 'define("QTYPE_STACK_TEST_CONFIG_PLOTCOMMAND", "");'
+
+      - name: Install Moodle + plugin
+        run: moodle-plugin-ci install --plugin ./plugin --db-host=127.0.0.1
+        env:
+          DB: pgsql
+          MOODLE_BRANCH: 'MOODLE_405_STABLE'
+
+      - name: PHPUnit (with CAS)
+        run: moodle-plugin-ci phpunit

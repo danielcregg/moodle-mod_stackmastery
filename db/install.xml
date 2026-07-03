@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/stackmastery/db" VERSION="2026070300" COMMENT="STACK Mastery adaptive formative mastery checks"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="stackmastery" COMMENT="Instance settings for each STACK Mastery activity.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Course this activity belongs to."/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="skills" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="" SEQUENCE="false" COMMENT="CSV of selected canonical skill codes in canonical policy order. Empty is normalised to all 8 by lib.php."/>
+        <FIELD NAME="targetmastery" TYPE="number" LENGTH="10" NOTNULL="true" DEFAULT="0.95" SEQUENCE="false" DECIMALS="5" COMMENT="Scalar target mastery from the form (termination only; the policy encoding stays pinned)."/>
+        <FIELD NAME="targetvector" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="JSON object with all 8 skill codes mapped to the per-skill target, expanded from targetmastery at save time."/>
+        <FIELD NAME="poolcategoryid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Question bank category the pool is drawn from (no subcategories in v1)."/>
+        <FIELD NAME="budget" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="40" SEQUENCE="false" COMMENT="Maximum questions per attempt before per-attempt capping to the eligible unique count."/>
+        <FIELD NAME="maxattempts" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0 = unlimited."/>
+        <FIELD NAME="grademode" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0 = binary reached-target (default), 1 = mean final mastery over the selected skills."/>
+        <FIELD NAME="showprogress" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Whether students see per-skill mastery bars and the target line."/>
+        <FIELD NAME="epsilon" TYPE="number" LENGTH="10" NOTNULL="true" DEFAULT="0.05" SEQUENCE="false" DECIMALS="5" COMMENT="Snapshot of the admin exploration rate taken at instance creation."/>
+        <FIELD NAME="timeopen" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Attempts allowed from this time; 0 = no restriction."/>
+        <FIELD NAME="timeclose" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Attempts closed after this time; 0 = no restriction."/>
+        <FIELD NAME="completionreachedtarget" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Custom completion rule: complete when an attempt reached the mastery target."/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="course" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="stackmastery_attempts" COMMENT="One row per user attempt; owns the question usage (qubaid) and the live mastery state.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="stackmasteryid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references stackmastery.id."/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references user.id."/>
+        <FIELD NAME="attemptnumber" TYPE="int" LENGTH="6" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Sequential attempt number per user per instance, 1-based."/>
+        <FIELD NAME="qubaid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references question_usages.id (component mod_stackmastery); 0 until first provisioning. Plain foreign key: the index is deliberately NON-unique (two concurrent starters both sit at 0 transiently)."/>
+        <FIELD NAME="state" TYPE="char" LENGTH="16" NOTNULL="true" DEFAULT="inprogress" SEQUENCE="false" COMMENT="inprogress, complete or abandoned."/>
+        <FIELD NAME="finishreason" TYPE="char" LENGTH="16" NOTNULL="false" SEQUENCE="false" COMMENT="target, budget, exhausted, user, timeclose or abandoned; null while in progress."/>
+        <FIELD NAME="inprogressuniq" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0 while in progress, set to id at close. Unique (stackmasteryid,userid,inprogressuniq) enforces at most one open attempt cross-DB (XMLDB has no partial indexes; nullable unique breaks on sqlsrv)."/>
+        <FIELD NAME="currentslot" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The open (asked, not yet graded) usage slot; 0 = none (SLOTLESS). Resume re-renders this slot instead of drawing."/>
+        <FIELD NAME="pendingjson" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Frozen selection context of the open slot: seq, slot, qbe, questionid, version, variant, stackseed, recommended and served action, source, propensity, epsilon, eligible count, mastery before."/>
+        <FIELD NAME="preview" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="1 for staff trial attempts; always 0 in v1 (no teacher preview). Excluded from the training export, included in privacy."/>
+        <FIELD NAME="masterycurrent" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Live 8-skill mastery vector, JSON object keyed by skill code, always all 8 keys."/>
+        <FIELD NAME="skillssnapshot" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Selected-skills CSV frozen at attempt start."/>
+        <FIELD NAME="targetsnapshot" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Per-skill target vector JSON frozen at attempt start."/>
+        <FIELD NAME="budget" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Effective budget for this attempt = min(instance budget, distinct eligible questions at freeze)."/>
+        <FIELD NAME="questionsdone" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Number of graded answers so far (equals the step count)."/>
+        <FIELD NAME="reachedtarget" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="1 when every selected skill reached its target during this attempt."/>
+        <FIELD NAME="stepstotarget" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="seq of the step on which all selected skills first reached target; null if never."/>
+        <FIELD NAME="timetargetreached" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Stamped at the crossing step; null if never."/>
+        <FIELD NAME="masteryfinal" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Final mastery vector JSON, set when the attempt closes."/>
+        <FIELD NAME="policyversion" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false" COMMENT="Version id of the policy in force at attempt start."/>
+        <FIELD NAME="bktmodelversion" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false" COMMENT="Version id of the BKT parameter set in force at attempt start."/>
+        <FIELD NAME="timeexported" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0 = steps not yet included in an experience export."/>
+        <FIELD NAME="timestart" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timefinish" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0 until the attempt closes."/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="stackmasteryid" TYPE="foreign" FIELDS="stackmasteryid" REFTABLE="stackmastery" REFFIELDS="id"/>
+        <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="qubaid" TYPE="foreign" FIELDS="qubaid" REFTABLE="question_usages" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="instuserattempt" UNIQUE="true" FIELDS="stackmasteryid, userid, attemptnumber"/>
+        <INDEX NAME="instuseropen" UNIQUE="true" FIELDS="stackmasteryid, userid, inprogressuniq" COMMENT="At most one in-progress attempt per instance and user."/>
+        <INDEX NAME="instuserreached" UNIQUE="false" FIELDS="stackmasteryid, userid, reachedtarget" COMMENT="O(1) completion-rule lookup."/>
+        <INDEX NAME="statetimemodified" UNIQUE="false" FIELDS="state, timemodified" COMMENT="Abandon scan of the cleanup task."/>
+        <INDEX NAME="statetimefinish" UNIQUE="false" FIELDS="state, timefinish" COMMENT="Retention purge scan."/>
+        <INDEX NAME="statetimeexported" UNIQUE="false" FIELDS="state, timeexported" COMMENT="Experience export picker."/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="stackmastery_steps" COMMENT="The experience log: one row per answered question, a complete off-policy RL experience with provenance.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="attemptid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references stackmastery_attempts.id. Deliberately no userid: user linkage only via the attempt (pseudonymisation by construction)."/>
+        <FIELD NAME="seq" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="1-based step order within the attempt."/>
+        <FIELD NAME="slot" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Question usage slot this step was answered in."/>
+        <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Concrete question (version row) served; denormalised for self-contained export."/>
+        <FIELD NAME="questionbankentryid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="questionversion" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="variant" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="The question engine variant number served."/>
+        <FIELD NAME="stackseed" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The resolved STACK deployed seed; null for non-randomised or non-STACK questions."/>
+        <FIELD NAME="recommendedskill" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="What the policy (or its masked lookup) recommended, even when exploration overrode it."/>
+        <FIELD NAME="recommendeddifficulty" TYPE="char" LENGTH="8" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="servedskill" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="What was actually served."/>
+        <FIELD NAME="serveddifficulty" TYPE="char" LENGTH="8" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="actionsource" TYPE="char" LENGTH="16" NOTNULL="true" DEFAULT="policy" SEQUENCE="false" COMMENT="policy, explore, fallback or exhausted."/>
+        <FIELD NAME="propensity" TYPE="number" LENGTH="12" NOTNULL="true" DEFAULT="1" SEQUENCE="false" DECIMALS="10" COMMENT="Probability of the served action under the logging policy (epsilon-mixture aware)."/>
+        <FIELD NAME="masterybefore" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Mastery vector JSON object (all 8 keys) before the update."/>
+        <FIELD NAME="correct" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="1 iff fraction is at least 0.999 (v1 BKT correctness mapping)."/>
+        <FIELD NAME="fraction" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Raw graded fraction from the question engine (nullable, mirrors question_attempt_steps.fraction); logged for future partial-credit BKT."/>
+        <FIELD NAME="masteryafter" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Mastery vector JSON object (all 8 keys) after the update."/>
+        <FIELD NAME="policyversion" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="bktmodelversion" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="stateencodingversion" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="State encoding id in force when logged, e.g. enc-1."/>
+        <FIELD NAME="rewardversion" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="Reward-spec version in force when logged; the shaped reward itself is deliberately NOT stored (recomputed offline)."/>
+        <FIELD NAME="timeanswered" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="attemptid" TYPE="foreign" FIELDS="attemptid" REFTABLE="stackmastery_attempts" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="attemptseq" UNIQUE="true" FIELDS="attemptid, seq"/>
+        <INDEX NAME="attemptslot" UNIQUE="true" FIELDS="attemptid, slot"/>
+        <INDEX NAME="timeanswered" UNIQUE="false" FIELDS="timeanswered" COMMENT="Incremental training-export scans."/>
+        <INDEX NAME="questionbankentryid" UNIQUE="false" FIELDS="questionbankentryid" COMMENT="Per-question report drilldowns."/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="stackmastery_pool_snapshot" COMMENT="Attempt-start freeze of eligible question versions: one row per (attempt, skill, difficulty, question bank entry).">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="attemptid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references stackmastery_attempts.id. Rows are deleted when the attempt reaches a terminal state."/>
+        <FIELD NAME="skill" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="Canonical skill code of the cell."/>
+        <FIELD NAME="difficulty" TYPE="char" LENGTH="8" NOTNULL="true" SEQUENCE="false" COMMENT="easy, medium or hard."/>
+        <FIELD NAME="questionbankentryid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The pinned question version row id."/>
+        <FIELD NAME="questionversion" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timeserved" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Null until the question is served in this attempt (repeats disallowed in v1)."/>
+        <FIELD NAME="invalid" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="1 when the pinned version could not be started (question deleted mid-attempt)."/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Freeze time; the orphan sweep age guard."/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="attemptid" TYPE="foreign" FIELDS="attemptid" REFTABLE="stackmastery_attempts" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="attemptcell" UNIQUE="true" FIELDS="attemptid, skill, difficulty, questionbankentryid"/>
+        <INDEX NAME="attempttimeserved" UNIQUE="false" FIELDS="attemptid, timeserved" COMMENT="Unseen-question draws."/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="stackmastery_exportruns" COMMENT="Experience export runs: file provenance for offline retraining.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="filename" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sha256" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="attempts" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="steps" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="skippederrors" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="timecreated" UNIQUE="false" FIELDS="timecreated"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
