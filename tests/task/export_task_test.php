@@ -52,7 +52,10 @@ final class export_task_test extends \advanced_testcase {
     private function seed_attempt(): \stdClass {
         global $DB;
         $course = $this->getDataGenerator()->create_course();
-        $instance = $this->getDataGenerator()->create_module('stackmastery', ['course' => $course->id]);
+        $instance = $this->getDataGenerator()->create_module(
+            'stackmastery',
+            ['course' => $course->id, 'poolcategory' => 'WP4 pool']
+        );
         $user = $this->getDataGenerator()->create_user();
         $mastery = experience::encode_mastery(array_fill(0, 8, 0.2));
         $attempt = (object) [

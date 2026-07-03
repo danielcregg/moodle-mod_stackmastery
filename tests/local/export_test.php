@@ -51,7 +51,7 @@ final class export_test extends \advanced_testcase {
         $this->course = $this->getDataGenerator()->create_course();
         $this->instance = $this->getDataGenerator()->create_module(
             'stackmastery',
-            ['course' => $this->course->id]
+            ['course' => $this->course->id, 'poolcategory' => 'WP4 pool']
         );
     }
 
