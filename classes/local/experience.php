@@ -61,12 +61,18 @@ final class experience {
      * @return int The new step id.
      * @throws \coding_exception On any validation failure (programming error, never user input).
      */
-    public static function log_step(\stdClass $attempt, int $seq, array $decision, array $question,
-            array $outcome): int {
+    public static function log_step(
+        \stdClass $attempt,
+        int $seq,
+        array $decision,
+        array $question,
+        array $outcome
+    ): int {
         global $DB;
         if (!$DB->is_transaction_started()) {
             throw new \coding_exception(
-                'experience::log_step must be called inside the submission transaction (spec s3 step 5)');
+                'experience::log_step must be called inside the submission transaction (spec s3 step 5)'
+            );
         }
         $attemptid = (int) ($attempt->id ?? 0);
         if ($attemptid <= 0) {

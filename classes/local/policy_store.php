@@ -247,8 +247,13 @@ final class policy_store {
             $old = self::get_active();
             $report = self::validate_artifact($json, $old->policyid);
             if (!$report['ok']) {
-                throw new \moodle_exception('artifactinvalid', 'mod_stackmastery', '', null,
-                    implode(' ', $report['errors']));
+                throw new \moodle_exception(
+                    'artifactinvalid',
+                    'mod_stackmastery',
+                    '',
+                    null,
+                    implode(' ', $report['errors'])
+                );
             }
             $newid = $report['meta']['artifact']['policy_id'];
             self::archive_active();
@@ -309,8 +314,13 @@ final class policy_store {
             }
             $report = self::validate_artifact($json);
             if (!$report['ok']) {
-                throw new \moodle_exception('artifactinvalid', 'mod_stackmastery', '', null,
-                    implode(' ', $report['errors']));
+                throw new \moodle_exception(
+                    'artifactinvalid',
+                    'mod_stackmastery',
+                    '',
+                    null,
+                    implode(' ', $report['errors'])
+                );
             }
             $newid = $report['meta']['artifact']['policy_id'];
             self::archive_active();
@@ -500,8 +510,13 @@ final class policy_store {
      * @param array|null $meta The promoted artifact meta (null when reverting to shipped).
      * @return void
      */
-    private static function fire_event(int $userid, string $oldid, string $newid, string $source,
-            ?array $meta): void {
+    private static function fire_event(
+        int $userid,
+        string $oldid,
+        string $newid,
+        string $source,
+        ?array $meta
+    ): void {
         $gateavg = $meta['artifact']['gate']['avg_questions'] ?? null;
         $event = \mod_stackmastery\event\policy_promoted::create([
             'context' => \context_system::instance(),

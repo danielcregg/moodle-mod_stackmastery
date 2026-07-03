@@ -46,13 +46,19 @@ if ($action !== '' && $confirm) {
     if ($action === 'promote') {
         $old = policy_store::get_active()->policyid;
         $new = policy_store::promote((int) $USER->id);
-        \core\notification::success(get_string('policypromoted', 'mod_stackmastery',
-            (object) ['old' => $old, 'new' => $new->policyid]));
+        \core\notification::success(get_string(
+            'policypromoted',
+            'mod_stackmastery',
+            (object) ['old' => $old, 'new' => $new->policyid]
+        ));
     } else if ($action === 'rollback') {
         $old = policy_store::get_active()->policyid;
         $new = policy_store::rollback((int) $USER->id, $file !== '' ? $file : null);
-        \core\notification::success(get_string('policyrolledback', 'mod_stackmastery',
-            (object) ['old' => $old, 'new' => $new->policyid]));
+        \core\notification::success(get_string(
+            'policyrolledback',
+            'mod_stackmastery',
+            (object) ['old' => $old, 'new' => $new->policyid]
+        ));
     } else if ($action === 'reject') {
         policy_store::reject_pending();
         \core\notification::success(get_string('changessaved'));
@@ -78,8 +84,11 @@ if ($action !== '') {
         $params['file'] = $file;
     }
     $yesurl = new moodle_url($pageurl, $params);
-    echo $OUTPUT->confirm($messages[$action][0], new single_button($yesurl, $messages[$action][1], 'post'),
-        $pageurl);
+    echo $OUTPUT->confirm(
+        $messages[$action][0],
+        new single_button($yesurl, $messages[$action][1], 'post'),
+        $pageurl
+    );
     echo $OUTPUT->footer();
     die;
 }
@@ -139,19 +148,27 @@ if ($pending === null) {
     echo html_writer::div(html_writer::tag('code', s($pending->path)) . ' &#183; ' .
         userdate($pending->timemodified));
     if (!$pending->report['ok']) {
-        echo $OUTPUT->notification(get_string('artifactinvalid', 'mod_stackmastery'),
-            \core\output\notification::NOTIFY_ERROR);
+        echo $OUTPUT->notification(
+            get_string('artifactinvalid', 'mod_stackmastery'),
+            \core\output\notification::NOTIFY_ERROR
+        );
         echo html_writer::alist(array_map('s', $pending->report['errors']));
     } else {
         $artifact = $pending->meta['artifact'];
         echo html_writer::div(html_writer::tag('code', 'policy_id') . ' ' .
             html_writer::tag('strong', s($artifact['policy_id'])));
         echo $artifacttable($artifact);
-        echo $OUTPUT->single_button(new moodle_url($pageurl, ['action' => 'promote', 'sesskey' => sesskey()]),
-            get_string('promote', 'mod_stackmastery'), 'post');
+        echo $OUTPUT->single_button(
+            new moodle_url($pageurl, ['action' => 'promote', 'sesskey' => sesskey()]),
+            get_string('promote', 'mod_stackmastery'),
+            'post'
+        );
     }
-    echo $OUTPUT->single_button(new moodle_url($pageurl, ['action' => 'reject', 'sesskey' => sesskey()]),
-        get_string('delete'), 'post');
+    echo $OUTPUT->single_button(
+        new moodle_url($pageurl, ['action' => 'reject', 'sesskey' => sesskey()]),
+        get_string('delete'),
+        'post'
+    );
 }
 
 // The rollback card.
@@ -162,8 +179,10 @@ if ($previous !== []) {
     $table->attributes['class'] = 'generaltable w-auto';
     $table->data = [];
     foreach ($previous as $entry) {
-        $rollbackurl = new moodle_url($pageurl,
-            ['action' => 'rollback', 'file' => $entry->filename, 'sesskey' => sesskey()]);
+        $rollbackurl = new moodle_url(
+            $pageurl,
+            ['action' => 'rollback', 'file' => $entry->filename, 'sesskey' => sesskey()]
+        );
         $table->data[] = [
             html_writer::tag('code', s($entry->policyid)),
             userdate($entry->time),
@@ -173,8 +192,11 @@ if ($previous !== []) {
     echo html_writer::table($table);
 } else if ($active->source === 'promoted') {
     // Empty archive: rolling back reverts to the shipped default policy.
-    echo $OUTPUT->single_button(new moodle_url($pageurl, ['action' => 'rollback', 'sesskey' => sesskey()]),
-        get_string('rollback', 'mod_stackmastery'), 'post');
+    echo $OUTPUT->single_button(
+        new moodle_url($pageurl, ['action' => 'rollback', 'sesskey' => sesskey()]),
+        get_string('rollback', 'mod_stackmastery'),
+        'post'
+    );
 } else {
     echo html_writer::div(get_string('norollback', 'mod_stackmastery'));
 }
