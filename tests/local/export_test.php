@@ -196,8 +196,9 @@ final class export_test extends \advanced_testcase {
         [$raw, $lines] = $this->read_export($run->filename);
         $this->assertSame(hash('sha256', $raw), $run->sha256);
 
-        // Pseudonymisation regression: no userid key, no attemptid key, anywhere.
-        $this->assertDoesNotMatchRegularExpression('/"userid"/', $raw);
+        // Pseudonymisation regression: no userid/attemptid KEY anywhere. Key-form regex
+        // deliberately: the meta line documents dropped_fields:["userid"] as a VALUE.
+        $this->assertDoesNotMatchRegularExpression('/"userid"\s*:/', $raw);
         $this->assertDoesNotMatchRegularExpression('/"attemptid"/', $raw);
 
         // Line 1 is the meta record with the pinned encoding.
@@ -345,7 +346,7 @@ final class export_test extends \advanced_testcase {
             ['id' => $good->id]
         ));
         [$raw] = $this->read_export($run->filename);
-        $this->assertDoesNotMatchRegularExpression('/"userid"/', $raw);
+        $this->assertDoesNotMatchRegularExpression('/"userid"\s*:/', $raw);
     }
 
     /**
