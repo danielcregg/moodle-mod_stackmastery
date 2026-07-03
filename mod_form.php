@@ -232,17 +232,17 @@ class mod_stackmastery_mod_form extends moodleform_mod {
             $mform->registerNoSubmitButton('removetopic_' . $i);
         }
 
-        $box = [
-            $mform->createElement(
-                'text',
-                'newtopic',
-                get_string('newtopic', 'mod_stackmastery'),
-                ['size' => 40, 'maxlength' => 100]
-            ),
-            $mform->createElement('submit', 'checktopic', get_string('checktopic', 'mod_stackmastery')),
-        ];
-        $mform->addGroup($box, 'newtopicgroup', get_string('newtopic', 'mod_stackmastery'), ' ', false);
+        // The newtopic box and its check button are flat (not grouped): definition_after_data()
+        // clears the box with setConstant('newtopic', ''), which Moodle only supports on top-level
+        // element names (a grouped member resolves to an HTML_QuickForm_Error and fatals).
+        $mform->addElement(
+            'text',
+            'newtopic',
+            get_string('newtopic', 'mod_stackmastery'),
+            ['size' => 40, 'maxlength' => 100]
+        );
         $mform->setType('newtopic', PARAM_TEXT);
+        $mform->addElement('submit', 'checktopic', get_string('checktopic', 'mod_stackmastery'));
         $mform->registerNoSubmitButton('checktopic');
 
         $mform->addElement('hidden', 'topicsjson');
@@ -336,17 +336,17 @@ class mod_stackmastery_mod_form extends moodleform_mod {
             return;
         }
         if (count($this->topicsworking) >= self::MAX_TOPICS) {
-            $this->topicerrors['newtopicgroup'] = get_string('topicslimit', 'mod_stackmastery', self::MAX_TOPICS);
+            $this->topicerrors['newtopic'] = get_string('topicslimit', 'mod_stackmastery', self::MAX_TOPICS);
             return;
         }
         if ($classify === null) {
-            $this->topicerrors['newtopicgroup'] = get_string('topicneedsforge', 'mod_stackmastery');
+            $this->topicerrors['newtopic'] = get_string('topicneedsforge', 'mod_stackmastery');
             return;
         }
         $result = $classify($label);
         $type = $result['type'] ?? null;
         if ($type === null) {
-            $this->topicerrors['newtopicgroup'] = get_string('topicnomatch', 'mod_stackmastery', s($label));
+            $this->topicerrors['newtopic'] = get_string('topicnomatch', 'mod_stackmastery', s($label));
             return;
         }
 
@@ -531,7 +531,18 @@ class mod_stackmastery_mod_form extends moodleform_mod {
             $mform->setConstant('newtopic', '');
         }
         if ($this->topiccoretick !== null) {
-            $mform->setConstant('skill_' . $this->topiccoretick, 1);
+            // The skill_* advcheckboxes are members of skillsgroup; setConstant only targets
+            // top-level names (a grouped member resolves to an HTML_QuickForm_Error and fatals).
+            // Tick the matching group child directly so it renders checked and rides into the
+            // save POST (data_postprocessing reads the checkbox state).
+            $group = $mform->getElement('skillsgroup');
+            if ($group instanceof HTML_QuickForm_group) {
+                foreach ($group->getElements() as $child) {
+                    if ($child->getName() === 'skill_' . $this->topiccoretick) {
+                        $child->setValue(1);
+                    }
+                }
+            }
         }
         foreach ($this->topicerrors as $element => $message) {
             $mform->setElementError($element, $message);
@@ -661,13 +672,13 @@ class mod_stackmastery_mod_form extends moodleform_mod {
             $errors['skillsgroup'] = get_string('errnoskills', 'mod_stackmastery');
         }
         if (count($topics) > self::MAX_TOPICS) {
-            $errors['newtopicgroup'] = get_string('topicslimit', 'mod_stackmastery', self::MAX_TOPICS);
+            $errors['newtopic'] = get_string('topicslimit', 'mod_stackmastery', self::MAX_TOPICS);
         }
         foreach ($topics as $topic) {
             if ($topic['error'] !== null) {
                 // The forgery defence could not re-establish this row's template match:
                 // never silently saved, never silently dropped.
-                $errors['newtopicgroup'] = get_string('topicrecheck', 'mod_stackmastery');
+                $errors['newtopic'] = get_string('topicrecheck', 'mod_stackmastery');
                 break;
             }
         }
