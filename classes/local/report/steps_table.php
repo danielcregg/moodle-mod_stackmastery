@@ -24,7 +24,9 @@
 
 namespace mod_stackmastery\local\report;
 
+use mod_stackmastery\local\skill_manifest;
 use mod_stackmastery\local\skills;
+use mod_stackmastery\local\topics;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -39,6 +41,9 @@ require_once($CFG->libdir . '/tablelib.php');
 class steps_table extends \flexible_table {
     /** @var \stdClass The stackmastery instance record. */
     protected \stdClass $instance;
+
+    /** @var skill_manifest The instance manifest, for resolving core and custom skill labels. */
+    protected skill_manifest $manifest;
 
     /**
      * Configure columns, headers and the download surface.
@@ -58,6 +63,7 @@ class steps_table extends \flexible_table {
     ) {
         parent::__construct('mod_stackmastery-steps-' . $cm->id . '-' . $attemptid);
         $this->instance = $instance;
+        $this->manifest = skill_manifest::from_instance($instance, topics::for_instance((int) $instance->id));
 
         $this->define_baseurl($baseurl);
         $this->is_downloadable(true);
@@ -114,7 +120,7 @@ class steps_table extends \flexible_table {
         return [
             (string) (int) $step->seq,
             userdate((int) $step->timeanswered, $timeformat),
-            skills::label((string) $step->servedskill),
+            $this->manifest->label((string) $step->servedskill),
             skills::difficulty_label((string) $step->serveddifficulty),
             format_string((string) $step->questionname),
             $this->source_cell($step),
@@ -138,9 +144,9 @@ class steps_table extends \flexible_table {
             return $label;
         }
         $detail = get_string('recommendedvsserved', 'mod_stackmastery', (object) [
-            'rec'    => skills::label((string) $step->recommendedskill) . ' / '
+            'rec'    => $this->manifest->label((string) $step->recommendedskill) . ' / '
                 . skills::difficulty_label((string) $step->recommendeddifficulty),
-            'served' => skills::label((string) $step->servedskill) . ' / '
+            'served' => $this->manifest->label((string) $step->servedskill) . ' / '
                 . skills::difficulty_label((string) $step->serveddifficulty),
         ]);
         if ($this->is_downloading()) {

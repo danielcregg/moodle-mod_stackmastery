@@ -24,20 +24,50 @@
 
 use mod_stackmastery\local\grades;
 use mod_stackmastery\local\pool;
+use mod_stackmastery\local\skill_manifest;
 use mod_stackmastery\local\skills;
+use mod_stackmastery\local\topics;
+use mod_stackmastery\output\progress_bars;
 
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/course/moodleform_mod.php');
 
 /**
- * The mod_form: skills, target, pool category (with hard-block coverage validation), budget,
- * attempts, grading mode, progress visibility, open/close times and the completion rule.
+ * The mod_form: skills, free-text custom topics (JS-free no-submit round trips), target, pool
+ * category (with hard-block coverage validation for CORE skills), budget, attempts, grading
+ * mode, progress visibility, open/close times and the completion rule.
  *
  * Exploration (epsilon) is deliberately absent: it is admin-level and snapshotted onto the
  * instance invisibly at creation.
+ *
+ * Custom-topics lifecycle (spec D10): the working topic list is derived from the RAW request
+ * (the hidden topicsjson round trip, the clicked no-submit button and the topic box) inside
+ * definition(), BEFORE the section is rendered, so the static rows and per-row Remove buttons
+ * always reflect the current reload; definition_after_data() only sets element values and
+ * errors. Nothing in topicsjson is trusted except the label strings (and the slug purely as a
+ * database-row lookup key): slugs and template types are re-derived server-side on every reload
+ * and on save.
  */
 class mod_stackmastery_mod_form extends moodleform_mod {
+    /** @var int Maximum custom topics per instance (defence in depth beside lib.php). */
+    private const MAX_TOPICS = 12;
+
+    /** @var array[] Working topic rows for this request: slug, label, templatetype, error. */
+    private array $topicsworking = [];
+
+    /** @var stdClass[] Persisted topic rows of the instance, ordered by sortorder. */
+    private array $topicrows = [];
+
+    /** @var string|null Core skill code to auto-tick after a core-synonym topic check. */
+    private ?string $topiccoretick = null;
+
+    /** @var bool Whether the topic input box is cleared on this reload. */
+    private bool $topicclearbox = false;
+
+    /** @var string[] Pending element errors from the no-submit click, element name to message. */
+    private array $topicerrors = [];
+
     /**
      * Define the form elements.
      *
@@ -46,6 +76,11 @@ class mod_stackmastery_mod_form extends moodleform_mod {
     public function definition() {
         global $DB, $OUTPUT;
         $mform = $this->_form;
+
+        // No-submit lifecycle rule (spec D10, Codex #10): resolve the working topic list from
+        // the raw request before anything below renders; definition_after_data() only sets
+        // element values and errors.
+        $this->prepare_topics_from_request();
 
         $mform->addElement('header', 'general', get_string('general', 'form'));
         $mform->addElement('text', 'name', get_string('name'), ['size' => 64]);
@@ -70,6 +105,9 @@ class mod_stackmastery_mod_form extends moodleform_mod {
             }
         }
 
+        // Custom topics live directly under the skills group (spec D10).
+        $this->add_topic_elements();
+
         // String keys deliberately: floats as form select keys round-trip badly.
         $mform->addElement('select', 'targetmastery', get_string('targetmastery', 'mod_stackmastery'), [
             '0.95' => get_string('targetmastery_confident', 'mod_stackmastery'),
@@ -89,11 +127,11 @@ class mod_stackmastery_mod_form extends moodleform_mod {
             $instance = $DB->get_record('stackmastery', ['id' => $this->_instance]);
             $coverage = '';
             if ($instance && $instance->poolcategoryid) {
-                $selected = skills::decode_csv($instance->skills);
-                $counts = pool::cell_counts((int) $instance->poolcategoryid, $selected);
+                $manifest = skill_manifest::from_instance($instance, $this->topicrows);
+                $counts = pool::cell_counts((int) $instance->poolcategoryid, $manifest->selected());
                 $coverage = $OUTPUT->render_from_template(
                     'mod_stackmastery/pool_coverage',
-                    self::coverage_context($counts)
+                    self::coverage_context($counts, progress_bars::manifest_labels($manifest))
                 );
             }
             $mform->addElement(
@@ -157,19 +195,366 @@ class mod_stackmastery_mod_form extends moodleform_mod {
     }
 
     /**
+     * Render the custom-topics section: intro, one static row per working topic (label, matched
+     * template, no-submit Remove button), the topic box with its no-submit check button, and the
+     * hidden round-trip field.
+     *
+     * @return void
+     */
+    protected function add_topic_elements(): void {
+        $mform = $this->_form;
+
+        $mform->addElement(
+            'static',
+            'customtopicsintro',
+            get_string('customtopics', 'mod_stackmastery'),
+            get_string('customtopicsintro', 'mod_stackmastery')
+        );
+
+        foreach ($this->topicsworking as $i => $topic) {
+            if ($topic['templatetype'] === null) {
+                $typelabel = html_writer::span(
+                    get_string('topicrecheck', 'mod_stackmastery'),
+                    'text-danger'
+                );
+            } else {
+                $typelabel = html_writer::span(
+                    s($this->template_type_label($topic['templatetype'])),
+                    'badge badge-secondary bg-secondary'
+                );
+            }
+            $html = html_writer::span(s($topic['label']), 'stackmastery-topic-label') . ' ' . $typelabel;
+            $row = [
+                $mform->createElement('static', 'topicstatic_' . $i, '', $html),
+                $mform->createElement('submit', 'removetopic_' . $i, get_string('removetopic', 'mod_stackmastery')),
+            ];
+            $mform->addGroup($row, 'topicrow_' . $i, '', ' ', false);
+            $mform->registerNoSubmitButton('removetopic_' . $i);
+        }
+
+        $box = [
+            $mform->createElement(
+                'text',
+                'newtopic',
+                get_string('newtopic', 'mod_stackmastery'),
+                ['size' => 40, 'maxlength' => 100]
+            ),
+            $mform->createElement('submit', 'checktopic', get_string('checktopic', 'mod_stackmastery')),
+        ];
+        $mform->addGroup($box, 'newtopicgroup', get_string('newtopic', 'mod_stackmastery'), ' ', false);
+        $mform->setType('newtopic', PARAM_TEXT);
+        $mform->registerNoSubmitButton('checktopic');
+
+        $mform->addElement('hidden', 'topicsjson');
+        $mform->setType('topicsjson', PARAM_RAW);
+    }
+
+    /**
+     * Derive the working topic list for this request (the no-submit lifecycle rule).
+     *
+     * On a first render (no topicsjson in the request) the list is seeded from the persisted
+     * rows. On our own round trips the list is rebuilt from the raw request: entries are
+     * resolved through the forgery defence, a clicked Remove drops its row, and a clicked
+     * "Check topic and add" classifies the topic box (the ONLY moment the AI pass may run).
+     *
+     * @return void
+     */
+    protected function prepare_topics_from_request(): void {
+        global $SESSION, $USER;
+
+        if (!empty($this->_instance)) {
+            $this->topicrows = array_values(topics::for_instance((int) $this->_instance));
+        }
+        $dbbyslug = [];
+        foreach ($this->topicrows as $row) {
+            $dbbyslug[(string) $row->slug] = $row;
+        }
+
+        $raw = optional_param('topicsjson', null, PARAM_RAW);
+        if ($raw === null) {
+            // First render, not one of our round trips: seed from the persisted rows.
+            foreach ($this->topicrows as $row) {
+                $this->topicsworking[] = [
+                    'slug'         => (string) $row->slug,
+                    'label'        => (string) $row->label,
+                    'templatetype' => (string) $row->templatetype,
+                    'error'        => null,
+                ];
+            }
+            return;
+        }
+
+        $entries = json_decode($raw, true);
+        $cache = isset($SESSION->mod_stackmastery_topiccache)
+            ? (array) $SESSION->mod_stackmastery_topiccache
+            : [];
+        $classify = null;
+        if (self::topic_mapper_ready()) {
+            $context = context_course::instance($this->get_course()->id);
+            $userid = (int) $USER->id;
+            $classify = static function (string $label) use ($context, $userid): array {
+                return \local_stackforge\local\topic_mapper::classify($label, $context, $userid);
+            };
+        }
+        $this->topicsworking = self::resolve_topic_entries(
+            is_array($entries) ? $entries : [],
+            $dbbyslug,
+            $cache,
+            $classify
+        );
+
+        // A Remove click drops its row (indices are per-render; the list re-renders below).
+        foreach (array_keys($this->topicsworking) as $i) {
+            if (optional_param('removetopic_' . $i, null, PARAM_RAW) !== null) {
+                unset($this->topicsworking[$i]);
+            }
+        }
+        $this->topicsworking = array_values($this->topicsworking);
+
+        if (optional_param('checktopic', null, PARAM_RAW) !== null) {
+            $this->handle_check_click($dbbyslug, $classify);
+        }
+    }
+
+    /**
+     * Handle a "Check topic and add" click from the raw request.
+     *
+     * Classifies the topic box text: a core-synonym match ticks the core skill (D2), a non-core
+     * template match appends a working row, no match raises an inline element error. Every
+     * successful mapper result is cached in the user's session, which is what later authorises
+     * AI-matched labels at save time (the forgery defence).
+     *
+     * @param array $dbbyslug Persisted topic rows indexed by slug.
+     * @param callable|null $classify The mapper closure, or null when the forge is absent.
+     * @return void
+     */
+    protected function handle_check_click(array $dbbyslug, ?callable $classify): void {
+        global $SESSION;
+
+        $label = trim(core_text::substr(optional_param('newtopic', '', PARAM_TEXT), 0, 100));
+        if ($label === '') {
+            return;
+        }
+        if (count($this->topicsworking) >= self::MAX_TOPICS) {
+            $this->topicerrors['newtopicgroup'] = get_string('topicslimit', 'mod_stackmastery', self::MAX_TOPICS);
+            return;
+        }
+        if ($classify === null) {
+            $this->topicerrors['newtopicgroup'] = get_string('topicneedsforge', 'mod_stackmastery');
+            return;
+        }
+        $result = $classify($label);
+        $type = $result['type'] ?? null;
+        if ($type === null) {
+            $this->topicerrors['newtopicgroup'] = get_string('topicnomatch', 'mod_stackmastery', s($label));
+            return;
+        }
+
+        // Cache the successful mapper result for this session: save-time re-resolution accepts
+        // AI-matched labels only from this cache (spec D10, Codex #10 HIGH).
+        $sessioncache = isset($SESSION->mod_stackmastery_topiccache)
+            ? (array) $SESSION->mod_stackmastery_topiccache
+            : [];
+        $sessioncache[self::normalise_topic($label)] = (string) $type;
+        $SESSION->mod_stackmastery_topiccache = $sessioncache;
+
+        $coreskill = skills::FORGE_TYPE_MAP[$type] ?? null;
+        if ($coreskill !== null) {
+            // Core-skill synonym rule (D2): no topic row; tick the core skill and say so.
+            $this->topiccoretick = $coreskill;
+            $this->topicclearbox = true;
+            \core\notification::add(
+                get_string('topicmatchedcore', 'mod_stackmastery', (object) [
+                    'topic' => s($label),
+                    'skill' => skills::label($coreskill),
+                ]),
+                \core\output\notification::NOTIFY_INFO
+            );
+            return;
+        }
+
+        $taken = array_merge(array_keys($dbbyslug), array_column($this->topicsworking, 'slug'));
+        $this->topicsworking[] = [
+            'slug'         => topics::make_slug($label, $taken),
+            'label'        => $label,
+            'templatetype' => (string) $type,
+            'error'        => null,
+        ];
+        $this->topicclearbox = true;
+    }
+
+    /**
+     * Resolve raw topicsjson entries into the trusted working list (the forgery defence).
+     *
+     * Only LABEL strings survive from the hidden field (Codex #10 HIGH): a supplied slug is
+     * used purely as a lookup key into the persisted rows, which are trusted by slug identity
+     * and never re-classified; everything else has its slug and template type re-derived
+     * server-side. A label outside the persisted rows is accepted when the session cache holds
+     * a successful mapper result for it, or when the mapper's free deterministic KEYWORD pass
+     * resolves it; an AI-only match without a cache entry is flagged for re-checking (never
+     * silently saved). In the legitimate flow every label was cached at check-click time, so no
+     * AI call ever happens at save time.
+     *
+     * @param array $entries Decoded topicsjson entries (slug and label read, both untrusted).
+     * @param array $dbrows Persisted topic rows indexed by slug.
+     * @param array $cache Session cache of successful mapper results, normalised label to type.
+     * @param callable|null $classify The mapper closure, or null when the forge is absent.
+     * @return array[] Working rows: slug, label, templatetype (null when unresolved), error.
+     */
+    public static function resolve_topic_entries(
+        array $entries,
+        array $dbrows,
+        array $cache,
+        ?callable $classify
+    ): array {
+        $working = [];
+        $useddbslugs = [];
+        $taken = array_keys($dbrows);
+        foreach ($entries as $entry) {
+            if (!is_array($entry)) {
+                continue;
+            }
+            $label = trim(core_text::substr(clean_param((string) ($entry['label'] ?? ''), PARAM_TEXT), 0, 100));
+            $slug = (string) ($entry['slug'] ?? '');
+            if ($slug !== '' && isset($dbrows[$slug])) {
+                if (in_array($slug, $useddbslugs, true)) {
+                    continue;
+                }
+                // Persisted rows are trusted by slug identity and never re-classified: the
+                // label and the template type come from the database, not from the request.
+                $row = $dbrows[$slug];
+                $working[] = [
+                    'slug'         => $slug,
+                    'label'        => (string) $row->label,
+                    'templatetype' => (string) $row->templatetype,
+                    'error'        => null,
+                ];
+                $useddbslugs[] = $slug;
+                continue;
+            }
+            if ($label === '') {
+                continue;
+            }
+            $type = $cache[self::normalise_topic($label)] ?? null;
+            if ($type === null && $classify !== null) {
+                $result = $classify($label);
+                // Outside the session cache only the keyword pass is authoritative: an AI
+                // match at this point came from a forged or stale round trip and must be
+                // re-checked by the teacher instead of silently accepted.
+                if (($result['method'] ?? '') === 'keyword') {
+                    $type = $result['type'] ?? null;
+                }
+            }
+            if ($type !== null && isset(skills::FORGE_TYPE_MAP[$type])) {
+                // Core synonyms are ticked as core skills at check time and can never be
+                // topic rows (D2); a forged core-typed entry is simply dropped.
+                continue;
+            }
+            $newslug = topics::make_slug($label, $taken);
+            $working[] = [
+                'slug'         => $newslug,
+                'label'        => $label,
+                'templatetype' => $type === null ? null : (string) $type,
+                'error'        => $type === null ? 'topicrecheck' : null,
+            ];
+            $taken[] = $newslug;
+        }
+        return $working;
+    }
+
+    /**
+     * Normalise a topic label for session-cache keying (mirrors the mapper's normalisation).
+     *
+     * @param string $label The raw label.
+     * @return string Lower-cased, non-alphanumerics collapsed to single spaces, trimmed.
+     */
+    public static function normalise_topic(string $label): string {
+        $text = core_text::strtolower($label);
+        $text = preg_replace('/[^a-z0-9]+/', ' ', $text);
+        return trim((string) $text);
+    }
+
+    /**
+     * Whether the forge's topic mapper seam is installed.
+     *
+     * @return bool True when local_stackforge exposes topic_mapper::classify().
+     */
+    protected static function topic_mapper_ready(): bool {
+        return class_exists('\\local_stackforge\\local\\topic_mapper')
+            && method_exists('\\local_stackforge\\local\\topic_mapper', 'classify');
+    }
+
+    /**
+     * Human label of a forge template type, for the topic-row badge.
+     *
+     * Display-only nicety: uses the forge's canonical catalog when present and falls back to
+     * the raw type code (for example after a forge downgrade removed a type).
+     *
+     * @param string $type The forge template type code.
+     * @return string The catalog label, or the raw code.
+     */
+    protected function template_type_label(string $type): string {
+        if (
+            class_exists('\\local_stackforge\\local\\topic_map')
+            && method_exists('\\local_stackforge\\local\\topic_map', 'label')
+        ) {
+            try {
+                return (string) \local_stackforge\local\topic_map::label($type);
+            } catch (\Throwable $e) {
+                return $type;
+            }
+        }
+        return $type;
+    }
+
+    /**
+     * Apply the derived topic state to the form: the canonical round-trip value, the cleared
+     * topic box, the auto-ticked core skill and any pending inline errors.
+     *
+     * Only values and errors are set here (the lifecycle rule); the list itself was derived
+     * and rendered in definition().
+     *
+     * @return void
+     */
+    public function definition_after_data() {
+        parent::definition_after_data();
+        $mform = $this->_form;
+
+        // Only labels round-trip as content; the slug rides along purely as the lookup key
+        // for persisted rows. Template types are re-derived on every reload and on save.
+        $export = [];
+        foreach ($this->topicsworking as $topic) {
+            $export[] = ['slug' => $topic['slug'], 'label' => $topic['label']];
+        }
+        $mform->setConstant('topicsjson', json_encode($export));
+        if ($this->topicclearbox) {
+            $mform->setConstant('newtopic', '');
+        }
+        if ($this->topiccoretick !== null) {
+            $mform->setConstant('skill_' . $this->topiccoretick, 1);
+        }
+        foreach ($this->topicerrors as $element => $message) {
+            $mform->setElementError($element, $message);
+        }
+    }
+
+    /**
      * Build the pool_coverage template context from a cell-count matrix.
      *
      * @param array $counts Map of skill code to difficulty code to question count.
+     * @param array|null $labels Optional code-to-label map (manifest labels); core lang
+     *        strings are used when absent.
      * @return stdClass The template context.
      */
-    public static function coverage_context(array $counts): stdClass {
+    public static function coverage_context(array $counts, ?array $labels = null): stdClass {
         $difficulties = [];
         foreach (skills::DIFFICULTIES as $difficulty) {
             $difficulties[] = ['label' => skills::difficulty_label($difficulty)];
         }
         $rows = [];
         foreach ($counts as $skill => $cells) {
-            $row = ['name' => skills::label($skill), 'cells' => []];
+            $name = $labels[$skill] ?? skills::label($skill);
+            $row = ['name' => $name, 'cells' => []];
             foreach (skills::DIFFICULTIES as $difficulty) {
                 $count = $cells[$difficulty] ?? 0;
                 $row['cells'][] = [
@@ -192,7 +577,13 @@ class mod_stackmastery_mod_form extends moodleform_mod {
     public function data_preprocessing(&$defaultvalues) {
         parent::data_preprocessing($defaultvalues);
         if (isset($defaultvalues['skills'])) {
-            $selected = skills::decode_csv((string) $defaultvalues['skills']);
+            if (trim((string) $defaultvalues['skills']) === '' && $this->topicrows !== []) {
+                // A custom-topics instance with an empty csv means zero core skills (spec D3);
+                // decode_csv's all-8 backfill must not tick every box here.
+                $selected = [];
+            } else {
+                $selected = skills::decode_csv((string) $defaultvalues['skills']);
+            }
             foreach (skills::CODES as $code) {
                 $defaultvalues['skill_' . $code] = in_array($code, $selected, true) ? 1 : 0;
             }
@@ -204,7 +595,8 @@ class mod_stackmastery_mod_form extends moodleform_mod {
     }
 
     /**
-     * Post-process submitted data: checkboxes to csv, derive the target vector, completion guard.
+     * Post-process submitted data: checkboxes to csv, the validated topic list for lib.php,
+     * derive the target vector, completion guard.
      *
      * @param stdClass $data The submitted data (passed to add/update_instance afterwards).
      * @return void
@@ -220,7 +612,18 @@ class mod_stackmastery_mod_form extends moodleform_mod {
         }
         $data->skills = skills::encode_csv($selected);
         $data->targetmastery = (float) $data->targetmastery;
+        // Provisional core-8 vector; lib.php rebuilds it over the manifest after topic sync.
         $data->targetvector = json_encode(array_fill_keys(skills::CODES, $data->targetmastery));
+
+        // The validated working list rides to add/update_instance for the topic sync.
+        $data->customtopics = [];
+        foreach ($this->topicsworking as $topic) {
+            $data->customtopics[] = [
+                'slug'         => $topic['slug'],
+                'label'        => $topic['label'],
+                'templatetype' => $topic['templatetype'],
+            ];
+        }
 
         // A hidden completion rule must not stay latched when completion is off (quiz pattern).
         if (!empty($data->completionunlocked)) {
@@ -234,8 +637,12 @@ class mod_stackmastery_mod_form extends moodleform_mod {
     }
 
     /**
-     * Server-side validation: skills non-empty, target whitelisted, budget in range, and the
-     * pool coverage rule (hard-block empty cells, warn below 3 per cell).
+     * Server-side validation: skills-or-topics non-empty, topic list sound, target whitelisted,
+     * budget in range, and the pool coverage rule.
+     *
+     * Pool-validation ordering (spec D10, Codex #10 HIGH): the empty-cell hard block applies to
+     * the selected CORE skills only. Custom-topic cells are empty by definition until save-time
+     * generation runs, so they are exempt and produce a notification instead of an error.
      *
      * @param array $data Submitted values.
      * @param array $files Submitted files.
@@ -248,8 +655,21 @@ class mod_stackmastery_mod_form extends moodleform_mod {
             skills::CODES,
             fn($code) => !empty($data['skill_' . $code])
         ));
-        if ($selected === []) {
+        $topics = $this->topicsworking;
+        // The mastery check needs at least one thing to track: a core skill or a custom topic.
+        if ($selected === [] && $topics === []) {
             $errors['skillsgroup'] = get_string('errnoskills', 'mod_stackmastery');
+        }
+        if (count($topics) > self::MAX_TOPICS) {
+            $errors['newtopicgroup'] = get_string('topicslimit', 'mod_stackmastery', self::MAX_TOPICS);
+        }
+        foreach ($topics as $topic) {
+            if ($topic['error'] !== null) {
+                // The forgery defence could not re-establish this row's template match:
+                // never silently saved, never silently dropped.
+                $errors['newtopicgroup'] = get_string('topicrecheck', 'mod_stackmastery');
+                break;
+            }
         }
         if (!in_array((string) $data['targetmastery'], ['0.85', '0.95'], true)) {
             $errors['targetmastery'] = get_string('errtargetmastery', 'mod_stackmastery');
@@ -270,6 +690,18 @@ class mod_stackmastery_mod_form extends moodleform_mod {
                 foreach ($result['warnings'] as $warning) {
                     \core\notification::add($warning, \core\output\notification::NOTIFY_WARNING);
                 }
+            }
+        }
+        if ($errors === [] && $topics !== []) {
+            // The custom-topic exemption's counterpart: say that empty topic cells are filled
+            // by the save-time generation rather than blocking the save on them.
+            $slugs = array_column($topics, 'slug');
+            $gaps = pool::cell_gaps(pool::cell_counts((int) $data['poolcategoryid'], $slugs), 1);
+            if ($gaps !== []) {
+                \core\notification::add(
+                    get_string('topicspoolpending', 'mod_stackmastery'),
+                    \core\output\notification::NOTIFY_INFO
+                );
             }
         }
         return $errors;

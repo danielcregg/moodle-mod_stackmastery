@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="mod/stackmastery/db" VERSION="2026070300" COMMENT="STACK Mastery adaptive formative mastery checks"
+<XMLDB PATH="mod/stackmastery/db" VERSION="2026070310" COMMENT="STACK Mastery adaptive formative mastery checks"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -11,9 +11,9 @@
         <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="skills" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="CSV of selected canonical skill codes in canonical policy order. Empty/null is normalised to all 8 by lib.php. Nullable because XMLDB forbids CHAR NOT NULL with an empty default (fires an install-time debugging message that fails moodle-plugin-ci)."/>
+        <FIELD NAME="skills" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="CSV of selected CORE canonical skill codes in canonical policy order (custom topics live in stackmastery_topics). Empty/null is normalised to all 8 by lib.php ONLY when the instance has no topic rows; with topics present, empty means no core skills. Nullable because XMLDB forbids CHAR NOT NULL with an empty default (fires an install-time debugging message that fails moodle-plugin-ci)."/>
         <FIELD NAME="targetmastery" TYPE="number" LENGTH="10" NOTNULL="true" DEFAULT="0.95" SEQUENCE="false" DECIMALS="5" COMMENT="Scalar target mastery from the form (termination only; the policy encoding stays pinned)."/>
-        <FIELD NAME="targetvector" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="JSON object with all 8 skill codes mapped to the per-skill target, expanded from targetmastery at save time."/>
+        <FIELD NAME="targetvector" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="JSON object mapping every manifest skill code (the 8 core codes plus any custom topic slugs) to the per-skill target, expanded from targetmastery at save time."/>
         <FIELD NAME="poolcategoryid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Question bank category the pool is drawn from (no subcategories in v1)."/>
         <FIELD NAME="budget" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="40" SEQUENCE="false" COMMENT="Maximum questions per attempt before per-attempt capping to the eligible unique count."/>
         <FIELD NAME="maxattempts" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0 = unlimited."/>
@@ -31,6 +31,25 @@
         <KEY NAME="course" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
+    <TABLE NAME="stackmastery_topics" COMMENT="Per-instance custom topics: teacher-worded skills backed by a matched forge question template. Instance-owned; no user data.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="stackmasteryid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references stackmastery.id; rows are removed in stackmastery_delete_instance."/>
+        <FIELD NAME="sortorder" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="0-based creation order; the manifest's custom-code order."/>
+        <FIELD NAME="slug" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="Derived custom skill code, [a-z0-9] max 28, unique per instance; used in question tags, the attempt skillssnapshot and the mastery JSON keys."/>
+        <FIELD NAME="label" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="The teacher's words for the topic (the display label for this skill)."/>
+        <FIELD NAME="templatetype" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="Matched forge template type code (non-core only, e.g. set_theory)."/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="stackmasteryid" TYPE="foreign" FIELDS="stackmasteryid" REFTABLE="stackmastery" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="instanceslug" UNIQUE="true" FIELDS="stackmasteryid, slug" COMMENT="A slug is a skill code; it must be unique within its instance."/>
+      </INDEXES>
+    </TABLE>
     <TABLE NAME="stackmastery_attempts" COMMENT="One row per user attempt; owns the question usage (qubaid) and the live mastery state.">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
@@ -44,8 +63,8 @@
         <FIELD NAME="currentslot" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The open (asked, not yet graded) usage slot; 0 = none (SLOTLESS). Resume re-renders this slot instead of drawing."/>
         <FIELD NAME="pendingjson" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Frozen selection context of the open slot: seq, slot, qbe, questionid, version, variant, stackseed, recommended and served action, source, propensity, epsilon, eligible count, mastery before."/>
         <FIELD NAME="preview" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="1 for staff trial attempts; always 0 in v1 (no teacher preview). Excluded from the training export, included in privacy."/>
-        <FIELD NAME="masterycurrent" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Live 8-skill mastery vector, JSON object keyed by skill code, always all 8 keys."/>
-        <FIELD NAME="skillssnapshot" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Selected-skills CSV frozen at attempt start."/>
+        <FIELD NAME="masterycurrent" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Live mastery vector, JSON object keyed by every skill code of the attempt's manifest (the 8 core codes plus any custom topic slugs)."/>
+        <FIELD NAME="skillssnapshot" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Selected-skills CSV frozen at attempt start: selected core codes in canonical order, then custom topic slugs in sortorder (text because 8 codes plus 12 slugs can exceed 255)."/>
         <FIELD NAME="targetsnapshot" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Per-skill target vector JSON frozen at attempt start."/>
         <FIELD NAME="budget" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Effective budget for this attempt = min(instance budget, distinct eligible questions at freeze)."/>
         <FIELD NAME="questionsdone" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Number of graded answers so far (equals the step count)."/>
@@ -90,15 +109,15 @@
         <FIELD NAME="recommendeddifficulty" TYPE="char" LENGTH="8" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="servedskill" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="What was actually served."/>
         <FIELD NAME="serveddifficulty" TYPE="char" LENGTH="8" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="actionsource" TYPE="char" LENGTH="16" NOTNULL="true" DEFAULT="policy" SEQUENCE="false" COMMENT="policy, explore, fallback or exhausted."/>
+        <FIELD NAME="actionsource" TYPE="char" LENGTH="16" NOTNULL="true" DEFAULT="policy" SEQUENCE="false" COMMENT="policy, explore, fallback, exhausted or heuristic."/>
         <FIELD NAME="propensity" TYPE="number" LENGTH="12" NOTNULL="true" DEFAULT="1" SEQUENCE="false" DECIMALS="10" COMMENT="Probability of the served action under the logging policy (epsilon-mixture aware)."/>
-        <FIELD NAME="masterybefore" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Mastery vector JSON object (all 8 keys) before the update."/>
+        <FIELD NAME="masterybefore" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Mastery vector JSON object keyed by the attempt manifest's skill codes, before the update."/>
         <FIELD NAME="correct" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="1 iff fraction is at least 0.999 (v1 BKT correctness mapping)."/>
         <FIELD NAME="fraction" TYPE="number" LENGTH="12" NOTNULL="false" SEQUENCE="false" DECIMALS="7" COMMENT="Raw graded fraction from the question engine (nullable, mirrors question_attempt_steps.fraction); logged for future partial-credit BKT."/>
-        <FIELD NAME="masteryafter" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Mastery vector JSON object (all 8 keys) after the update."/>
+        <FIELD NAME="masteryafter" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Mastery vector JSON object keyed by the attempt manifest's skill codes, after the update."/>
         <FIELD NAME="policyversion" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="bktmodelversion" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="stateencodingversion" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="State encoding id in force when logged, e.g. enc-1."/>
+        <FIELD NAME="stateencodingversion" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="State encoding id in force when logged: enc-1 (core tabular packing) or enc-custom-1 (manifest-keyed, no positional packing)."/>
         <FIELD NAME="rewardversion" TYPE="char" LENGTH="32" NOTNULL="true" SEQUENCE="false" COMMENT="Reward-spec version in force when logged; the shaped reward itself is deliberately NOT stored (recomputed offline)."/>
         <FIELD NAME="timeanswered" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
       </FIELDS>

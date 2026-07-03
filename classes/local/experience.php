@@ -42,12 +42,20 @@ final class experience {
      */
     public const REWARD_VERSION = 'reward-1';
 
-    /** @var string[] Legal actionsource values (design 05 section 2.3 semantics). */
-    public const SOURCES = ['policy', 'explore', 'fallback', 'exhausted'];
+    /** @var string[] Legal actionsource values (design 05 section 2.3 + custom-topics D4). */
+    public const SOURCES = ['policy', 'explore', 'fallback', 'exhausted', 'heuristic'];
 
     /**
      * Insert one experience row. MUST be called with a delegated transaction open and the
      * attempt lock held by the caller (the attempt engine owns the lock and computes seq).
+     *
+     * Manifest context (custom-topics D4): with a manifest carrying custom slugs, the skill
+     * enums validate against the manifest's codes, the mastery JSONs are keyed by those codes,
+     * and stateencodingversion is stamped heuristic_selector::ENCODING_VERSION (enc-custom-1);
+     * the accompanying policyversion (heuristic_selector::POLICY_VERSION) arrives via the
+     * caller's decision struct, which stays the single source of selection provenance. Without
+     * a manifest (or with a core-only one) behaviour is byte-identical to the pre-topics
+     * writer: core-8 validation, 8-key JSONs, enc-1.
      *
      * @param \stdClass $attempt The stackmastery_attempts row (already updated in this transaction).
      * @param int $seq 1-based answered-question counter within the attempt.
@@ -57,7 +65,8 @@ final class experience {
      * @param array $question questionid, questionbankentryid, questionversion, slot,
      *     variant (optional, default 1) and stackseed (optional, nullable).
      * @param array $outcome fraction (float|null), correct (optional bool when fraction is null),
-     *     masterybefore and masteryafter (8-value vectors, positional or keyed by skill code).
+     *     masterybefore and masteryafter (vectors over the tracked codes, positional or keyed).
+     * @param skill_manifest|null $manifest The attempt's skill manifest, or null for core-8.
      * @return int The new step id.
      * @throws \coding_exception On any validation failure (programming error, never user input).
      */
@@ -66,7 +75,8 @@ final class experience {
         int $seq,
         array $decision,
         array $question,
-        array $outcome
+        array $outcome,
+        ?skill_manifest $manifest = null
     ): int {
         global $DB;
         if (!$DB->is_transaction_started()) {
@@ -82,9 +92,14 @@ final class experience {
             throw new \coding_exception("step seq must be >= 1, got {$seq}");
         }
 
-        $recskill = self::require_code($decision, 'recommendedskill', bkt::SKILLS);
+        $codes = $manifest === null ? bkt::SKILLS : $manifest->codes();
+        $encoding = ($manifest !== null && $manifest->has_custom())
+            ? heuristic_selector::ENCODING_VERSION
+            : policy::ENCODING_VERSION;
+
+        $recskill = self::require_code($decision, 'recommendedskill', $codes);
         $recdifficulty = self::require_code($decision, 'recommendeddifficulty', bkt::DIFFICULTIES);
-        $servedskill = self::require_code($decision, 'servedskill', bkt::SKILLS);
+        $servedskill = self::require_code($decision, 'servedskill', $codes);
         $serveddifficulty = self::require_code($decision, 'serveddifficulty', bkt::DIFFICULTIES);
         $actionsource = self::require_code($decision, 'actionsource', self::SOURCES);
 
@@ -118,13 +133,13 @@ final class experience {
         [$correct, $fraction] = self::resolve_correct($outcome);
 
         if (!isset($outcome['masterybefore']) || !is_array($outcome['masterybefore'])) {
-            throw new \coding_exception('outcome masterybefore must be an 8-value mastery vector');
+            throw new \coding_exception('outcome masterybefore must be a mastery vector over the tracked codes');
         }
         if (!isset($outcome['masteryafter']) || !is_array($outcome['masteryafter'])) {
-            throw new \coding_exception('outcome masteryafter must be an 8-value mastery vector');
+            throw new \coding_exception('outcome masteryafter must be a mastery vector over the tracked codes');
         }
-        $masterybefore = self::encode_mastery($outcome['masterybefore']);
-        $masteryafter = self::encode_mastery($outcome['masteryafter']);
+        $masterybefore = self::encode_mastery($outcome['masterybefore'], $codes);
+        $masteryafter = self::encode_mastery($outcome['masteryafter'], $codes);
 
         // Proactive duplicate rejection; the unique DB indexes remain the concurrency backstop.
         if ($DB->record_exists('stackmastery_steps', ['attemptid' => $attemptid, 'seq' => $seq])) {
@@ -155,7 +170,7 @@ final class experience {
             'masteryafter' => $masteryafter,
             'policyversion' => $policyversion,
             'bktmodelversion' => self::bkt_model_version($attempt),
-            'stateencodingversion' => policy::ENCODING_VERSION,
+            'stateencodingversion' => $encoding,
             'rewardversion' => self::REWARD_VERSION,
             'timeanswered' => time(),
         ];
@@ -178,22 +193,26 @@ final class experience {
     }
 
     /**
-     * Validated json_encode of an 8-value mastery vector as the storage form: a JSON object
-     * keyed by skill code in canonical order. Accepts a positional list (canonical order) or an
-     * array already keyed by the 8 skill codes; every value must be a finite number in [0,1].
+     * Validated json_encode of a mastery vector as the storage form: a JSON object keyed by
+     * skill code in tracked-code order. Accepts a positional list (code order) or an array
+     * already keyed by the tracked codes; every value must be a finite number in [0,1]. The
+     * default code set is the 8 canonical core skills (historical behaviour); custom-aware
+     * callers pass the manifest's codes.
      *
      * @param array $mastery The vector, positional or keyed by skill code.
+     * @param array|null $codes The tracked codes in order; null for bkt::SKILLS.
      * @return string The JSON object string.
      * @throws \coding_exception On any shape or value failure.
      */
-    public static function encode_mastery(array $mastery): string {
-        $n = count(bkt::SKILLS);
+    public static function encode_mastery(array $mastery, ?array $codes = null): string {
+        $codes = $codes ?? bkt::SKILLS;
+        $n = count($codes);
         if (count($mastery) !== $n) {
             throw new \coding_exception("mastery vector must have exactly {$n} values");
         }
         $positional = array_keys($mastery) === range(0, $n - 1);
         $out = [];
-        foreach (bkt::SKILLS as $i => $code) {
+        foreach ($codes as $i => $code) {
             $key = $positional ? $i : $code;
             if (!array_key_exists($key, $mastery)) {
                 throw new \coding_exception("mastery vector is missing skill '{$code}'");

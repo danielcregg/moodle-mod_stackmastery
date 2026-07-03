@@ -24,6 +24,7 @@
 
 namespace mod_stackmastery\output;
 
+use mod_stackmastery\local\skill_manifest;
 use mod_stackmastery\local\skills;
 use renderable;
 use renderer_base;
@@ -34,7 +35,9 @@ use templatable;
  * Exports the accessible progress-bars region (the a11y contract lives in the template).
  *
  * Used by the landing page, the attempt page and the report user detail so the bars always
- * render identically.
+ * render identically. Callers on custom-topics surfaces pass an ordered label map (usually
+ * from {@see progress_bars::manifest_labels()}) so per-instance topic labels resolve; without
+ * one the bars fall back to the canonical core-8 vocabulary.
  */
 class progress_bars implements renderable, templatable {
     /** @var array<string, float> Full mastery vector keyed by skill code. */
@@ -52,27 +55,51 @@ class progress_bars implements renderable, templatable {
     /** @var string Lang-resolved heading, e.g. "Your mastery". */
     protected string $heading;
 
+    /** @var array<string, string>|null Ordered code-to-label map; null = core-8 vocabulary. */
+    protected ?array $labels;
+
     /**
      * Constructor.
      *
      * @param array $mastery Full mastery vector keyed by skill code.
-     * @param array $selectedskills Selected skill codes; only these are exported, canonical order.
+     * @param array $selectedskills Selected skill codes; only these are exported.
      * @param float $target Target mastery in [0, 1].
      * @param bool $showtarget Whether to draw the target line and note.
      * @param string $heading Lang-resolved heading.
+     * @param array|null $labels Ordered code-to-label map carrying both the display order and
+     *        the labels (manifest vocabulary); null keeps the canonical core-8 behaviour.
      */
     public function __construct(
         array $mastery,
         array $selectedskills,
         float $target,
         bool $showtarget,
-        string $heading
+        string $heading,
+        ?array $labels = null
     ) {
         $this->mastery = $mastery;
         $this->selectedskills = $selectedskills;
         $this->target = $target;
         $this->showtarget = $showtarget;
         $this->heading = $heading;
+        $this->labels = $labels;
+    }
+
+    /**
+     * The ordered code-to-label map of a skill manifest, for the labels constructor argument.
+     *
+     * Shared by every surface that renders manifest vocabulary (bars, coverage, chips) so the
+     * label resolution rule lives exactly once on the output layer.
+     *
+     * @param skill_manifest $manifest The instance- or attempt-scoped manifest.
+     * @return array<string, string> Map of code to label in manifest order.
+     */
+    public static function manifest_labels(skill_manifest $manifest): array {
+        $labels = [];
+        foreach ($manifest->codes() as $code) {
+            $labels[$code] = $manifest->label($code);
+        }
+        return $labels;
     }
 
     /**
@@ -82,8 +109,9 @@ class progress_bars implements renderable, templatable {
      * @return stdClass Context for templates/progress_bars.mustache.
      */
     public function export_for_template(renderer_base $output): stdClass {
+        $order = $this->labels === null ? skills::CODES : array_keys($this->labels);
         $rows = [];
-        foreach (skills::CODES as $code) {
+        foreach ($order as $code) {
             if (!in_array($code, $this->selectedskills, true)) {
                 continue;
             }
@@ -92,7 +120,7 @@ class progress_bars implements renderable, templatable {
             $percent = (int) round(100 * $value);
             $rows[] = [
                 'code'         => $code,
-                'name'         => skills::label($code),
+                'name'         => $this->labels === null ? skills::label($code) : $this->labels[$code],
                 'percent'      => $percent,
                 'percentlabel' => $percent . '%',
                 // Same epsilon the runtime termination check uses.

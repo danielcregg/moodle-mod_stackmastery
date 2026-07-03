@@ -65,7 +65,25 @@ final class grades {
             );
             return null;
         }
-        $selected = skills::decode_csv((string) $attempt->skillssnapshot);
+        // The attempt manifest owns the snapshot codec (custom-topics D3): custom topic slugs
+        // count as selected skills, and the historical skills::decode_csv would silently drop
+        // them and back-fill all 8 - for a custom-only attempt that would divide over 8 unmoved
+        // core beliefs (Codex #10 MED).
+        $manifest = skill_manifest::from_attempt(
+            $stackmastery,
+            $attempt,
+            topics::for_instance((int) $stackmastery->id)
+        );
+        $selected = $manifest->selected();
+        if ($selected === []) {
+            // Unreachable via the manifest codecs (an empty selection back-fills the core 8);
+            // guarded so a pathological row degrades to ungradable, never a division by zero.
+            debugging(
+                'mod_stackmastery: attempt ' . $attempt->id . ' has an empty skills selection.',
+                DEBUG_DEVELOPER
+            );
+            return null;
+        }
         $total = 0.0;
         foreach ($selected as $code) {
             $value = $mastery[$code] ?? 0.0;

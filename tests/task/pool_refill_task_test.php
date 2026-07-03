@@ -27,9 +27,9 @@ namespace mod_stackmastery\task;
 /**
  * The refill task's gating, gap enumeration, job arguments and per-run cap.
  *
- * local_stackforge is not installed in CI, so the forge dependency is exercised through the
- * task's two seams: a testable anonymous subclass makes forge_available() true and records every
- * queue_forge_job() call instead of queueing a real job.
+ * The forge dependency is exercised through the task's two seams regardless of whether
+ * local_stackforge is installed: a testable anonymous subclass makes forge_available() true and
+ * records every queue_forge_job() call instead of queueing a real job.
  *
  * @covers \mod_stackmastery\task\pool_refill_task
  */
@@ -73,6 +73,7 @@ final class pool_refill_task_test extends \advanced_testcase {
              * @param string $qtype The forge template type.
              * @param string $difficulty The difficulty code.
              * @param int $count Questions requested.
+             * @param string|null $tagskill Explicit mastery tag skill, or null for core.
              * @return int A fake job id.
              */
             protected function queue_forge_job(
@@ -81,9 +82,10 @@ final class pool_refill_task_test extends \advanced_testcase {
                 int $categoryid,
                 string $qtype,
                 string $difficulty,
-                int $count
+                int $count,
+                ?string $tagskill = null
             ): int {
-                $this->queued[] = [$courseid, $userid, $categoryid, $qtype, $difficulty, $count];
+                $this->queued[] = [$courseid, $userid, $categoryid, $qtype, $difficulty, $count, $tagskill];
                 return count($this->queued);
             }
         };
@@ -143,8 +145,8 @@ final class pool_refill_task_test extends \advanced_testcase {
     /**
      * Without the forge job API the enabled task is an explicit no-op.
      *
-     * This documents the gating in CI (local_stackforge is not installed there) and self-skips
-     * on a site that has the forge, where the no-op cannot be observed.
+     * Self-skips on a site that has the forge (including CI, which now installs it for the
+     * custom-topics seams), where the no-op cannot be observed.
      *
      * @return void
      */
@@ -183,12 +185,13 @@ final class pool_refill_task_test extends \advanced_testcase {
         $adminid = (int) get_admin()->id;
         $bytype = [];
         foreach ($task->queued as $job) {
-            [$courseid, $userid, $categoryid, $qtype, $difficulty, $count] = $job;
+            [$courseid, $userid, $categoryid, $qtype, $difficulty, $count, $tagskill] = $job;
             $this->assertSame((int) $made->course->id, $courseid);
             $this->assertSame($adminid, $userid);
             $this->assertSame((int) $made->pool->category->id, $categoryid);
             $this->assertContains($difficulty, ['easy', 'medium', 'hard']);
             $this->assertSame(2, $count);
+            $this->assertNull($tagskill, 'core skills use the forge-type mapping, not an explicit tag');
             $bytype[$qtype][] = $difficulty;
         }
         // The skill codes are translated to forge template types (simplify -> simplify_lowest_terms).

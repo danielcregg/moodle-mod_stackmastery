@@ -4,6 +4,50 @@ All notable changes to **mod_stackmastery** are documented in this file. The for
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.3.0-beta] - 2026-07-03
+
+Custom topics, end to end: a teacher types a topic in her own words on the activity form, the
+tool checks it against the STACK Question Forge template library, generates validated questions
+for it, and tracks it as a mastery skill like any of the built-in eight.
+
+### Added
+- **Custom topics on the activity form** (JS-free no-submit round-trip): a "Custom topics" box
+  under the skills group with "Check topic and add". A topic that matches a built-in skill
+  auto-ticks that skill's checkbox; a topic matching a non-core forge template (the new set
+  theory template is the first) becomes a per-instance custom skill with the teacher's words as
+  its label; an unmatched topic is refused honestly ("no question template yet"). Requires
+  local_stackforge 1.3 for the topic mapper and generation; up to 12 topics per instance.
+  Save-time sync queues mastery-tagged generation jobs for empty custom cells.
+- **New table `stackmastery_topics`** (instance-owned, no user data): sortorder, a derived
+  slug (`[a-z0-9]` max 28, unique per instance, reserved names blocked, deterministic
+  uniquification), the teacher's label and the matched template type. Duplicated with the
+  module and covered by backup/restore.
+- **The skill manifest** (`skill_manifest`): the single source for which skills an instance or
+  attempt tracks - all 8 core codes (mask semantics unchanged) plus custom slugs in order,
+  with per-code labels, BKT parameters (custom skills use the documented
+  `bkt::DEFAULT_CUSTOM_PARAMS` default) and forge template types. Mastery vectors, the
+  experience log, grading, coverage, reports and all attempt surfaces are keyed by the
+  manifest's codes; `stackmastery_attempts.skillssnapshot` widened to text.
+- **Heuristic selection engine** (`heuristic_selector`) for attempts that track custom topics:
+  the exact N-ary generalisation of the shipped ZPD heuristic (argmin belief, manifest-order
+  tie-break, the same strict-< difficulty banding, the same-skill-first empty-cell ladder,
+  identical epsilon-exploration propensity algebra). Custom instances never consult (or even
+  load) the trained policy, so a missing policy artifact cannot block them; steps are stamped
+  `actionsource=heuristic`, `policyversion=heuristic-1`. **Custom-only instances are legal**
+  (zero core skills ticked plus at least one topic).
+- **Retrain-pipeline firewall (`enc-custom-1`)**: steps of custom attempts carry the new state
+  encoding version (mastery JSON keyed by the attempt's manifest, no positional packing). The
+  v1 experience export never emits custom attempts but does watermark them in the same run
+  transaction (counted as `skipped_custom_attempts` in the file meta), and the phase3 adapter
+  excludes whole custom episodes, so the 8-dim retraining pipeline can never ingest them.
+
+### Changed
+- The core-8 path is bit-for-bit unchanged: same policy artifact, same `enc-1` rows, same
+  selection, masking, grading and export for instances without topics (pinned by the 1495-case
+  math-parity fixture suite and a heuristic/policy parity battery).
+- Grades now derive from the attempt manifest's selected skills, so custom topics count in the
+  mean-mastery grade mode (previously slugs would have been dropped and the mean diluted).
+
 ## [0.2.1-beta] - 2026-07-03
 
 - The "Question pool tools" card now shows the colour-coded coverage grid and a

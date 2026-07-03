@@ -73,6 +73,17 @@ final class bkt {
         'numerical'       => ['p_init' => 0.25, 'p_transit' => 0.20, 'p_slip' => 0.10, 'p_guess' => 0.20],
     ];
 
+    /**
+     * Documented default parameters for per-instance CUSTOM skills (topic slugs). Chosen as the
+     * mid-range of the calibrated core-8 sets above; a deliberate v1 default until per-site
+     * fitting exists. The skill manifest resolves every custom code to this set, so a custom
+     * skill's BKT dynamics are always reproducible from the code alone.
+     *
+     * @var array<string, float>
+     */
+    public const DEFAULT_CUSTOM_PARAMS = ['p_init' => 0.15, 'p_transit' => 0.15,
+                                          'p_slip' => 0.10, 'p_guess' => 0.20];
+
     /** @var float[] ZPD target mastery per difficulty (student_model._DIFF_TARGET). */
     public const ZPD_TARGET = [0.35, 0.60, 0.85];
 

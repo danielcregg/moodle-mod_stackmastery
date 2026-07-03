@@ -30,8 +30,10 @@
 require(__DIR__ . '/../../config.php');
 
 use mod_stackmastery\local\pool;
+use mod_stackmastery\local\skill_manifest;
 use mod_stackmastery\local\skills;
 use mod_stackmastery\local\starter_pack;
+use mod_stackmastery\local\topics;
 
 $id = required_param('id', PARAM_INT);
 $action = required_param('action', PARAM_ALPHA);
@@ -80,16 +82,20 @@ if ($action === 'generate') {
     }
 
     $target = min(20, max(1, optional_param('target', 3, PARAM_INT)));
-    $selected = skills::decode_csv((string) $instance->skills);
-    $gaps = pool::cell_gaps(pool::cell_counts($categoryid, $selected), $target);
+    // The manifest (core selection plus custom topics) is the builder's vocabulary (spec D6).
+    $manifest = skill_manifest::from_instance($instance, topics::for_instance((int) $instance->id));
+    $gaps = pool::cell_gaps(pool::cell_counts($categoryid, $manifest->selected()), $target);
 
     $jobs = 0;
     $questions = 0;
     foreach ($gaps as $skill => $row) {
-        $forgetype = skills::forge_type($skill);
+        $forgetype = $manifest->forge_type((string) $skill);
         if ($forgetype === null) {
             continue;
         }
+        // Custom topics carry an explicit tag skill (their slug); core codes keep the
+        // forge-type mapping default.
+        $tagskill = skills::is_skill((string) $skill) ? null : (string) $skill;
         foreach ($row as $difficulty => $missing) {
             $count = min(10, (int) $missing);
             \local_stackforge\generator::queue_generation(
@@ -99,7 +105,8 @@ if ($action === 'generate') {
                 $forgetype,
                 $difficulty,
                 $count,
-                true
+                true,
+                $tagskill
             );
             $jobs++;
             $questions += $count;

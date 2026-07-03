@@ -23,8 +23,12 @@
  * T2 = provision the next slot, whose CAS failure can never roll back a graded answer),
  * first-class SLOTLESS recovery, early finish that seals an open slot without a step row (C27),
  * the abandon sweep contract, and delete primitives. Selection is delegated entirely to
- * policy::choose() (C15); step rows are written only through experience::log_step() (C16);
- * epsilon comes from the instance snapshot clamped to [0, 0.2] (C18).
+ * policy::choose() (C15) - or, for attempts whose skill manifest carries custom topics, to
+ * heuristic_selector::choose() (custom-topics design D4; the trained policy is never consulted
+ * and never even loaded for those); step rows are written only through experience::log_step()
+ * (C16); epsilon comes from the instance snapshot clamped to [0, 0.2] (C18). Every vector
+ * boundary receives the attempt's skill manifest explicitly (codec contract, design D3); for
+ * core-only manifests every value produced is byte-identical to the pre-topics engine.
  *
  * @package    mod_stackmastery
  * @copyright  2026 Daniel Cregg
@@ -79,8 +83,16 @@ class attempt_manager {
     /** @var \context_module The module context (QUBAs are owned by it). */
     protected \context_module $context;
 
-    /** @var policy The loaded serving policy (the single selection brain). */
-    protected policy $policy;
+    /**
+     * The loaded serving policy (the single core-8 selection brain). Null when the instance
+     * manifest carries custom topics: those attempts are heuristic-driven and the policy store
+     * is never consulted (design D4 ordering rule), so a missing artifact cannot block them.
+     * The stale-core-attempt edge (an attempt started before the instance gained topics)
+     * resolves it lazily and fail-closed via serving_policy().
+     *
+     * @var policy|null
+     */
+    protected ?policy $policy;
 
     /** @var string The active policy id stamped on attempts and steps. */
     protected string $policyid;
@@ -88,8 +100,14 @@ class attempt_manager {
     /** @var \core\lock\lock_factory The lock factory for per-user attempt locks. */
     protected \core\lock\lock_factory $lockfactory;
 
-    /** @var callable|null Injectable uniform [0,1) source for policy::choose() (test seam). */
+    /** @var callable|null Injectable uniform [0,1) source for the choosers (test seam). */
     protected $rng;
+
+    /** @var skill_manifest|null Memoised instance manifest (per-request; topics change on save only). */
+    private ?skill_manifest $instancemanifest = null;
+
+    /** @var array<int, skill_manifest> Memoised attempt manifests keyed by attempt id (snapshots are frozen). */
+    private array $attemptmanifests = [];
 
     /**
      * DI constructor (unit tests inject a policy, a lock factory and a deterministic RNG).
@@ -97,16 +115,17 @@ class attempt_manager {
      * @param \stdClass $instance The stackmastery instance record.
      * @param \cm_info $cm The course module.
      * @param \context_module $context The module context.
-     * @param policy $policy The loaded serving policy.
+     * @param policy|null $policy The loaded serving policy, or null for a custom-topics
+     *     instance (heuristic-driven; resolved lazily fail-closed if a core attempt needs it).
      * @param string $policyid The active policy id to stamp on new attempts and steps.
      * @param \core\lock\lock_factory|null $lockfactory Lock factory; null resolves the default.
-     * @param callable|null $rng Uniform [0,1) source passed to policy::choose(); null for random.
+     * @param callable|null $rng Uniform [0,1) source passed to the choosers; null for random.
      */
     public function __construct(
         \stdClass $instance,
         \cm_info $cm,
         \context_module $context,
-        policy $policy,
+        ?policy $policy,
         string $policyid,
         ?\core\lock\lock_factory $lockfactory = null,
         ?callable $rng = null
@@ -121,17 +140,26 @@ class attempt_manager {
     }
 
     /**
-     * Factory used by pages and tasks; wires the real collaborators. Fails CLOSED: a missing or
-     * corrupt policy artifact must never silently degrade selection, so any load failure becomes
-     * an admin-actionable errpolicyunavailable.
+     * Factory used by pages and tasks; wires the real collaborators. The skill manifest is
+     * built FIRST (custom-topics D4 ordering rule): an instance that tracks custom topics is
+     * heuristic-driven, never calls policy_store::get_active()/policy::load() at all, and so a
+     * missing or corrupt policy.json can never block it. Core-only instances keep the historical
+     * fail-CLOSED load: a broken policy artifact must never silently degrade selection, so any
+     * load failure becomes an admin-actionable errpolicyunavailable.
      *
      * @param \stdClass $instance The stackmastery instance record.
      * @param \cm_info $cm The course module.
      * @param \context_module $context The module context.
      * @return self The manager.
-     * @throws \moodle_exception When the policy artifact cannot be loaded and validated.
+     * @throws \moodle_exception When a core-only instance's policy artifact cannot be loaded.
      */
     public static function create(\stdClass $instance, \cm_info $cm, \context_module $context): self {
+        $manifest = skill_manifest::from_instance($instance, topics::for_instance((int) $instance->id));
+        if ($manifest->has_custom()) {
+            $manager = new self($instance, $cm, $context, null, heuristic_selector::POLICY_VERSION);
+            $manager->instancemanifest = $manifest;
+            return $manager;
+        }
         try {
             $active = policy_store::get_active();
             $policy = policy::load($active->path);
@@ -140,7 +168,9 @@ class attempt_manager {
             debugging('mod_stackmastery: policy load failed: ' . $e->getMessage(), DEBUG_DEVELOPER);
             throw new \moodle_exception('errpolicyunavailable', 'mod_stackmastery');
         }
-        return new self($instance, $cm, $context, $policy, $policyid);
+        $manager = new self($instance, $cm, $context, $policy, $policyid);
+        $manager->instancemanifest = $manifest;
+        return $manager;
     }
 
     /**
@@ -197,9 +227,10 @@ class attempt_manager {
                 throw new \moodle_exception('errmaxattempts', 'mod_stackmastery');
             }
 
-            $mastery = mastery::init();
-            $selectedcodes = skills::decode_csv((string) ($this->instance->skills ?? ''));
-            $targetjson = $this->instance_target_json();
+            $manifest = $this->instance_manifest();
+            $mastery = mastery::init(null, null, $manifest);
+            $selectedcodes = $manifest->selected();
+            $targetjson = $this->instance_target_json($manifest);
 
             $attempt = (object) [
                 'stackmasteryid'  => (int) $this->instance->id,
@@ -213,7 +244,7 @@ class attempt_manager {
                 'pendingjson'     => null,
                 'preview'         => 0,
                 'masterycurrent'  => $mastery->to_json(),
-                'skillssnapshot'  => skills::encode_csv($selectedcodes),
+                'skillssnapshot'  => $manifest->snapshot_csv(),
                 'targetsnapshot'  => $targetjson,
                 'budget'          => 0,
                 'questionsdone'   => 0,
@@ -221,7 +252,7 @@ class attempt_manager {
                 'stepstotarget'   => null,
                 'timetargetreached' => null,
                 'masteryfinal'    => null,
-                'policyversion'   => $this->policyid,
+                'policyversion'   => $manifest->has_custom() ? heuristic_selector::POLICY_VERSION : $this->policyid,
                 'bktmodelversion' => $mastery->model_version(),
                 'timeexported'    => 0,
                 'timestart'       => $timenow,
@@ -237,6 +268,8 @@ class attempt_manager {
                 $params = ['stackmasteryid' => (int) $this->instance->id, 'userid' => $userid];
                 $attempt->attemptnumber = 1 + (int) $DB->get_field_sql($sql, $params);
                 $attempt->id = $DB->insert_record('stackmastery_attempts', $attempt);
+                // The snapshot just written came from this manifest; pin it for the attempt.
+                $this->attemptmanifests[(int) $attempt->id] = $manifest;
                 $snapshot = pool::build_snapshot($this->instance, (int) $attempt->id, $selectedcodes);
                 if ((int) $snapshot['distinct'] === 0) {
                     throw new \moodle_exception(
@@ -633,13 +666,14 @@ class attempt_manager {
         if (!is_object($pending) || (int) ($pending->slot ?? 0) !== $slot) {
             throw new \coding_exception('stackmastery pendingjson does not match the open slot');
         }
-        $skillindex = array_search((string) $pending->servedskill, bkt::SKILLS, true);
+        $manifest = $this->attempt_manifest($attempt);
+        $skillindex = array_search((string) $pending->servedskill, $manifest->codes(), true);
         $diffindex = array_search((string) $pending->serveddifficulty, bkt::DIFFICULTIES, true);
         if ($skillindex === false || $diffindex === false) {
             throw new \coding_exception('stackmastery pendingjson carries an unknown action');
         }
 
-        $mastery = mastery::from_json((string) $attempt->masterycurrent);
+        $mastery = mastery::from_json((string) $attempt->masterycurrent, null, null, $manifest);
         $beforejson = $mastery->to_json();
         if ($fraction === null) {
             // E26 guard: an autograded type should never yield a null fraction post-finish.
@@ -695,7 +729,8 @@ class attempt_manager {
                     'variant'             => (int) ($pending->variant ?? 1),
                     'stackseed'           => $pending->stackseed ?? null,
                 ],
-                $this->step_outcome($fraction, $correct, $beforejson, $afterjson)
+                $this->step_outcome($fraction, $correct, $beforejson, $afterjson),
+                $manifest
             );
             $update = [
                 'id'             => $attempt->id,
@@ -844,7 +879,9 @@ class attempt_manager {
      */
     protected function provision_next_slot(\stdClass $attempt, int $timenow): void {
         global $DB;
-        $mastery = mastery::from_json((string) $attempt->masterycurrent);
+        $manifest = $this->attempt_manifest($attempt);
+        $codes = $manifest->codes();
+        $mastery = mastery::from_json((string) $attempt->masterycurrent, null, null, $manifest);
         $selected = $this->selected_flags($attempt);
         $targets = $this->target_vector($attempt);
 
@@ -865,13 +902,23 @@ class attempt_manager {
         $decision = null;
         $eligiblecount = 0;
         $started = null;
+        // The selection branch (custom-topics D4): an attempt tracking custom slugs is driven
+        // by the heuristic engine and stamps heuristic-1; a core-only attempt takes the trained
+        // policy path exactly as before.
+        $iscustom = $manifest->has_custom();
+        $branchpolicyversion = $iscustom ? heuristic_selector::POLICY_VERSION : $this->policyid;
         while ($started === null) {
             if (++$guard > 100) {
                 throw new \moodle_exception('errnextquestion', 'mod_stackmastery');
             }
-            $eligible = $this->eligible_actions((int) $attempt->id, $mastery, $selected, $targets);
-            $masked = policy::mask_mastered($mastery->vector(), $selected, $targets);
-            $decision = $this->policy->choose($masked, $eligible, $this->epsilon(), $this->rng);
+            $eligible = $this->eligible_actions((int) $attempt->id, $mastery, $selected, $targets, $manifest);
+            if ($iscustom) {
+                $masked = heuristic_selector::mask_mastered($mastery->vector(), $selected, $targets);
+                $decision = heuristic_selector::choose($masked, $eligible, $this->epsilon(), $this->rng);
+            } else {
+                $masked = policy::mask_mastered($mastery->vector(), $selected, $targets);
+                $decision = $this->serving_policy()->choose($masked, $eligible, $this->epsilon(), $this->rng);
+            }
             if ($decision['servedaction'] === null) {
                 // No question to draw and NO step row: 'complete' can only mean the target is
                 // reached (the trained threshold never exceeds the teacher target range), and an
@@ -881,7 +928,7 @@ class attempt_manager {
                 return;
             }
             $eligiblecount = count($eligible);
-            $skillcode = bkt::SKILLS[(int) $decision['skill']];
+            $skillcode = $codes[(int) $decision['skill']];
             $diffcode = bkt::DIFFICULTIES[(int) $decision['difficulty']];
             // Null means the cell drained during this call (invalid marks); re-select with the
             // refreshed eligibility map. Invalid marks are persisted, so the loop terminates.
@@ -889,7 +936,11 @@ class attempt_manager {
         }
         [$quba, $slot, $row, $variant, $stackseed] = $started;
 
-        [$recskillindex, $recdiffindex] = policy::decode_action((int) $decision['recommendedaction']);
+        // The generalised decode equals policy::decode_action for core-only manifests (n = 8).
+        [$recskillindex, $recdiffindex] = heuristic_selector::decode_action(
+            (int) $decision['recommendedaction'],
+            count($codes)
+        );
         $pending = [
             'seq'                   => (int) $attempt->questionsdone + 1,
             'slot'                  => $slot,
@@ -898,15 +949,15 @@ class attempt_manager {
             'version'               => (int) $row->questionversion,
             'variant'               => $variant,
             'stackseed'             => $stackseed,
-            'recommendedskill'      => bkt::SKILLS[$recskillindex],
+            'recommendedskill'      => $codes[$recskillindex],
             'recommendeddifficulty' => bkt::DIFFICULTIES[$recdiffindex],
-            'servedskill'           => bkt::SKILLS[(int) $decision['skill']],
+            'servedskill'           => $codes[(int) $decision['skill']],
             'serveddifficulty'      => bkt::DIFFICULTIES[(int) $decision['difficulty']],
             'source'                => (string) $decision['source'],
             'propensity'            => (float) $decision['propensity'],
             'epsilon'               => $this->epsilon(),
             'eligiblecount'         => $eligiblecount,
-            'policyversion'         => $this->policyid,
+            'policyversion'         => $branchpolicyversion,
             'masterybefore'         => json_decode($mastery->to_json(), true),
             'timecreated'           => $timenow,
         ];
@@ -1001,27 +1052,37 @@ class attempt_manager {
     }
 
     /**
-     * Build the eligible action-id set for policy::choose(): selected skills still below their
-     * target, in cells with unseen valid questions. Canonical ascending order keeps the explore
-     * index draw deterministic under an injected RNG.
+     * Build the eligible action-id set for the chooser: selected skills still below their
+     * target, in cells with unseen valid questions. Manifest ascending order keeps the explore
+     * index draw deterministic under an injected RNG. Ids are the generalised
+     * skillindex * 3 + difficulty encoding over the manifest codes, which equals
+     * policy::encode_action for a core-only manifest.
      *
      * @param int $attemptid The attempt id.
      * @param mastery $mastery The live belief vector.
-     * @param bool[] $selected Positional selected flags.
-     * @param float[] $targets Positional per-skill targets.
+     * @param bool[] $selected Positional selected flags over the manifest codes.
+     * @param float[] $targets Positional per-skill targets over the manifest codes.
+     * @param skill_manifest $manifest The attempt's skill manifest.
      * @return int[] Eligible action ids.
      */
-    protected function eligible_actions(int $attemptid, mastery $mastery, array $selected, array $targets): array {
+    protected function eligible_actions(
+        int $attemptid,
+        mastery $mastery,
+        array $selected,
+        array $targets,
+        skill_manifest $manifest
+    ): array {
         $cells = pool::eligible_cells($attemptid);
         $reached = $mastery->reached($targets);
+        $codes = $manifest->codes();
         $eligible = [];
-        foreach (bkt::SKILLS as $skillindex => $skillcode) {
+        foreach ($codes as $skillindex => $skillcode) {
             if (empty($selected[$skillindex]) || $reached[$skillindex]) {
                 continue;
             }
             foreach (bkt::DIFFICULTIES as $diffindex => $diffcode) {
                 if (!empty($cells[$skillcode][$diffcode])) {
-                    $eligible[] = policy::encode_action($skillindex, $diffindex);
+                    $eligible[] = heuristic_selector::encode_action($skillindex, $diffindex, count($codes));
                 }
             }
         }
@@ -1186,12 +1247,13 @@ class attempt_manager {
         $state->reachedtarget = !empty($attempt->reachedtarget);
         $state->questionsdone = (int) $attempt->questionsdone;
         $state->budget = (int) $attempt->budget;
-        $state->selectedskills = skills::decode_csv((string) $attempt->skillssnapshot);
+        $manifest = $this->attempt_manifest($attempt);
+        $state->selectedskills = $manifest->selected();
         $masteryjson = $state->finished && !empty($attempt->masteryfinal)
             ? (string) $attempt->masteryfinal
             : (string) $attempt->masterycurrent;
-        $state->mastery = $this->decode_skill_map($masteryjson);
-        $state->targets = $this->decode_skill_map((string) $attempt->targetsnapshot);
+        $state->mastery = $this->decode_skill_map($masteryjson, $manifest);
+        $state->targets = $this->decode_skill_map((string) $attempt->targetsnapshot, $manifest);
         $state->grade = $state->finished ? grades::attempt_grade($this->instance, $attempt) : null;
         $state->notice = $notice;
 
@@ -1271,6 +1333,64 @@ class attempt_manager {
     // Small helpers.
 
     /**
+     * The serving policy, resolved lazily and fail-closed. Only reachable with a null policy
+     * when a core-only ATTEMPT lives under an instance that has since gained custom topics
+     * (create() skips the load for custom instances per the D4 ordering rule); the load failure
+     * mode is identical to create()'s. Custom attempts never call this.
+     *
+     * @return policy The loaded policy.
+     * @throws \moodle_exception When the policy artifact cannot be loaded and validated.
+     */
+    protected function serving_policy(): policy {
+        if ($this->policy !== null) {
+            return $this->policy;
+        }
+        try {
+            $active = policy_store::get_active();
+            $this->policy = policy::load($active->path);
+            $this->policyid = (string) $active->policyid;
+        } catch (\Throwable $e) {
+            debugging('mod_stackmastery: policy load failed: ' . $e->getMessage(), DEBUG_DEVELOPER);
+            throw new \moodle_exception('errpolicyunavailable', 'mod_stackmastery');
+        }
+        return $this->policy;
+    }
+
+    /**
+     * The instance's skill manifest (core selection plus topic rows), memoised per request.
+     *
+     * @return skill_manifest The instance manifest.
+     */
+    protected function instance_manifest(): skill_manifest {
+        if ($this->instancemanifest === null) {
+            $this->instancemanifest = skill_manifest::from_instance(
+                $this->instance,
+                topics::for_instance((int) $this->instance->id)
+            );
+        }
+        return $this->instancemanifest;
+    }
+
+    /**
+     * An attempt's skill manifest, derived from its frozen skillssnapshot and memoised by
+     * attempt id (the snapshot never changes after start).
+     *
+     * @param \stdClass $attempt The attempt row.
+     * @return skill_manifest The attempt manifest.
+     */
+    protected function attempt_manifest(\stdClass $attempt): skill_manifest {
+        $id = (int) $attempt->id;
+        if (!isset($this->attemptmanifests[$id])) {
+            $this->attemptmanifests[$id] = skill_manifest::from_attempt(
+                $this->instance,
+                $attempt,
+                topics::for_instance((int) $this->instance->id)
+            );
+        }
+        return $this->attemptmanifests[$id];
+    }
+
+    /**
      * The exploration rate: the INSTANCE snapshot (master plan C18), clamped to [0, 0.2].
      *
      * @return float Epsilon.
@@ -1293,32 +1413,33 @@ class attempt_manager {
     }
 
     /**
-     * Positional selected-skill flags from the attempt snapshot.
+     * Positional selected-skill flags over the attempt manifest's codes.
      *
      * @param \stdClass $attempt The attempt row.
-     * @return bool[] One flag per canonical skill.
+     * @return bool[] One flag per manifest code.
      */
     protected function selected_flags(\stdClass $attempt): array {
-        $codes = skills::decode_csv((string) $attempt->skillssnapshot);
+        $manifest = $this->attempt_manifest($attempt);
+        $selected = $manifest->selected();
         $flags = [];
-        foreach (bkt::SKILLS as $code) {
-            $flags[] = in_array($code, $codes, true);
+        foreach ($manifest->codes() as $code) {
+            $flags[] = in_array($code, $selected, true);
         }
         return $flags;
     }
 
     /**
-     * Positional per-skill target vector from the attempt snapshot, tolerant of a missing or
-     * corrupt column (falls back to the instance scalar target).
+     * Positional per-skill target vector from the attempt snapshot over the manifest codes,
+     * tolerant of a missing or corrupt column (falls back to the instance scalar target).
      *
      * @param \stdClass $attempt The attempt row.
-     * @return float[] One target per canonical skill.
+     * @return float[] One target per manifest code.
      */
     protected function target_vector(\stdClass $attempt): array {
         $data = json_decode((string) ($attempt->targetsnapshot ?? ''), true);
         $fallback = (float) ($this->instance->targetmastery ?? 0.95);
         $vector = [];
-        foreach (bkt::SKILLS as $code) {
+        foreach ($this->attempt_manifest($attempt)->codes() as $code) {
             $value = is_array($data) && isset($data[$code]) && is_numeric($data[$code])
                 ? (float) $data[$code]
                 : $fallback;
@@ -1329,15 +1450,17 @@ class attempt_manager {
 
     /**
      * The instance target vector JSON for a new attempt's snapshot: the stored targetvector when
-     * valid, else expanded from the scalar targetmastery.
+     * valid, else expanded from the scalar targetmastery, keyed by every manifest code (custom
+     * slugs included; a slug missing from the stored column takes the scalar target).
      *
-     * @return string JSON object keyed by skill code, all 8 keys.
+     * @param skill_manifest $manifest The instance manifest.
+     * @return string JSON object keyed by skill code, one key per manifest code.
      */
-    protected function instance_target_json(): string {
+    protected function instance_target_json(skill_manifest $manifest): string {
         $target = (float) ($this->instance->targetmastery ?? 0.95);
         $data = json_decode((string) ($this->instance->targetvector ?? ''), true);
         $out = [];
-        foreach (bkt::SKILLS as $code) {
+        foreach ($manifest->codes() as $code) {
             $value = is_array($data) && isset($data[$code]) && is_numeric($data[$code])
                 ? (float) $data[$code]
                 : $target;
@@ -1351,12 +1474,13 @@ class attempt_manager {
      * strict codec for computation is the mastery class).
      *
      * @param string $json The stored JSON object.
-     * @return array<string, float> Values keyed by skill code, all 8 keys.
+     * @param skill_manifest $manifest The attempt manifest naming the expected codes.
+     * @return array<string, float> Values keyed by skill code, one key per manifest code.
      */
-    protected function decode_skill_map(string $json): array {
+    protected function decode_skill_map(string $json, skill_manifest $manifest): array {
         $data = json_decode($json, true);
         $out = [];
-        foreach (bkt::SKILLS as $code) {
+        foreach ($manifest->codes() as $code) {
             $value = is_array($data) && isset($data[$code]) && is_numeric($data[$code])
                 ? (float) $data[$code]
                 : 0.0;

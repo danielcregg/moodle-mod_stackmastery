@@ -26,7 +26,8 @@ namespace mod_stackmastery\output;
 
 use mod_stackmastery\local\attempt_store;
 use mod_stackmastery\local\grades;
-use mod_stackmastery\local\skills;
+use mod_stackmastery\local\skill_manifest;
+use mod_stackmastery\local\topics;
 use renderable;
 use renderer_base;
 use stdClass;
@@ -104,8 +105,13 @@ class attempt_summary implements renderable, templatable {
         }
         $targets = json_decode((string) ($attempt->targetsnapshot ?? ''), true);
         $fallback = (float) ($this->instance->targetmastery ?? 0.95);
+        $manifest = skill_manifest::from_attempt(
+            $this->instance,
+            $attempt,
+            topics::for_instance((int) $this->instance->id)
+        );
         $rows = [];
-        foreach (skills::decode_csv((string) $attempt->skillssnapshot) as $code) {
+        foreach ($manifest->selected() as $code) {
             if (!isset($mastery[$code]) || !is_numeric($mastery[$code])) {
                 continue;
             }
@@ -114,7 +120,7 @@ class attempt_summary implements renderable, templatable {
                 ? (float) $targets[$code]
                 : $fallback;
             $rows[] = [
-                'name'         => skills::label($code),
+                'name'         => $manifest->label($code),
                 'percentlabel' => ((int) round(100.0 * $value)) . '%',
                 'reached'      => $value >= $target - 1e-9,
             ];

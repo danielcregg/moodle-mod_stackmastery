@@ -33,7 +33,37 @@
  * @return bool Always true on success.
  */
 function xmldb_stackmastery_upgrade($oldversion) {
-    // Fresh plugin: install.xml is authoritative at install time. Add guarded, idempotent,
-    // append-only steps here as the schema evolves after first release.
+    global $DB;
+    $dbman = $DB->get_manager();
+
+    if ($oldversion < 2026070310) {
+        // Custom topics (design D1): the per-instance topic table. Definition mirrors
+        // install.xml exactly so upgraded and fresh sites end up schema-identical.
+        $table = new xmldb_table('stackmastery_topics');
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field('stackmasteryid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('sortorder', XMLDB_TYPE_INTEGER, '4', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('slug', XMLDB_TYPE_CHAR, '32', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('label', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('templatetype', XMLDB_TYPE_CHAR, '32', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+        $table->add_key('stackmasteryid', XMLDB_KEY_FOREIGN, ['stackmasteryid'], 'stackmastery', ['id']);
+        $table->add_index('instanceslug', XMLDB_INDEX_UNIQUE, ['stackmasteryid', 'slug']);
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
+        }
+
+        // Widen stackmastery_attempts.skillssnapshot char(255) -> text: the snapshot csv now
+        // also carries custom topic slugs (design D3) and 8 codes plus 12 slugs can exceed 255.
+        $table = new xmldb_table('stackmastery_attempts');
+        $field = new xmldb_field('skillssnapshot', XMLDB_TYPE_TEXT, null, null, XMLDB_NOTNULL, null, null, 'masterycurrent');
+        if ($dbman->field_exists($table, $field)) {
+            $dbman->change_field_type($table, $field);
+        }
+
+        upgrade_mod_savepoint(true, 2026070310, 'stackmastery');
+    }
     return true;
 }

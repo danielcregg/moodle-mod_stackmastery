@@ -28,7 +28,9 @@ use cm_info;
 use mod_stackmastery\local\attempt_store;
 use mod_stackmastery\local\grades;
 use mod_stackmastery\local\pool;
+use mod_stackmastery\local\skill_manifest;
 use mod_stackmastery\local\skills;
+use mod_stackmastery\local\topics;
 use mod_stackmastery\local\view_helper;
 use moodle_url;
 use renderable;
@@ -46,6 +48,9 @@ class view_page implements renderable, templatable {
 
     /** @var stdClass The stackmastery instance record. */
     protected stdClass $instance;
+
+    /** @var stdClass[] The instance's custom-topic rows, loaded once per export. */
+    protected array $topicrows = [];
 
     /**
      * Constructor.
@@ -74,6 +79,10 @@ class view_page implements renderable, templatable {
         $attempts = attempt_store::get_attempts($this->instance->id, (int) $USER->id);
         $open = attempt_store::get_open_attempt($this->instance->id, (int) $USER->id);
         $state = view_helper::get_view_state($this->instance, $attempts, $open, time(), $canattempt);
+        // The manifest (selected core skills plus custom topics) is the vocabulary of every
+        // skill-shaped surface on this page (spec D6/D11).
+        $this->topicrows = array_values(topics::for_instance((int) $this->instance->id));
+        $manifest = skill_manifest::from_instance($this->instance, $this->topicrows);
 
         $data = (object) [
             'state'          => $state,
@@ -89,7 +98,7 @@ class view_page implements renderable, templatable {
             ))->out(false),
             'statemessage'   => '',
             'teacherplaceholder' => false,
-            'facts'          => $this->export_facts(),
+            'facts'          => $this->export_facts($manifest),
             'hasprogress'    => false,
             'progress'       => null,
             'hasattempts'    => false,
@@ -116,14 +125,17 @@ class view_page implements renderable, templatable {
         if ($canmanagepool) {
             global $CFG;
             require_once($CFG->dirroot . '/mod/stackmastery/mod_form.php');
-            $selected = skills::decode_csv((string) $this->instance->skills);
+            $selected = $manifest->selected();
             $counts = pool::cell_counts((int) $this->instance->poolcategoryid, $selected);
             $gaps = pool::cell_gaps($counts, 3);
             $missing = 0;
             foreach ($gaps as $row) {
                 $missing += count($row);
             }
-            $data->poolcoverage = \mod_stackmastery_mod_form::coverage_context($counts);
+            $data->poolcoverage = \mod_stackmastery_mod_form::coverage_context(
+                $counts,
+                progress_bars::manifest_labels($manifest)
+            );
             $data->poolgapchip = get_string('poolcellsbelow', 'mod_stackmastery', (object) [
                 'n'      => $missing,
                 'total'  => count($selected) * count(skills::DIFFICULTIES),
@@ -136,7 +148,7 @@ class view_page implements renderable, templatable {
         $this->export_history($data, $attempts);
         $this->export_gradeline($data, (int) $USER->id);
         if ($canviewreports) {
-            $this->export_pool_warnings($data);
+            $this->export_pool_warnings($data, $manifest);
         }
         return $data;
     }
@@ -189,14 +201,15 @@ class view_page implements renderable, templatable {
     }
 
     /**
-     * The intro facts card: skills chips, target, budget, attempts allowed.
+     * The intro facts card: skills chips (manifest labels), target, budget, attempts allowed.
      *
+     * @param skill_manifest $manifest The instance manifest.
      * @return stdClass Facts sub-context.
      */
-    protected function export_facts(): stdClass {
+    protected function export_facts(skill_manifest $manifest): stdClass {
         $chips = [];
-        foreach (skills::decode_csv((string) $this->instance->skills) as $code) {
-            $chips[] = ['name' => skills::label($code)];
+        foreach ($manifest->selected() as $code) {
+            $chips[] = ['name' => $manifest->label($code)];
         }
         $maxattempts = (int) $this->instance->maxattempts;
         return (object) [
@@ -231,14 +244,14 @@ class view_page implements renderable, templatable {
         if ($open !== null) {
             $source = json_decode((string) $open->masterycurrent, true);
             $heading = get_string('yourmastery', 'mod_stackmastery');
-            $selected = skills::decode_csv((string) $open->skillssnapshot);
+            $attempt = $open;
         } else {
             $best = null;
             $bestgrade = null;
-            foreach ($attempts as $attempt) {
-                $grade = grades::attempt_grade($this->instance, $attempt);
+            foreach ($attempts as $candidate) {
+                $grade = grades::attempt_grade($this->instance, $candidate);
                 if ($grade !== null && ($bestgrade === null || $grade > $bestgrade)) {
-                    $best = $attempt;
+                    $best = $candidate;
                     $bestgrade = $grade;
                 }
             }
@@ -247,17 +260,20 @@ class view_page implements renderable, templatable {
             }
             $source = json_decode((string) $best->masteryfinal, true);
             $heading = get_string('yourbestresult', 'mod_stackmastery');
-            $selected = skills::decode_csv((string) $best->skillssnapshot);
+            $attempt = $best;
         }
         if (!is_array($source)) {
             return;
         }
+        // Attempt-scoped surfaces resolve their vocabulary from the attempt snapshot (D11).
+        $manifest = skill_manifest::from_attempt($this->instance, $attempt, $this->topicrows);
         $bars = new progress_bars(
             $source,
-            $selected,
+            $manifest->selected(),
             (float) $this->instance->targetmastery,
             true,
-            $heading
+            $heading,
+            progress_bars::manifest_labels($manifest)
         );
         $data->hasprogress = true;
         $data->progress = $bars->export_for_template($output);
@@ -339,14 +355,17 @@ class view_page implements renderable, templatable {
 
     /**
      * Teacher-only pool decay warnings (deleted questions, un-tagged new versions): re-derived
-     * live because the mod_form hard-block cannot catch drift after creation.
+     * live because the mod_form hard-block cannot catch drift after creation. Unlike the form's
+     * save-blocking check this covers custom-topic cells too: empty topic cells right after a
+     * save are expected (generation is queued) and this banner is what tells the teacher when
+     * they stay empty.
      *
      * @param stdClass $data The context being built.
+     * @param skill_manifest $manifest The instance manifest.
      * @return void
      */
-    protected function export_pool_warnings(stdClass $data): void {
-        $selected = skills::decode_csv((string) $this->instance->skills);
-        $result = pool::validate_selection((int) $this->instance->poolcategoryid, $selected);
+    protected function export_pool_warnings(stdClass $data, skill_manifest $manifest): void {
+        $result = pool::validate_selection((int) $this->instance->poolcategoryid, $manifest->selected());
         $messages = array_values($result['errors']);
         foreach ($result['warnings'] as $warning) {
             $messages[] = $warning;

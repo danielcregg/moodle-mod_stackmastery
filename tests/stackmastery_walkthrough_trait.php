@@ -29,7 +29,8 @@ use mod_stackmastery\local\attempt_store;
 use mod_stackmastery\local\bkt;
 use mod_stackmastery\local\experience;
 use mod_stackmastery\local\policy;
-use mod_stackmastery\local\skills;
+use mod_stackmastery\local\skill_manifest;
+use mod_stackmastery\local\topics;
 
 /**
  * Setup, start, answer, drive and step-invariant helpers on real shortanswer QUBAs.
@@ -180,6 +181,10 @@ trait stackmastery_walkthrough_trait {
     /**
      * Invariants every logged step must satisfy (run after every answer_current).
      *
+     * Manifest-aware: for a core-only attempt the manifest codes ARE the 8 canonical skills,
+     * so every assertion is exactly the historical one; for a custom-topics attempt the served
+     * skill may be a topic slug and the mastery JSONs carry the manifest's key set.
+     *
      * @param \stdClass $step The stackmastery_steps row.
      * @param \stdClass $attempt The owning attempt row.
      * @return void
@@ -194,9 +199,14 @@ trait stackmastery_walkthrough_trait {
             $DB->count_records('stackmastery_steps', ['attemptid' => $attempt->id]),
             'seq is contiguous with the step count'
         );
-        $selected = skills::decode_csv((string) $attempt->skillssnapshot);
-        $this->assertContains((string) $step->servedskill, $selected, 'served skill is a selected skill');
-        $this->assertContains((string) $step->recommendedskill, bkt::SKILLS);
+        $instance = $DB->get_record('stackmastery', ['id' => $attempt->stackmasteryid], '*', MUST_EXIST);
+        $manifest = skill_manifest::from_attempt(
+            $instance,
+            $attempt,
+            topics::for_instance((int) $attempt->stackmasteryid)
+        );
+        $this->assertContains((string) $step->servedskill, $manifest->selected(), 'served skill is a selected skill');
+        $this->assertContains((string) $step->recommendedskill, $manifest->codes());
         $this->assertContains((string) $step->serveddifficulty, bkt::DIFFICULTIES);
         $this->assertContains((string) $step->recommendeddifficulty, bkt::DIFFICULTIES);
         $this->assertContains((string) $step->actionsource, experience::SOURCES);
@@ -209,7 +219,7 @@ trait stackmastery_walkthrough_trait {
         foreach (['masterybefore', 'masteryafter'] as $field) {
             $vector = json_decode((string) $step->{$field}, true);
             $this->assertIsArray($vector, "{$field} is valid JSON");
-            $this->assertSame(bkt::SKILLS, array_keys($vector), "{$field} carries the 8 canonical keys");
+            $this->assertSame($manifest->codes(), array_keys($vector), "{$field} carries the manifest keys");
             foreach ($vector as $value) {
                 $this->assertGreaterThanOrEqual(0.0, $value);
                 $this->assertLessThanOrEqual(1.0, $value);

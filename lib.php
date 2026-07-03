@@ -24,7 +24,10 @@
 
 use mod_stackmastery\local\attempt_store;
 use mod_stackmastery\local\grades;
+use mod_stackmastery\local\pool;
+use mod_stackmastery\local\skill_manifest;
 use mod_stackmastery\local\skills;
+use mod_stackmastery\local\topics;
 
 /**
  * Declare the features this module supports.
@@ -77,7 +80,8 @@ function stackmastery_supports($feature) {
  *
  * Snapshots the admin epsilon onto the instance (clamped to [0, 0.2]) so a mid-course admin
  * change never silently alters a running study arm. Normalises skills and derives the target
- * vector so the CLI/generator path (no form) works too.
+ * vector so the CLI/generator path (no form) works too. A form save additionally syncs the
+ * custom-topic rows and queues save-time inline generation for their empty pool cells.
  *
  * @param stdClass $data Form or generator data.
  * @param mod_stackmastery_mod_form|null $mform The form, when saved through the UI.
@@ -89,7 +93,9 @@ function stackmastery_add_instance(stdClass $data, ?mod_stackmastery_mod_form $m
     $data->timecreated = time();
     $data->timemodified = $data->timecreated;
     if (empty($data->skills)) {
-        $data->skills = implode(',', skills::CODES);
+        // With custom topics an empty csv means zero core skills (spec D3); the historic
+        // all-8 normalisation applies only to instances without topics.
+        $data->skills = empty($data->customtopics) ? implode(',', skills::CODES) : '';
     }
     if (!isset($data->targetmastery) || $data->targetmastery === '') {
         $data->targetmastery = 0.95;
@@ -100,6 +106,7 @@ function stackmastery_add_instance(stdClass $data, ?mod_stackmastery_mod_form $m
     $data->epsilon = min(max($epsilon, 0.0), 0.2);
 
     $data->id = $DB->insert_record('stackmastery', $data);
+    stackmastery_apply_custom_topics($data);
     stackmastery_grade_item_update($data);
     return $data->id;
 }
@@ -121,13 +128,19 @@ function stackmastery_update_instance(stdClass $data, ?mod_stackmastery_mod_form
     $data->id = $data->instance;
     $data->timemodified = time();
     if (empty($data->skills)) {
-        $data->skills = implode(',', skills::CODES);
+        // Conditional normalisation (spec D3): with custom topics an empty csv means zero
+        // core skills. A non-form caller keeps its persisted topic reality.
+        $hastopics = isset($data->customtopics) && is_array($data->customtopics)
+            ? $data->customtopics !== []
+            : $DB->record_exists('stackmastery_topics', ['stackmasteryid' => $data->id]);
+        $data->skills = $hastopics ? '' : implode(',', skills::CODES);
     }
     if (isset($data->targetmastery)) {
         $data->targetmastery = (float) $data->targetmastery;
         $data->targetvector = json_encode(array_fill_keys(skills::CODES, $data->targetmastery));
     }
     $DB->update_record('stackmastery', $data);
+    stackmastery_apply_custom_topics($data);
 
     $instance = $DB->get_record('stackmastery', ['id' => $data->id], '*', MUST_EXIST);
     stackmastery_grade_item_update($instance);
@@ -136,11 +149,136 @@ function stackmastery_update_instance(stdClass $data, ?mod_stackmastery_mod_form
 }
 
 /**
+ * Synchronise an instance's custom-topic rows and everything derived from them.
+ *
+ * Called after the instance row is written. On a form save $data->customtopics carries the
+ * validated working list (slug, label, templatetype per row): the rows are synced, the target
+ * vector is rebuilt over the manifest codes (the 8 core skills plus the topic slugs in sort
+ * order) and save-time inline generation queues mastery-tagged forge jobs for thin topic cells
+ * (spec D10). Callers without the property (generator, CLI, restore) leave the persisted rows
+ * untouched and only refresh the derived target vector when rows exist.
+ *
+ * @param stdClass $data The just-written instance data (id is set).
+ * @return void
+ */
+function stackmastery_apply_custom_topics(stdClass $data): void {
+    global $DB;
+
+    $formsave = isset($data->customtopics) && is_array($data->customtopics);
+    if (!$formsave && !$DB->record_exists('stackmastery_topics', ['stackmasteryid' => $data->id])) {
+        return;
+    }
+    if ($formsave) {
+        $items = [];
+        // The 12-topic cap is validated in the form; sliced again here as defence in depth.
+        foreach (array_slice($data->customtopics, 0, 12) as $topic) {
+            $items[] = [
+                'slug'         => isset($topic['slug']) ? (string) $topic['slug'] : null,
+                'label'        => (string) $topic['label'],
+                'templatetype' => (string) $topic['templatetype'],
+            ];
+        }
+        topics::sync((int) $data->id, $items);
+    }
+    $instance = $DB->get_record('stackmastery', ['id' => $data->id], '*', MUST_EXIST);
+    $topicrows = topics::for_instance((int) $instance->id);
+    $manifest = skill_manifest::from_instance($instance, $topicrows);
+    $vector = json_encode(array_fill_keys($manifest->codes(), (float) $instance->targetmastery));
+    $DB->set_field('stackmastery', 'targetvector', $vector, ['id' => $instance->id]);
+    if ($formsave) {
+        $instance->targetvector = $vector;
+        stackmastery_queue_topic_generation($instance, $manifest);
+    }
+}
+
+/**
+ * Save-time inline generation: queue mastery-tagged forge jobs for thin custom-topic cells.
+ *
+ * Every custom-topic (slug, difficulty) cell holding fewer than 2 questions gets a job for the
+ * gap, capped at 18 jobs per save (spec D10). Requires the forge job API and the saving user
+ * holding moodle/question:add on the pool category context; when either is missing the save
+ * still succeeds and a session notification says why nothing was queued. The view page's
+ * "Build my pool" button (manifest-aware) is the top-up path with a teacher-chosen target.
+ *
+ * @param stdClass $instance The fresh instance record.
+ * @param skill_manifest $manifest The instance manifest.
+ * @return void
+ */
+function stackmastery_queue_topic_generation(stdClass $instance, skill_manifest $manifest): void {
+    global $DB, $USER;
+
+    $slugs = array_keys($manifest->custom());
+    $categoryid = (int) $instance->poolcategoryid;
+    if ($slugs === [] || $categoryid <= 0) {
+        return;
+    }
+    $category = $DB->get_record('question_categories', ['id' => $categoryid]);
+    if (!$category) {
+        return;
+    }
+    $gaps = pool::cell_gaps(pool::cell_counts($categoryid, $slugs), 2);
+    if ($gaps === []) {
+        return;
+    }
+    $forgeready = class_exists('\\local_stackforge\\generator')
+        && method_exists('\\local_stackforge\\generator', 'queue_generation');
+    if (!$forgeready) {
+        \core\notification::add(
+            get_string('buildpoolneedforge', 'mod_stackmastery'),
+            \core\output\notification::NOTIFY_WARNING
+        );
+        return;
+    }
+    $categorycontext = context::instance_by_id((int) $category->contextid);
+    if (!has_capability('moodle/question:add', $categorycontext)) {
+        \core\notification::add(
+            get_string('topicsskippedcap', 'mod_stackmastery'),
+            \core\output\notification::NOTIFY_WARNING
+        );
+        return;
+    }
+    $jobs = 0;
+    $questions = 0;
+    foreach ($gaps as $slug => $cells) {
+        $forgetype = $manifest->forge_type((string) $slug);
+        if ($forgetype === null) {
+            continue;
+        }
+        foreach ($cells as $difficulty => $missing) {
+            // Overall cap: 18 jobs per save (spec D10); the rest is Build-my-pool territory.
+            if ($jobs >= 18) {
+                break 2;
+            }
+            $count = min(10, (int) $missing);
+            \local_stackforge\generator::queue_generation(
+                (int) $instance->course,
+                (int) $USER->id,
+                $categoryid,
+                $forgetype,
+                $difficulty,
+                $count,
+                true,
+                (string) $slug
+            );
+            $jobs++;
+            $questions += $count;
+        }
+    }
+    if ($questions > 0) {
+        \core\notification::add(
+            get_string('topicsqueued', 'mod_stackmastery', $questions),
+            \core\output\notification::NOTIFY_SUCCESS
+        );
+    }
+}
+
+/**
  * Delete a stackmastery instance with everything it owns.
  *
  * All attempt data (question usages included) goes through attempt_store::delete_attempts(),
- * the single deletion primitive shared with privacy and course reset. This also makes plugin
- * uninstall safe (core deletes each course module first).
+ * the single deletion primitive shared with privacy and course reset. The instance's custom
+ * topic rows go with it. This also makes plugin uninstall safe (core deletes each course
+ * module first).
  *
  * @param int $id Instance id.
  * @return bool True on success.
@@ -150,6 +288,7 @@ function stackmastery_delete_instance(int $id): bool {
 
     $instance = $DB->get_record('stackmastery', ['id' => $id], '*', MUST_EXIST);
     attempt_store::delete_attempts($id);
+    $DB->delete_records('stackmastery_topics', ['stackmasteryid' => $id]);
     stackmastery_grade_item_delete($instance);
     $DB->delete_records('stackmastery', ['id' => $id]);
     return true;

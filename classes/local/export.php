@@ -92,6 +92,17 @@ final class export {
     /**
      * The export body, called with the run lock held.
      *
+     * Custom-topics firewall (design D5): the v1 schema is strictly core-8 (enc-1, all-8
+     * vectors), so an attempt whose skillssnapshot carries ANY non-core token is never emitted.
+     * Skipped custom attempts ARE stamped timeexported in the same run transaction (Codex #10
+     * watermark rule - otherwise every future run rescans them forever) and their count is
+     * carried in the run's meta line as skipped_custom_attempts. Consequence, documented in
+     * phase3/POLICY_UPDATE.md: a future v2 custom export cannot use timeexported = 0 as its
+     * selector; it needs its own watermark.
+     *
+     * The candidate set (ids plus their custom flags) is frozen in one pre-pass so the meta
+     * line's count is exact even if attempts finish while the run streams.
+     *
      * @param \progress_trace $trace Progress reporting.
      * @return \stdClass|null The exportruns record, or null when there was nothing to export.
      */
@@ -107,44 +118,65 @@ final class export {
         // stored, never logged - post-run, nothing can re-link seqkeys to attempts or users.
         $salt = random_bytes(32);
 
+        // Freeze the candidate set and split it by the custom-topics firewall.
         $select = "state IN ('complete','abandoned') AND timeexported = 0 AND preview = 0";
-        $rs = $DB->get_recordset_select('stackmastery_attempts', $select, [], 'id ASC');
-        $fh = null;
-        $stampids = [];
-        $attemptcount = 0;
-        $stepcount = 0;
-        $skippederrors = 0;
+        $candidateids = [];
+        $skippedcustom = 0;
+        $rs = $DB->get_recordset_select('stackmastery_attempts', $select, [], 'id ASC', 'id, skillssnapshot');
         try {
-            foreach ($rs as $attempt) {
-                $steps = $DB->get_records('stackmastery_steps', ['attemptid' => $attempt->id], 'seq ASC');
-                if ($steps === []) {
-                    $stampids[] = (int) $attempt->id;
-                    continue;
+            foreach ($rs as $candidate) {
+                if (self::is_custom_snapshot((string) $candidate->skillssnapshot)) {
+                    $skippedcustom++;
+                    $candidateids[(int) $candidate->id] = false;
+                } else {
+                    $candidateids[(int) $candidate->id] = true;
                 }
-                try {
-                    $lines = self::attempt_lines($attempt, $steps, $salt);
-                } catch (\Exception $e) {
-                    $skippederrors++;
-                    $trace->output("stackmastery export: skipping corrupt attempt {$attempt->id}: " .
-                        $e->getMessage());
-                    continue;
-                }
-                if ($fh === null) {
-                    $fh = self::open_tmp($tmppath, $now);
-                }
-                foreach ($lines as $line) {
-                    self::write_line($fh, $tmppath, $line);
-                }
-                $stampids[] = (int) $attempt->id;
-                $attemptcount++;
-                $stepcount += count($steps);
             }
         } finally {
             $rs->close();
         }
 
+        $fh = null;
+        $stampids = [];
+        $attemptcount = 0;
+        $stepcount = 0;
+        $skippederrors = 0;
+        foreach ($candidateids as $attemptid => $emittable) {
+            if (!$emittable) {
+                // Custom attempt: never emitted under v1, but watermarked in this run.
+                $stampids[] = $attemptid;
+                continue;
+            }
+            $attempt = $DB->get_record('stackmastery_attempts', ['id' => $attemptid]);
+            if (!$attempt) {
+                continue;
+            }
+            $steps = $DB->get_records('stackmastery_steps', ['attemptid' => $attempt->id], 'seq ASC');
+            if ($steps === []) {
+                $stampids[] = (int) $attempt->id;
+                continue;
+            }
+            try {
+                $lines = self::attempt_lines($attempt, $steps, $salt);
+            } catch (\Exception $e) {
+                $skippederrors++;
+                $trace->output("stackmastery export: skipping corrupt attempt {$attempt->id}: " .
+                    $e->getMessage());
+                continue;
+            }
+            if ($fh === null) {
+                $fh = self::open_tmp($tmppath, $now, $skippedcustom);
+            }
+            foreach ($lines as $line) {
+                self::write_line($fh, $tmppath, $line);
+            }
+            $stampids[] = (int) $attempt->id;
+            $attemptcount++;
+            $stepcount += count($steps);
+        }
+
         if ($fh === null) {
-            // Nothing emitted; still advance the watermark over empty attempts.
+            // Nothing emitted; still advance the watermark over empty and custom attempts.
             if ($stampids !== []) {
                 $transaction = $DB->start_delegated_transaction();
                 try {
@@ -154,7 +186,8 @@ final class export {
                     $transaction->rollback($e);
                 }
             }
-            $trace->output("stackmastery export: nothing to export ({$skippederrors} skipped).");
+            $trace->output("stackmastery export: nothing to export ({$skippederrors} skipped, " .
+                "{$skippedcustom} custom).");
             return null;
         }
 
@@ -185,8 +218,26 @@ final class export {
             $trace->output("stackmastery export: rename failed; {$filename} stayed .tmp (episodes lost).");
         }
         $trace->output("stackmastery export: {$attemptcount} attempts / {$stepcount} steps / " .
-            "{$skippederrors} skipped -> {$filename}");
+            "{$skippederrors} skipped / {$skippedcustom} custom -> {$filename}");
         return $DB->get_record('stackmastery_exportruns', ['id' => $runid], '*', MUST_EXIST);
+    }
+
+    /**
+     * Whether a skillssnapshot csv marks a custom-topics attempt: any non-empty token that is
+     * not one of the 8 core codes. An entirely empty csv is NOT custom (it is legacy/corrupt
+     * and handled by the strict per-attempt validation).
+     *
+     * @param string $csv The skillssnapshot column.
+     * @return bool True when the attempt tracks at least one custom slug.
+     */
+    public static function is_custom_snapshot(string $csv): bool {
+        foreach (explode(',', $csv) as $token) {
+            $token = trim($token);
+            if ($token !== '' && !in_array($token, bkt::SKILLS, true)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -209,14 +260,15 @@ final class export {
      *
      * @param string $tmppath The .tmp path.
      * @param int $now The run timestamp.
+     * @param int $skippedcustom Custom-instance attempts skipped (and watermarked) by this run.
      * @return resource The open file handle.
      */
-    private static function open_tmp(string $tmppath, int $now) {
+    private static function open_tmp(string $tmppath, int $now, int $skippedcustom) {
         $fh = fopen($tmppath, 'wb');
         if ($fh === false) {
             throw new \moodle_exception('cannotwritefile', 'error', '', $tmppath);
         }
-        self::write_line($fh, $tmppath, self::meta_line($now));
+        self::write_line($fh, $tmppath, self::meta_line($now, $skippedcustom));
         return $fh;
     }
 
@@ -238,12 +290,14 @@ final class export {
 
     /**
      * The first line of every export file: schema, site token and the pinned encoding so the
-     * adapter can hard-fail on any drift.
+     * adapter can hard-fail on any drift, plus the count of custom-instance attempts this run
+     * skipped (and watermarked) under the v1 firewall.
      *
      * @param int $now The run timestamp.
+     * @param int $skippedcustom Custom-instance attempts skipped by this run.
      * @return string The meta JSON line.
      */
-    private static function meta_line(int $now): string {
+    private static function meta_line(int $now, int $skippedcustom): string {
         return json_encode([
             '_type' => 'meta',
             'schema' => self::SCHEMA,
@@ -257,6 +311,7 @@ final class export {
             'threshold' => policy::THRESHOLD,
             'pseudonymised' => true,
             'dropped_fields' => ['userid'],
+            'skipped_custom_attempts' => $skippedcustom,
         ], JSON_THROW_ON_ERROR);
     }
 

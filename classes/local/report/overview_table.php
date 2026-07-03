@@ -25,7 +25,8 @@
 namespace mod_stackmastery\local\report;
 
 use mod_stackmastery\local\attempt_store;
-use mod_stackmastery\local\skills;
+use mod_stackmastery\local\skill_manifest;
+use mod_stackmastery\local\topics;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -103,9 +104,10 @@ class overview_table extends \flexible_table {
             get_string('colstepstotarget', 'mod_stackmastery'),
             get_string('coltimetotarget', 'mod_stackmastery'),
         ]);
+        $manifest = skill_manifest::from_instance($instance, topics::for_instance((int) $instance->id));
         foreach ($this->skillcolumns as $code) {
             $columns[] = 'mastery_' . $code;
-            $headers[] = get_string('colmastery', 'mod_stackmastery', skills::label($code));
+            $headers[] = get_string('colmastery', 'mod_stackmastery', $manifest->label($code));
         }
         $columns[] = 'explore';
         $headers[] = get_string('colexplore', 'mod_stackmastery');

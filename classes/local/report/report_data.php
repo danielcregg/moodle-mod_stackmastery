@@ -26,7 +26,8 @@ namespace mod_stackmastery\local\report;
 
 use mod_stackmastery\local\attempt_store;
 use mod_stackmastery\local\grades;
-use mod_stackmastery\local\skills;
+use mod_stackmastery\local\skill_manifest;
+use mod_stackmastery\local\topics;
 
 /**
  * Funnel, aggregate and per-attempt queries behind report.php.
@@ -192,6 +193,7 @@ final class report_data {
         }
 
         $aggregates = self::step_aggregates((int) $instance->id);
+        $topics = topics::for_instance((int) $instance->id);
         $rows = [];
         foreach ($attempts as $attempt) {
             $uid = (int) $attempt->userid;
@@ -213,7 +215,7 @@ final class report_data {
                 'grade'          => grades::attempt_grade($instance, $attempt),
                 'counted'        => isset($bestid[$uid]) && $bestid[$uid] === (int) $attempt->id,
                 'mastery'        => is_array($mastery) ? $mastery : null,
-                'snapshotskills' => skills::decode_csv((string) $attempt->skillssnapshot),
+                'snapshotskills' => skill_manifest::from_attempt($instance, $attempt, $topics)->selected(),
             ];
         }
         return $rows;
@@ -228,14 +230,15 @@ final class report_data {
      * @return string[] Skill codes.
      */
     public static function skill_columns(\stdClass $instance, array $rows): array {
-        $wanted = skills::decode_csv((string) $instance->skills);
+        $manifest = skill_manifest::from_instance($instance, topics::for_instance((int) $instance->id));
+        $wanted = $manifest->selected();
         foreach ($rows as $row) {
             foreach ($row->snapshotskills as $code) {
                 $wanted[] = $code;
             }
         }
         $columns = [];
-        foreach (skills::CODES as $code) {
+        foreach ($manifest->codes() as $code) {
             if (in_array($code, $wanted, true)) {
                 $columns[] = $code;
             }

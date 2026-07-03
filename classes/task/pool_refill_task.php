@@ -25,17 +25,21 @@
 namespace mod_stackmastery\task;
 
 use mod_stackmastery\local\pool;
+use mod_stackmastery\local\skill_manifest;
 use mod_stackmastery\local\skills;
+use mod_stackmastery\local\topics;
 
 /**
  * Keeps every instance's question pool topped up without teacher attention.
  *
  * Inert unless the poolrefill admin setting is on. For each stackmastery instance whose pool
- * category still exists, it enumerates the selected skills by the three difficulties (the same
- * thin-cell definition as the "Build my pool" button) and queues one STACK Question Forge job
- * per cell below the poolrefilltarget setting, mastery-tagged so the questions enter the pool
- * as soon as the forge validates them. Jobs are attributed to the primary administrator and the
- * run is capped at MAX_JOBS_PER_RUN across all instances; the remainder waits for the next night.
+ * category still exists, it enumerates the manifest vocabulary (selected core skills plus the
+ * instance's custom topics, spec D6) by the three difficulties (the same thin-cell definition
+ * as the "Build my pool" button) and queues one STACK Question Forge job per cell below the
+ * poolrefilltarget setting, mastery-tagged so the questions enter the pool as soon as the
+ * forge validates them; custom-topic jobs carry their slug as an explicit tag skill. Jobs are
+ * attributed to the primary administrator and the run is capped at MAX_JOBS_PER_RUN across all
+ * instances; the remainder waits for the next night.
  *
  * The forge dependency is optional and sits behind two small seams (forge_available() and
  * queue_forge_job()) so the task is testable where local_stackforge is not installed.
@@ -85,13 +89,16 @@ class pool_refill_task extends \core\task\scheduled_task {
             if ($categoryid <= 0 || !$DB->record_exists('question_categories', ['id' => $categoryid])) {
                 continue;
             }
-            $selected = skills::decode_csv((string) $instance->skills);
-            $gaps = pool::cell_gaps(pool::cell_counts($categoryid, $selected), $target);
+            $manifest = skill_manifest::from_instance($instance, topics::for_instance((int) $instance->id));
+            $gaps = pool::cell_gaps(pool::cell_counts($categoryid, $manifest->selected()), $target);
             foreach ($gaps as $skill => $row) {
-                $forgetype = skills::forge_type($skill);
+                $forgetype = $manifest->forge_type((string) $skill);
                 if ($forgetype === null) {
                     continue;
                 }
+                // Custom topics need an explicit tag skill (their slug); core codes keep the
+                // forge-type mapping default.
+                $tagskill = skills::is_skill((string) $skill) ? null : (string) $skill;
                 foreach ($row as $difficulty => $missing) {
                     if ($jobs >= self::MAX_JOBS_PER_RUN) {
                         $capped = true;
@@ -104,7 +111,8 @@ class pool_refill_task extends \core\task\scheduled_task {
                         $categoryid,
                         $forgetype,
                         $difficulty,
-                        $count
+                        $count,
+                        $tagskill
                     );
                     $jobs++;
                     mtrace("mod_stackmastery pool refill: instance {$instance->id} cell "
@@ -153,6 +161,8 @@ class pool_refill_task extends \core\task\scheduled_task {
      * @param string $qtype The forge template type.
      * @param string $difficulty One of easy, medium or hard.
      * @param int $count Questions to request.
+     * @param string|null $tagskill Explicit mastery tag skill (a custom-topic slug), or null
+     *        for the core forge-type mapping.
      * @return int The forge job id.
      */
     protected function queue_forge_job(
@@ -161,7 +171,8 @@ class pool_refill_task extends \core\task\scheduled_task {
         int $categoryid,
         string $qtype,
         string $difficulty,
-        int $count
+        int $count,
+        ?string $tagskill = null
     ): int {
         return \local_stackforge\generator::queue_generation(
             $courseid,
@@ -170,7 +181,8 @@ class pool_refill_task extends \core\task\scheduled_task {
             $qtype,
             $difficulty,
             $count,
-            true
+            true,
+            $tagskill
         );
     }
 }

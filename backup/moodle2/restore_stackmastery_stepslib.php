@@ -65,6 +65,12 @@ class restore_stackmastery_activity_structure_step extends restore_questions_act
 
         $paths[] = new restore_path_element('stackmastery', '/activity/stackmastery');
 
+        // Custom topics are instance configuration, restored regardless of userinfo.
+        $paths[] = new restore_path_element(
+            'stackmastery_topic',
+            '/activity/stackmastery/topics/topic'
+        );
+
         if ($userinfo) {
             $attempt = new restore_path_element(
                 'stackmastery_attempt',
@@ -122,6 +128,20 @@ class restore_stackmastery_activity_structure_step extends restore_questions_act
         // Insert the stackmastery record and immediately map the activity instance.
         $newitemid = $DB->insert_record('stackmastery', $data);
         $this->apply_activity_instance($newitemid);
+    }
+
+    /**
+     * Processes a custom topic element (instance configuration, no user data).
+     *
+     * @param array|stdClass $data the data from the XML file
+     * @return void
+     */
+    protected function process_stackmastery_topic($data) {
+        global $DB;
+
+        $data = (object) $data;
+        $data->stackmasteryid = $this->get_new_parentid('stackmastery');
+        $DB->insert_record('stackmastery_topics', $data);
     }
 
     /**

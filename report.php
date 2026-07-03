@@ -135,12 +135,18 @@ if ($mode === 'user') {
         $mastery = json_decode($masteryjson, true);
         if (is_array($mastery)) {
             // Teachers always see the bars, whatever the student-facing toggle says.
+            $detailmanifest = \mod_stackmastery\local\skill_manifest::from_attempt(
+                $instance,
+                $attempt,
+                \mod_stackmastery\local\topics::for_instance((int) $instance->id)
+            );
             echo $OUTPUT->render(new progress_bars(
                 $mastery,
-                \mod_stackmastery\local\skills::decode_csv((string) $attempt->skillssnapshot),
+                $detailmanifest->selected(),
                 (float) $instance->targetmastery,
                 true,
-                get_string('colmastery', 'mod_stackmastery', fullname($user))
+                get_string('colmastery', 'mod_stackmastery', fullname($user)),
+                progress_bars::manifest_labels($detailmanifest)
             ));
         }
     }

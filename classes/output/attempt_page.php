@@ -26,7 +26,8 @@ namespace mod_stackmastery\output;
 
 use cm_info;
 use mod_stackmastery\local\attempt_state;
-use mod_stackmastery\local\skills;
+use mod_stackmastery\local\skill_manifest;
+use mod_stackmastery\local\topics;
 use moodle_url;
 use renderable;
 use renderer_base;
@@ -48,6 +49,9 @@ class attempt_page implements renderable, templatable {
     /** @var attempt_state The render-ready state from attempt_manager::current_state(). */
     protected attempt_state $state;
 
+    /** @var skill_manifest|null Attempt-scoped manifest, built lazily. */
+    protected ?skill_manifest $manifest = null;
+
     /**
      * Constructor.
      *
@@ -59,6 +63,24 @@ class attempt_page implements renderable, templatable {
         $this->cm = $cm;
         $this->instance = $instance;
         $this->state = $state;
+    }
+
+    /**
+     * The attempt-scoped skill manifest: the label and vocabulary source for every skill-shaped
+     * string on this page (spec D11). A topic row deleted mid-attempt degrades to its slug as
+     * the label; the attempt still renders and replays.
+     *
+     * @return skill_manifest The manifest.
+     */
+    protected function manifest(): skill_manifest {
+        if ($this->manifest === null) {
+            $this->manifest = skill_manifest::from_attempt(
+                $this->instance,
+                $this->state->attempt,
+                topics::for_instance((int) $this->instance->id)
+            );
+        }
+        return $this->manifest;
     }
 
     /**
@@ -229,8 +251,10 @@ class attempt_page implements renderable, templatable {
         if ($frombad || $tobad) {
             return null;
         }
+        $manifest = $this->manifest();
+        $label = in_array($code, $manifest->codes(), true) ? $manifest->label($code) : $code;
         return get_string('masterymoved', 'mod_stackmastery', (object) [
-            'skill' => skills::label($code),
+            'skill' => $label,
             'from'  => ((int) round(100.0 * (float) $before[$code])) . '%',
             'to'    => ((int) round(100.0 * (float) $after[$code])) . '%',
         ]);
@@ -254,7 +278,8 @@ class attempt_page implements renderable, templatable {
             $state->selectedskills,
             (float) $this->instance->targetmastery,
             true,
-            get_string('yourmastery', 'mod_stackmastery')
+            get_string('yourmastery', 'mod_stackmastery'),
+            progress_bars::manifest_labels($this->manifest())
         );
         $data->hasprogress = true;
         $data->progress = $bars->export_for_template($output);
@@ -284,9 +309,10 @@ class attempt_page implements renderable, templatable {
             return '';
         }
         $code = (string) $pending->servedskill;
-        if (!skills::is_skill($code)) {
+        $manifest = $this->manifest();
+        if (!in_array($code, $manifest->codes(), true)) {
             return '';
         }
-        return get_string('skillslabel', 'mod_stackmastery', skills::label($code));
+        return get_string('skillslabel', 'mod_stackmastery', $manifest->label($code));
     }
 }

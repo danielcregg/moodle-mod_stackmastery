@@ -57,6 +57,13 @@ class backup_stackmastery_activity_structure_step extends backup_questions_activ
             'epsilon', 'timeopen', 'timeclose', 'completionreachedtarget',
             'timecreated', 'timemodified']);
 
+        // Custom topics are per-instance teacher configuration (not user data), so they
+        // ride with the activity settings unconditionally, like the skills column.
+        $topics = new backup_nested_element('topics');
+
+        $topic = new backup_nested_element('topic', ['id'], [
+            'sortorder', 'slug', 'label', 'templatetype', 'timecreated', 'timemodified']);
+
         $attempts = new backup_nested_element('attempts');
 
         $attempt = new backup_nested_element('attempt', ['id'], [
@@ -90,6 +97,9 @@ class backup_stackmastery_activity_structure_step extends backup_questions_activ
             'questionversion', 'timeserved', 'invalid', 'timecreated']);
 
         // Build the tree.
+        $stackmastery->add_child($topics);
+        $topics->add_child($topic);
+
         $stackmastery->add_child($attempts);
         $attempts->add_child($attempt);
 
@@ -101,6 +111,12 @@ class backup_stackmastery_activity_structure_step extends backup_questions_activ
 
         // Define sources.
         $stackmastery->set_source_table('stackmastery', ['id' => backup::VAR_ACTIVITYID]);
+
+        $topic->set_source_table(
+            'stackmastery_topics',
+            ['stackmasteryid' => backup::VAR_PARENTID],
+            'sortorder ASC'
+        );
 
         // All the attempt data (attempts, experience steps, pool snapshot) is user
         // data: only included with userinfo. Preview attempts are excluded, like
