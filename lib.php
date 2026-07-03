@@ -230,7 +230,14 @@ function stackmastery_queue_topic_generation(stdClass $instance, skill_manifest 
         return;
     }
     $categorycontext = context::instance_by_id((int) $category->contextid);
-    if (!has_capability('moodle/question:add', $categorycontext)) {
+    $coursecontext = context_course::instance((int) $instance->course);
+    // Both are required to author questions into the pool: moodle/question:add on the category,
+    // and the forge's own local/stackforge:generate on the course (its UI enforces the same). The
+    // forge is installed here ($forgeready), so its capability is registered.
+    if (
+        !has_capability('moodle/question:add', $categorycontext)
+        || !has_capability('local/stackforge:generate', $coursecontext)
+    ) {
         \core\notification::add(
             get_string('topicsskippedcap', 'mod_stackmastery'),
             \core\output\notification::NOTIFY_WARNING
@@ -250,18 +257,27 @@ function stackmastery_queue_topic_generation(stdClass $instance, skill_manifest 
                 break 2;
             }
             $count = min(10, (int) $missing);
-            \local_stackforge\generator::queue_generation(
-                (int) $instance->course,
-                (int) $USER->id,
-                $categoryid,
-                $forgetype,
-                $difficulty,
-                $count,
-                true,
-                (string) $slug
-            );
-            $jobs++;
-            $questions += $count;
+            // The instance is already saved; a single forge failure must not abort the save or
+            // the rest of the queue. Log and carry on (Build my pool retries later).
+            try {
+                \local_stackforge\generator::queue_generation(
+                    (int) $instance->course,
+                    (int) $USER->id,
+                    $categoryid,
+                    $forgetype,
+                    $difficulty,
+                    $count,
+                    true,
+                    (string) $slug
+                );
+                $jobs++;
+                $questions += $count;
+            } catch (\Throwable $e) {
+                debugging(
+                    'mod_stackmastery: save-time generation failed for topic ' . $slug . ': ' . $e->getMessage(),
+                    DEBUG_DEVELOPER
+                );
+            }
         }
     }
     if ($questions > 0) {

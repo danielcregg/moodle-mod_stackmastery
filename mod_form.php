@@ -288,7 +288,21 @@ class mod_stackmastery_mod_form extends moodleform_mod {
         $cache = isset($SESSION->mod_stackmastery_topiccache)
             ? (array) $SESSION->mod_stackmastery_topiccache
             : [];
+        // Two resolvers. The full classifier (keyword then AI) runs ONLY for a fresh
+        // "Check topic and add" click, on one label. Round-trip re-resolution of already-listed
+        // labels is keyword-only so a forged or stale topicsjson entry can never trigger an AI
+        // call at save time (Codex review: keep the AI pass to the explicit check click).
         $classify = null;
+        $keywordonly = static function (string $label): array {
+            if (!self::topic_mapper_ready()) {
+                return ['type' => null, 'method' => 'none'];
+            }
+            $matches = \local_stackforge\local\topic_mapper::keyword_matches(
+                \local_stackforge\local\topic_mapper::normalise($label)
+            );
+            $type = count($matches) === 1 ? $matches[0] : null;
+            return ['type' => $type, 'method' => $type === null ? 'none' : 'keyword'];
+        };
         if (self::topic_mapper_ready()) {
             $context = context_course::instance($this->get_course()->id);
             $userid = (int) $USER->id;
@@ -300,7 +314,7 @@ class mod_stackmastery_mod_form extends moodleform_mod {
             is_array($entries) ? $entries : [],
             $dbbyslug,
             $cache,
-            $classify
+            $keywordonly
         );
 
         // A Remove click drops its row (indices are per-render; the list re-renders below).

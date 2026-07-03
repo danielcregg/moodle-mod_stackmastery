@@ -80,6 +80,9 @@ if ($action === 'generate') {
             \core\output\notification::NOTIFY_INFO
         );
     }
+    // Queuing generation is the forge's own gated action; require its capability on the course,
+    // exactly as the forge generate page does (the forge is present here, so it is registered).
+    require_capability('local/stackforge:generate', context_course::instance((int) $course->id));
 
     $target = min(20, max(1, optional_param('target', 3, PARAM_INT)));
     // The manifest (core selection plus custom topics) is the builder's vocabulary (spec D6).
