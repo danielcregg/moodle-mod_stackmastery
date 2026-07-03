@@ -4,6 +4,14 @@ All notable changes to **mod_stackmastery** are documented in this file. The for
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.1.1-beta] - 2026-07-03
+
+- Attempt page layout (user feedback from the first live session): the mastery bars are now
+  anchored at the top of the page in every state, directly under the outcome banner, so
+  "your mastery moved from 10% to 42%" and the bar showing 42% read as one unit; the review
+  of the just-answered question is a collapsible panel (open by default) - the worked
+  solution stays available as scaffolding for the next question, one click folds it away.
+
 ## [0.1.0-beta] - 2026-07-03
 
 First complete release: built, reviewed and verified in one continuous campaign.

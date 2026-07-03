@@ -17,8 +17,11 @@
 {{!
     @template mod_stackmastery/attempt_page
 
-    The attempt page: notice banners, the review panel of the just-graded question, the mastery
-    progress region, the open question inside its single mutation form, and the End-attempt-now
+    The attempt page, in fixed order: notice banners, the outcome banner of the just-graded
+    question, the mastery progress region (always anchored on top so the "moved from X% to Y%"
+    banner gets its visual payoff right below), the collapsible review panel (open by default -
+    the worked solution stays available as scaffolding for the next question, and one click
+    folds it away), the open question inside its single mutation form, and the End-attempt-now
     escape hatch. The question HTML posts to processattempt.php; the hidden slot field is
     informational only (the server names the slot).
 
@@ -78,15 +81,9 @@
         <div class="alert alert-{{type}}" role="alert">{{message}}</div>
     {{/notices}}
 
-    {{#hasreview}}
-        <section class="stackmastery-review mb-3" aria-label="{{reviewheading}}">
-            {{#reviewbanner}}
-                <div class="stackmastery-outcome alert alert-{{reviewbannertype}}" role="status">{{reviewbanner}}</div>
-            {{/reviewbanner}}
-            <h3 class="h5">{{reviewheading}}</h3>
-            <div class="stackmastery-reviewquestion">{{{reviewhtml}}}</div>
-        </section>
-    {{/hasreview}}
+    {{#reviewbanner}}
+        <div class="stackmastery-outcome alert alert-{{reviewbannertype}}" role="status">{{reviewbanner}}</div>
+    {{/reviewbanner}}
 
     {{#hasprogress}}
         {{#progress}}
@@ -94,6 +91,13 @@
         {{/progress}}
         <p class="stackmastery-skillsattarget">{{skillsattarget}}</p>
     {{/hasprogress}}
+
+    {{#hasreview}}
+        <details open class="stackmastery-review mb-3">
+            <summary class="stackmastery-review-summary h5">{{reviewheading}}</summary>
+            <div class="stackmastery-reviewquestion">{{{reviewhtml}}}</div>
+        </details>
+    {{/hasreview}}
 
     {{#questionprogress}}
         <p class="stackmastery-questionprogress">{{questionprogress}}</p>

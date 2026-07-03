@@ -105,3 +105,13 @@
 .stackmastery-gradeline {
     margin-top: 1rem;
 }
+
+.stackmastery-review-summary {
+    cursor: pointer;
+    display: list-item;
+    margin-bottom: 0.5rem;
+}
+
+.stackmastery-review[open] > .stackmastery-review-summary {
+    margin-bottom: 0.75rem;
+}
