@@ -1,0 +1,92 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_stackmastery/attempt_summary
+
+    Result card for one finished attempt: outcome, counts, timings, the attempt grade and the
+    final per-skill mastery. Used on the report attempt detail page.
+
+    Context variables required for this template:
+    * heading - string
+    * number - int, the attempt number
+    * statelabel - string, state with finish reason suffix
+    * reached - bool
+    * questions - int, questions answered
+    * stepstotarget - string, count or -
+    * timetotarget - string, formatted duration or -
+    * started - string, formatted date
+    * finished - string, formatted date or -
+    * grade - string, formatted grade or -
+    * hasskills - bool
+    * skills - array of { name, percentlabel, reached }
+
+    Example context (json):
+    {
+        "heading": "Attempt summary",
+        "number": 1,
+        "statelabel": "Complete (Reached target)",
+        "reached": true,
+        "questions": 7,
+        "stepstotarget": "7",
+        "timetotarget": "6 mins",
+        "started": "Wednesday, 1 July 2026, 9:00 AM",
+        "finished": "Wednesday, 1 July 2026, 9:06 AM",
+        "grade": "100.00",
+        "hasskills": true,
+        "skills": [
+            {"name": "Differentiation", "percentlabel": "93%", "reached": true}
+        ]
+    }
+}}
+<div class="stackmastery-summary card mb-3">
+    <div class="card-body">
+        <h3 class="h5">{{heading}}</h3>
+        <dl class="row mb-0">
+            <dt class="col-sm-4">{{#str}} colattempt, mod_stackmastery {{/str}}</dt>
+            <dd class="col-sm-8">{{number}}</dd>
+            <dt class="col-sm-4">{{#str}} colstate, mod_stackmastery {{/str}}</dt>
+            <dd class="col-sm-8">{{statelabel}}</dd>
+            <dt class="col-sm-4">{{#str}} colreached, mod_stackmastery {{/str}}</dt>
+            <dd class="col-sm-8">
+                {{#reached}}{{#str}} yes {{/str}}{{/reached}}
+                {{^reached}}{{#str}} no {{/str}}{{/reached}}
+            </dd>
+            <dt class="col-sm-4">{{#str}} colquestions, mod_stackmastery {{/str}}</dt>
+            <dd class="col-sm-8">{{questions}}</dd>
+            <dt class="col-sm-4">{{#str}} colstepstotarget, mod_stackmastery {{/str}}</dt>
+            <dd class="col-sm-8">{{stepstotarget}}</dd>
+            <dt class="col-sm-4">{{#str}} coltimetotarget, mod_stackmastery {{/str}}</dt>
+            <dd class="col-sm-8">{{timetotarget}}</dd>
+            <dt class="col-sm-4">{{#str}} colgrade, mod_stackmastery {{/str}}</dt>
+            <dd class="col-sm-8">{{grade}}</dd>
+        </dl>
+        {{#hasskills}}
+            <hr>
+        {{/hasskills}}
+        {{#skills}}
+            <div class="stackmastery-summary-skill">
+                <span class="stackmastery-summary-skillname">{{name}}</span>
+                <span class="stackmastery-progress-value">
+                    {{percentlabel}}{{#reached}}
+                        <span class="stackmastery-reached-check" aria-hidden="true">&#10003;</span>
+                        <span class="sr-only">{{#str}} targetreached, mod_stackmastery {{/str}}</span>
+                    {{/reached}}
+                </span>
+            </div>
+        {{/skills}}
+    </div>
+</div>
