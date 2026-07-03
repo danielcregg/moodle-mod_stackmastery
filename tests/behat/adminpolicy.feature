@@ -9,7 +9,7 @@ Feature: STACK Mastery policy administration page
   # guidance (with the moodledata drop path) without error.
   Scenario: An administrator sees the active shipped policy and the no-pending state
     Given I log in as "admin"
-    When I navigate to "Plugins > Activity modules > STACK Mastery policy" in site administration
+    When I navigate to "Plugins > Activity modules > Question selection policy" in site administration
     Then I should see "Active policy"
     And I should see "shipped-"
     And I should see "shipped"

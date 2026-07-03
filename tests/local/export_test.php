@@ -49,9 +49,11 @@ final class export_test extends \advanced_testcase {
         parent::setUp();
         $this->resetAfterTest();
         $this->course = $this->getDataGenerator()->create_course();
+        $qcat = $this->getDataGenerator()->get_plugin_generator('core_question')
+            ->create_question_category(['contextid' => \context_course::instance($this->course->id)->id]);
         $this->instance = $this->getDataGenerator()->create_module(
             'stackmastery',
-            ['course' => $this->course->id, 'poolcategory' => 'WP4 pool']
+            ['course' => $this->course->id, 'poolcategoryid' => $qcat->id]
         );
     }
 

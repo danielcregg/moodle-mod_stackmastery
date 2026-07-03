@@ -50,9 +50,11 @@ final class experience_test extends \advanced_testcase {
     private function make_attempt(array $overrides = []): \stdClass {
         global $DB;
         $course = $this->getDataGenerator()->create_course();
+        $qcat = $this->getDataGenerator()->get_plugin_generator('core_question')
+            ->create_question_category(['contextid' => \context_course::instance($course->id)->id]);
         $instance = $this->getDataGenerator()->create_module(
             'stackmastery',
-            ['course' => $course->id, 'poolcategory' => 'WP4 pool']
+            ['course' => $course->id, 'poolcategoryid' => $qcat->id]
         );
         $user = $this->getDataGenerator()->create_user();
         $mastery = experience::encode_mastery(array_fill(0, 8, 0.2));

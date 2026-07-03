@@ -157,7 +157,7 @@ $string['opensat'] = 'Opens on {$a}';
 $string['pendingpolicy'] = 'Pending policy';
 $string['pluginadministration'] = 'STACK Mastery administration';
 $string['pluginname'] = 'STACK Mastery';
-$string['policypage'] = 'STACK Mastery policy';
+$string['policypage'] = 'Question selection policy';
 $string['policypagelink_desc'] = 'Review, promote or roll back the question selection policy on the <a href="{$a}">policy page</a>.';
 $string['policypromoted'] = 'Policy promoted: {$a->old} to {$a->new}.';
 $string['policyrolledback'] = 'Policy rolled back: {$a->old} to {$a->new}.';
