@@ -180,6 +180,7 @@ $string['policyswapfailed'] = 'The policy swap failed; the previous policy remai
 $string['poolcategory'] = 'Question pool category';
 $string['poolcategory_help'] = 'One question bank category (subcategories are not included). Eligible questions are STACK questions in this category tagged with a skill tag (stackmastery_skill_...) and a difficulty tag (stackmastery_diff_easy, stackmastery_diff_medium or stackmastery_diff_hard). STACK Question Forge can tag generated questions automatically.';
 $string['poolcoverage'] = 'Pool coverage';
+$string['poolcellsbelow'] = '{$a->n} of {$a->total} question pool cells are below {$a->target} questions.';
 $string['poolcoverage_addhint'] = 'Question counts per skill and difficulty are checked when you save.';
 $string['poolrefill'] = 'Nightly pool refill';
 $string['poolrefill_desc'] = 'When enabled, a nightly task checks every STACK Mastery activity and queues STACK Question Forge generation jobs for any skill and difficulty cell holding fewer than the target number of questions. Generated questions are validated against Maxima and tagged for the pool automatically; jobs are attributed to the primary administrator and capped per run. Requires the STACK Question Forge plugin (local_stackforge); without it the task does nothing. Off by default.';

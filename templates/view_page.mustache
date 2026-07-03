@@ -40,6 +40,8 @@
     * buildpoolurl - string, buildpool.php URL for the two pool tool POSTs
     * showbuildpool - bool, the generate form renders only when the forge job API is installed
     * buildpooltargetdefault - int, default per-cell target for the generate form
+    * poolgapchip - string, "N of M cells are below X questions" badge (empty hides it)
+    * poolcoverage - pool_coverage template context or null
 
     Example context (json):
     {
@@ -71,7 +73,9 @@
         "canmanagepool": false,
         "buildpoolurl": "https://example.com/mod/stackmastery/buildpool.php",
         "showbuildpool": false,
-        "buildpooltargetdefault": 3
+        "buildpooltargetdefault": 3,
+        "poolgapchip": "4 of 6 cells are below 3 questions.",
+        "poolcoverage": null
     }
 }}
 <div class="stackmastery-view" data-region="stackmastery-view" data-state="{{state}}">
@@ -131,6 +135,12 @@
         <div class="stackmastery-pooltools card mb-3">
             <div class="card-body">
                 <h3 class="h5">{{#str}} pooltools, mod_stackmastery {{/str}}</h3>
+                {{#poolgapchip}}
+                    <p><span class="badge badge-info bg-info">{{poolgapchip}}</span></p>
+                {{/poolgapchip}}
+                {{#poolcoverage}}
+                    {{> mod_stackmastery/pool_coverage }}
+                {{/poolcoverage}}
                 <p class="text-muted mb-2">{{#str}} starterpackintro, mod_stackmastery {{/str}}</p>
                 <form method="post" action="{{buildpoolurl}}" class="stackmastery-starterform mb-3">
                     <input type="hidden" name="id" value="{{cmid}}">

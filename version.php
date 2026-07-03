@@ -28,11 +28,11 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component    = 'mod_stackmastery';
-$plugin->version      = 2026070303;
+$plugin->version      = 2026070304;
 $plugin->requires     = 2024100700;             // Moodle 4.5 (LTS).
 $plugin->supported    = [405, 405];             // Developed and tested on Moodle 4.5 LTS.
 $plugin->maturity     = MATURITY_BETA;
-$plugin->release      = '0.2.0-beta';
+$plugin->release      = '0.2.1-beta';
 $plugin->dependencies = [
     'qtype_stack' => ANY_VERSION, // The question pool is STACK questions; the loop grades via qtype_stack.
 ];

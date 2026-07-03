@@ -4,6 +4,12 @@ All notable changes to **mod_stackmastery** are documented in this file. The for
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.2.1-beta] - 2026-07-03
+
+- The "Question pool tools" card now shows the colour-coded coverage grid and a
+  "N of M cells are below 3 questions" badge right beside the Build my pool button,
+  so pool health is legible at a glance instead of read from prose warnings.
+
 ## [0.2.0-beta] - 2026-07-03
 
 ### Added

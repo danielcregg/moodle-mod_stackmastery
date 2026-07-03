@@ -110,7 +110,26 @@ class view_page implements renderable, templatable {
                 && class_exists('\\local_stackforge\\generator')
                 && method_exists('\\local_stackforge\\generator', 'queue_generation'),
             'buildpooltargetdefault' => 3,
+            'poolcoverage'   => null,
+            'poolgapchip'    => '',
         ];
+        if ($canmanagepool) {
+            global $CFG;
+            require_once($CFG->dirroot . '/mod/stackmastery/mod_form.php');
+            $selected = skills::decode_csv((string) $this->instance->skills);
+            $counts = pool::cell_counts((int) $this->instance->poolcategoryid, $selected);
+            $gaps = pool::cell_gaps($counts, 3);
+            $missing = 0;
+            foreach ($gaps as $row) {
+                $missing += count($row);
+            }
+            $data->poolcoverage = \mod_stackmastery_mod_form::coverage_context($counts);
+            $data->poolgapchip = get_string('poolcellsbelow', 'mod_stackmastery', (object) [
+                'n'      => $missing,
+                'total'  => count($selected) * count(skills::DIFFICULTIES),
+                'target' => 3,
+            ]);
+        }
 
         $this->export_state($data, $state);
         $this->export_progress($data, $attempts, $open, $output);
